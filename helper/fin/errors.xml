@@ -1,0 +1,135 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!-- Константы - конфигуратор продукции (Помощник)  -->
+
+<!DOCTYPE document
+    [
+        <!ELEMENT document (system, task, description, lanquage, error+)>
+            <!ATTLIST    document
+                        id        ID        #REQUIRED
+                        type    NMTOKEN    #REQUIRED
+            >
+            <!ELEMENT system EMPTY>
+                <!ATTLIST    system
+                            id        ID        #REQUIRED
+                            version    NMTOKEN    #REQUIRED
+                >
+            <!ELEMENT task EMPTY>
+                <!ATTLIST    task
+                            id        ID        #REQUIRED
+                            version    NMTOKEN    #REQUIRED
+                >
+            <!ELEMENT description EMPTY>
+                <!ATTLIST    description
+                            id        ID        #REQUIRED
+                            version    NMTOKEN    #REQUIRED
+                >
+            <!ELEMENT lanquage EMPTY>
+                <!ATTLIST    lanquage
+                                id        ID        #REQUIRED
+                >
+            <!ELEMENT error ANY>
+                    <!ATTLIST    error
+                                id        CDATA    #REQUIRED
+                    >
+    ]
+>
+
+<document id='errorsDescription' type='Respond'>
+    <system id='-CIS' version='1'/>
+    <task id='CALCHELPER' version='2'/>
+    <description id='Errors' version='1'/>
+    <lanquage id='FIN'/>
+    
+    <error id='0'>
+        $space$Operation:$space$
+    </error>
+    <error id='1'>
+        CIS data exchange service initialization error.
+    </error>
+    <error id='2'>
+        Incorrect document content.$space$
+    </error>
+    <!-- Instructions error:-->
+    <error id='3'>
+        $space$
+    </error>
+    <error id='4'>
+        Loaded service info handling error.$space$
+    </error>
+    <error id='5'>
+        Can't load helper product configurator.$space$
+    </error>
+    <error id='6'>
+        Loading error [1].$space$
+    </error>
+    <error id='7'>
+        Loading error [2].$space$
+    </error>
+    <error id='8'>
+        Initialization error [1].$space$
+    </error>
+    <error id='9'>
+        Not XML format file was transferred to the server.$space$
+    </error>
+    <error id='10'>
+        Server XML handling error.$space$
+    </error>
+    <error id='11'>
+        Incorrect operaton execution attempt.$space$
+    </error>
+    <error id='12'>
+        Service unavailable (1), please, try later.$space$
+    </error>
+    <error id='13'>
+        Service unavailable (2), please, try later.$space$
+    </error>
+    <error id='14'>
+        Service unavailable (3), please, try later.$space$
+    </error>
+    <error id='15'>
+        Corporate IS exchange error [1]. May be service is not available at the moment. Please try again later.$space$
+    </error>
+    <error id='16'>
+        Corporate IS exchange error [2]. May be service is not available at the moment. Please try again later.$space$
+    </error>
+    <error id='17'>
+        XML handling error [respond].$space$
+    </error>
+    <error id='18'>
+        Incorrect document structure [respond XML].$space$
+    </error>
+    <error id='19'>
+        Incorrect document content [XML respond].$space$
+    </error>
+    <error id='20'>
+        CIS error [respond XML]:$space$
+    </error>
+    <error id='21'>
+        Service unavailable (0), please, try later.$space$
+    </error>
+    <error id='22'>
+        Service unavailable (4), please, try later.$space$
+    </error>
+    <error id='23'>
+        Service unavailable (5), please, try later.$space$
+    </error>
+    <error id='24'><![CDATA[<font color='#ff0000'>The value does not match
+format of the field. Number
+too much.</font>]]>
+    </error>
+    <error id='25'></error>
+    <error id='26'></error>
+    <!-- Ошибка в инструкции: -->
+    <error id='27'>$space$</error>
+    <error id='28'>$space$</error>
+    <error id='29'>$space$</error>
+    <error id='30'></error>
+    <error id='31'></error>
+    <error id='32'></error>
+    <error id='33'></error>
+    <error id='34'>Некорректная версия XML-обмена.</error>
+    <error id='35'>Отсутствует информация о конфигурации изделия.</error>
+    <error id='36'>Не задан корневой тег конфигурации.</error>
+    <error id='37'>Информация конструктора:</error>
+    <error id='39'>Расчет конструкции не выполнен.</error>
+</document>

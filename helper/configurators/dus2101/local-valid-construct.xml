@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE document
+	[
+		<!ELEMENT document (system, task, description, construct+)>
+			<!ATTLIST	document
+						id		ID		#REQUIRED
+						type	NMTOKEN	#REQUIRED
+			>
+			<!ELEMENT system EMPTY>
+				<!ATTLIST	system
+							id		ID		#REQUIRED
+							version	NMTOKEN	#REQUIRED
+				>
+			<!ELEMENT task EMPTY>
+				<!ATTLIST	task
+							id		ID		#REQUIRED
+							version	NMTOKEN	#REQUIRED
+				>
+			<!ELEMENT description EMPTY>
+				<!ATTLIST	description
+							id		ID		#REQUIRED
+							version	NMTOKEN	#REQUIRED
+				>
+			<!ELEMENT construct (field+)>
+				<!ATTLIST	construct
+							id		ID		#REQUIRED
+				>
+				<!ELEMENT field ANY>
+						<!ATTLIST	field
+									name	NMTOKEN	#REQUIRED
+						>
+	]
+>
+
+<document id='validationList' type='Respond'>
+	<system id='-CIS' version='1'/>
+	<task id='CALCHELPER' version='2'/>
+	<description id='Construction Field Items Restrictions' version='1'/>
+	
+	<!-- Проём ('minSquareWidth', 'maxSquareWidth', 'minSquareHeight', 'maxSquareHeight') -->
+	<construct id="DoorsSquare">
+		<field name='Name'>Square</field>
+		<field name='Enabled'>On</field>
+		<field name='Value'>2000:4500:1000:2500</field>
+	</construct>
+</document>

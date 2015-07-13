@@ -1,0 +1,209 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml"
+           width="390"
+           height="405"
+           backgroundColor="#f8fcff"
+           creationComplete="init()">
+
+    <mx:Script>
+        <![CDATA[
+            import mx.core.Application;
+            import mx.managers.PopUpManager;
+
+            private  var firstExecute:Boolean = new Boolean(1);
+            private  var parentObject:Object = new Object();
+
+            private function init():void
+            {
+                this.parentObject = Application.application.mainClassObj;
+
+                //this.parentObject.cisDocumentNumber
+                //this.parentObject.cisDocumentDate
+                //this.lastNameLabel.text = "Проверка";
+            }
+
+            private function cancelButtonPressed():void
+            {
+                var retCode:Number = new Number(0);
+                var tmpStr:String = new String("");
+
+                PopUpManager.removePopUp(this);
+            }
+
+            private function goButtonPressed():void
+            {
+                PopUpManager.removePopUp(this);
+                this.parentObject.executeMainAction("207");
+            }
+
+        ]]>
+    </mx:Script>
+
+    <mx:Form id="userInfoForm" x="10" y="10" width="380" height="395">
+        <mx:Text id="attentionInfo" text="attentionInfo" width="347" height="79"/>
+
+        <mx:Grid borderStyle="solid" borderThickness="0" width="347" horizontalGap="0">
+            <mx:GridRow borderStyle="solid" borderThickness="0" width="347">
+                <mx:GridItem width="100" borderStyle="solid" borderThickness="0">
+                    <mx:Label id="lastNameLabel" width="100" text="Last name" fontWeight="bold" textAlign="right"/>
+                </mx:GridItem>
+                <mx:GridItem width="3" borderStyle="solid" borderThickness="0">
+                </mx:GridItem>
+                <mx:GridItem width="244" borderStyle="solid" borderThickness="0">
+                    <mx:TextInput id="lastNameField" width="244"/>
+                </mx:GridItem>
+            </mx:GridRow>
+
+            <mx:GridRow borderStyle="solid" borderThickness="0" width="347">
+                <mx:GridItem width="100" borderStyle="solid" borderThickness="0">
+                    <mx:Label id="firstNameLabel" width="100" text="First name" fontWeight="bold" textAlign="right"/>
+                </mx:GridItem>
+                <mx:GridItem width="3" borderStyle="solid" borderThickness="0">
+                </mx:GridItem>
+                <mx:GridItem width="244" borderStyle="solid" borderThickness="0">
+                    <mx:TextInput id="firstNameField" width="244"/>
+                </mx:GridItem>
+            </mx:GridRow>
+
+            <mx:GridRow borderStyle="solid" borderThickness="0" width="347">
+                <mx:GridItem width="100" borderStyle="solid" borderThickness="0">
+                    <mx:Label id="midleNameLabel" width="100" text="Midle name" fontWeight="bold" textAlign="right"/>
+                </mx:GridItem>
+                <mx:GridItem width="3" borderStyle="solid" borderThickness="0">
+                </mx:GridItem>
+                <mx:GridItem width="244" borderStyle="solid" borderThickness="0">
+                    <mx:TextInput id="midleNameField" width="244"/>
+                </mx:GridItem>
+            </mx:GridRow>
+
+            <mx:GridRow borderStyle="solid" borderThickness="0" width="347">
+                <mx:GridItem width="100" borderStyle="solid" borderThickness="0">
+                    <mx:Label id="cityNameLabel" width="100" text="Sity" fontWeight="bold" textAlign="right"/>
+                </mx:GridItem>
+                <mx:GridItem width="3" borderStyle="solid" borderThickness="0">
+                </mx:GridItem>
+                <mx:GridItem width="244" borderStyle="solid" borderThickness="0">
+                    <mx:TextInput id="sityNameField" width="244"/>
+                </mx:GridItem>
+            </mx:GridRow>
+        </mx:Grid>
+
+        <mx:Grid borderStyle="solid" borderThickness="0" width="347" horizontalGap="0">
+            <mx:GridRow borderStyle="solid" borderThickness="0" width="347">
+                <mx:GridItem width="100" borderStyle="solid" borderThickness="0">
+                    <mx:Label id="phoneLabel" width="100" text="Phone" fontWeight="bold" textAlign="right"/>
+                </mx:GridItem>
+                <mx:GridItem width="3" borderStyle="solid" borderThickness="0">
+                </mx:GridItem>
+                <mx:GridItem width="12" borderStyle="solid" borderThickness="0">
+                    <mx:Label id="plusLabel" width="12" text="+" fontWeight="bold" textAlign="center"/>
+                </mx:GridItem>
+                <mx:GridItem width="2" borderStyle="solid" borderThickness="0">
+                </mx:GridItem>
+                <mx:GridItem width="30" borderStyle="solid" borderThickness="0">
+                    <mx:TextInput id="countryCodeField" text="7" width="30"/>
+                </mx:GridItem>
+                <mx:GridItem width="2" borderStyle="solid" borderThickness="0">
+                </mx:GridItem>
+                <mx:GridItem width="55" borderStyle="solid" borderThickness="0">
+                    <mx:TextInput id="sityCodeField" text="495" width="55"/>
+                </mx:GridItem>
+                <mx:GridItem width="2" borderStyle="solid" borderThickness="0">
+                </mx:GridItem>
+                <mx:GridItem width="141" borderStyle="solid" borderThickness="0">
+                    <mx:TextInput id="phoneField" width="141"/>
+                </mx:GridItem>
+            </mx:GridRow>
+        </mx:Grid>
+
+        <mx:Grid borderStyle="solid" borderThickness="0" width="347" horizontalGap="0">
+            <mx:GridRow borderStyle="solid" borderThickness="0" width="347">
+                <mx:GridItem width="100" borderStyle="solid" borderThickness="0">
+                    <mx:Label id="mailNameLabel" width="100" text="E-mail" fontWeight="bold" textAlign="right"/>
+                </mx:GridItem>
+                <mx:GridItem width="3" borderStyle="solid" borderThickness="0">
+                </mx:GridItem>
+                <mx:GridItem width="80" borderStyle="solid" borderThickness="0">
+                    <mx:TextInput id="mailNameField" width="80"/>
+                </mx:GridItem>
+                <mx:GridItem width="2" borderStyle="solid" borderThickness="0">
+                </mx:GridItem>
+                <mx:GridItem width="14" borderStyle="solid" borderThickness="0">
+                    <mx:Label id="comaLabel" width="14" text="@" fontWeight="bold" textAlign="center"/>
+                </mx:GridItem>
+                <mx:GridItem width="2" borderStyle="solid" borderThickness="0">
+                </mx:GridItem>
+                <mx:GridItem width="107" borderStyle="solid" borderThickness="0">
+                    <mx:TextInput id="domainNameField" width="107"/>
+                </mx:GridItem>
+                <mx:GridItem width="2" borderStyle="solid" borderThickness="0">
+                </mx:GridItem>
+                <mx:GridItem width="10" borderStyle="solid" borderThickness="0">
+                    <mx:Label id="pointLabel" width="10" text="." fontWeight="bold" textAlign="center"/>
+                </mx:GridItem>
+                <mx:GridItem width="2" borderStyle="solid" borderThickness="0">
+                </mx:GridItem>
+                <mx:GridItem width="25" borderStyle="solid" borderThickness="0">
+                    <mx:TextInput id="zoneNameField" text="ru" width="25"/>
+                </mx:GridItem>
+            </mx:GridRow>
+        </mx:Grid>
+
+        <mx:Grid borderStyle="solid" borderThickness="0" width="347" horizontalGap="0">
+            <mx:GridRow borderStyle="solid" borderThickness="0" width="347">
+                <mx:GridItem width="100" borderStyle="solid" borderThickness="0">
+                    <mx:Label id="countNameLabel" width="100" text="Count" fontWeight="bold" textAlign="right"/>
+                </mx:GridItem>
+                <mx:GridItem width="3" borderStyle="solid" borderThickness="0">
+                </mx:GridItem>
+                <mx:GridItem width="80" borderStyle="solid" borderThickness="0">
+                    <mx:TextInput id="countNameField" text="1" width="80"/>
+                </mx:GridItem>
+                <mx:GridItem width="2" borderStyle="solid" borderThickness="0">
+                </mx:GridItem>
+                <mx:GridItem width="30" borderStyle="solid" borderThickness="0">
+                    <mx:Label id="packageLabel" width="30" text="pce" textAlign="left"/>
+                </mx:GridItem>
+            </mx:GridRow>
+        </mx:Grid>
+
+        <mx:Grid borderStyle="solid" borderThickness="0" width="347" horizontalGap="0">
+            <mx:GridRow borderStyle="solid" borderThickness="0" width="347" height="10">
+                <mx:GridItem width="173" horizontalAlign="right" borderStyle="solid" borderThickness="0">
+                </mx:GridItem>
+                <mx:GridItem width="3" borderStyle="solid" borderThickness="0">
+                </mx:GridItem>
+                <mx:GridItem width="173" borderStyle="solid" borderThickness="0">
+                </mx:GridItem>
+            </mx:GridRow>
+            <mx:GridRow borderStyle="solid" borderThickness="0" width="347">
+                <mx:GridItem width="173" horizontalAlign="right" borderStyle="solid" borderThickness="0">
+                    <mx:Button
+                        label="Отменить"
+                        id="cancelButton"
+                        styleName="largeButtons"
+                        enabled="true"
+                        top="7"
+                        width="100"
+                        height="27"
+                        click="cancelButtonPressed()"/>
+                </mx:GridItem>
+                <mx:GridItem width="3" borderStyle="solid" borderThickness="0">
+                </mx:GridItem>
+                <mx:GridItem width="173" borderStyle="solid" borderThickness="0">
+                    <mx:Button
+                        label="Продолжить"
+                        id="goButton"
+                        styleName="largeButtons"
+                        enabled="true"
+                        top="7"
+                        width="100"
+                        height="27"
+                        click="goButtonPressed()"/>
+                </mx:GridItem>
+            </mx:GridRow>
+        </mx:Grid>
+
+    </mx:Form>
+
+</mx:Canvas>

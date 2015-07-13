@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!-- Список используемых единиц измерения ISO-31-x, ОКЕИ-Общероссийский классификатор единиц измерения	-->
+
+<!DOCTYPE document
+	[
+		<!ELEMENT document (system, task, description, lanquage, unit+)>
+			<!ATTLIST	document
+						id		ID		#REQUIRED
+						type	NMTOKEN	#REQUIRED
+			>
+				<!ELEMENT system EMPTY>
+					<!ATTLIST	system
+								id		ID		#REQUIRED
+								version	NMTOKEN	#REQUIRED
+					>
+				<!ELEMENT task EMPTY>
+					<!ATTLIST	task
+								id		ID		#REQUIRED
+								version	NMTOKEN	#REQUIRED
+					>
+				<!ELEMENT description EMPTY>
+					<!ATTLIST	description
+								id		ID		#REQUIRED
+								version	NMTOKEN	#REQUIRED
+					>
+				<!ELEMENT lanquage EMPTY>
+					<!ATTLIST	lanquage
+									id	ID		#REQUIRED
+					>
+				<!ELEMENT unit ANY>
+						<!ATTLIST	unit
+									numCode		NMTOKEN		#REQUIRED
+									alphaCode	NMTOKEN		#REQUIRED
+									localCode	NMTOKENS	#IMPLIED
+						>
+	]
+>
+
+<document id='unitsDescription' type='Respond'>
+	<system id='-CIS' version='1'/>
+	<task id='CALCHELPER' version='2'/>
+	<description id='Units' version='1'/>
+	<lanquage id='CZE'/>
+
+	<unit numCode='003' alphaCode='MMT' localCode='003'>
+		mm
+	</unit>
+	<unit numCode='004' alphaCode='CMT' localCode='004'>
+		cm
+	</unit>
+	<unit numCode='005' alphaCode='DMT' localCode='005'>
+		dm
+	</unit>
+	<unit numCode='006' alphaCode='MTR' localCode='006'>
+		m
+	</unit>
+	<unit numCode='050' alphaCode='MMK' localCode='050'>
+		mm2
+	</unit>
+	<unit numCode='051' alphaCode='CMK' localCode='051'>
+		cm2
+	</unit>
+	<unit numCode='053' alphaCode='DMK' localCode='053'>
+		dm2
+	</unit>
+	<unit numCode='055' alphaCode='MTK' localCode='055'>
+		m2
+	</unit>
+	<unit numCode='796' alphaCode='PCE' localCode='796'>
+		ks
+	</unit>
+	<unit numCode='112' alphaCode='LTR' localCode='112'>
+		l
+	</unit>
+	<!-- ?не нашел	-->
+	<unit numCode='120' alphaCode='DGR' localCode='120'>
+		gradus
+	</unit>
+</document>

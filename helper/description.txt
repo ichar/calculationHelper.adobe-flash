@@ -1,0 +1,172 @@
+Поля тега <record> файла form.xml
+---------------------------------
+
+Kind:
+  INPUT FIELD
+  DISPLAY FIELD
+  RADIOBUTTON
+  CHECKBOX
+  POPUP
+  POP-UP MENU
+  INPUT AREA
+  CONSTANT
+  PROGRESS
+
+Type:
+  NUMBER
+  STRING
+  BOOLEAN
+
+Format:
+  0-9::4.0
+  
+GroupID:
+  группа (раздел) полей формы
+
+SubGroupID:
+  подгруппа полей формы
+
+CurrentValue:
+  true/false
+  ...
+
+UnitID: (единицы измерения, см. units.xml)
+
+Illustration:
+  configurators/dus550/images/1003.jpg
+
+
+Поля тега <record> файла content.xml
+------------------------------------
+
+TypeID:
+  1 - жирный H1
+  2 - нормальный H2
+
+Label:
+  левосторонний заголовок
+
+CurrentValue:
+  значение
+
+Description:
+  описание (комментарий)
+
+
+Стили:
+
+PartTitle - заголовок группы параметров
+
+-----------------
+
+GroupAndSubgroup - группы/подгруппы
+
+HelperTaskDescription - поля (параметры формы)
+
+KnowledgeRepository - общая информация о конфигураторе (изображение, справочная документация)
+
+-----------------
+
+helperErrorCode:
+
+ 0 : OK
+-1 : Инициализация сервиса обмена с внешнией системой произошла с ошибкой.
+-2 : Некорректное содержание документа.
+-3 : Ошибка в инструкции.
+-4 : Ошибка обработки загруженной служебной информации.
+-5 : Невозможно загрузить конфигуратор изделия для помощника.
+-6 : Ошибка загрузки.
+-7 : Ошибка загрузки.
+-8 : Ошибка инициализации.
+-9 : На сервер передан документ не в формате XML.
+-10: Ошибка обработки XML на стороне сервера.
+-11: Попытка запуска некорректной операции.
+-12: Сервис на данный момент недоступен(1). Пожалуйста, повторите попытку позже.
+-13: Сервис на данный момент недоступен(2). Пожалуйста, повторите попытку позже.
+-14: Сервис на данный момент недоступен(3). Пожалуйста, повторите попытку позже.
+-15: Ошибка обмена с корпоративной ИС [1]. Возможно сервис на данный момент недоступен. Пожалуйста, повторите попытку позже.
+-16: Ошибка обмена с корпоративной ИС [2]. Возможно сервис на данный момент недоступен. Пожалуйста, повторите попытку позже.
+-17: Ошибка обработки XML [respond].
+-18: Некорректная структура документа [respond XML].
+-19: Некорректное содержание документа [respond XML].
+-20: Ошибка КИС [respond XML].
+
+-26: Ошибка КИС. Информация о стоимости некоторых опций отсутствует в корпоративной информационной системе.
+
+...
+
+-----------------
+
+objectStatus:
+
+ 0 : недоступно
+ 1 : доступно
+ 2 : допустимо
+
+-----------------
+
+Служебные переменные:
+
+attentionMessage - предупреждение
+
+NoticeMessage - отладочная информация
+
+Работа со списками:
+
+LST_INDEX_DELIMETER - разделитель области индекса текущего выбранного элемента
+LST_VALUE_DELIMETER - разделитель элементов списка
+LST_ITEM_DELIMETER  - разделитель значения элемента списка
+
+scriptExecCount - счетчик проходов скрипта
+withoutRestriction - если истина, то не учитывать ограничения, если фальшь, то учитывать
+
+cisVersion
+cisSecurityFile
+countryID
+currencyName
+currentLocale
+currentUsedLocalization
+
+documentNumber
+documentDate
+documentPosition
+
+helperCommonID
+helperDomainURI
+helperLoadedVersion
+helperStyleID
+helperHttpHost
+helperHttpReferer
+helperHostName
+helperPageLocation
+helperRequestURI
+helperPathURI
+helperVersion
+helperSessionID
+
+priceTypeID
+
+regionID
+returnedErrorCode
+returnedErrorDescr
+
+userID
+userTypeID (1-дилер, 0-остальные)
+
+wizardName
+
+-----------------
+
+changedFormFieldID - идентификатор поля, измененного в текущей транзакции
+
+-----------------
+
+Код страны (countryID): 
+
+isSetTmpVal=((isSetTmpVal)&&((countryID.toUpperCase()=="RU")||(countryID.toUpperCase()=="BY")||(countryID.toUpperCase()=="UA")));
+
+Россия:     RU
+Белоруссия: BY
+Украина:    UA
+Чехия:      CZ
+Китай:      CN

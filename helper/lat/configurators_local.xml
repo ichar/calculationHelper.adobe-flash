@@ -1,0 +1,829 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!-- Список конфигураторов помощника  -->
+
+<!DOCTYPE document
+	[
+		<!ELEMENT document (system, task, description, lanquage, configurator+)>
+			<!ATTLIST	document
+						id		ID		#REQUIRED
+						type	NMTOKEN	#REQUIRED
+			>
+			<!ELEMENT system EMPTY>
+				<!ATTLIST	system
+							id		ID		#REQUIRED
+							version	NMTOKEN	#REQUIRED
+				>
+			<!ELEMENT task EMPTY>
+				<!ATTLIST	task
+							id		ID		#REQUIRED
+							version	NMTOKEN	#REQUIRED
+				>
+			<!ELEMENT description EMPTY>
+				<!ATTLIST	description
+							id		ID		#REQUIRED
+							version	NMTOKEN	#REQUIRED
+				>
+			<!ELEMENT lanquage EMPTY>
+				<!ATTLIST	lanquage
+								id		ID		#REQUIRED
+				>
+			<!ELEMENT configurator (field+)>
+				<!ATTLIST	configurator
+							id		ID		#REQUIRED
+				>
+				<!ELEMENT field ANY>
+						<!ATTLIST	field
+									name	NMTOKEN	#REQUIRED
+						>
+	]
+>
+
+<document id='configuratorsList' type='Respond'>
+	<system id='-CIS' version='1'/>
+	<task id='CALCHELPER' version='2'/>
+	<description id='Configurators' version='1'/>
+	<lanquage id='LAT'/>
+	
+	<configurator id="RollerShutterDUS016">
+		<field name='HelperName'>
+			Конфигуратор комплектов рольставен DUS-016
+		</field>
+		<field name='defaultCurrencyID'>
+			643
+		</field>
+	</configurator>
+	
+	<configurator id="RollerShutterDUS330">
+		<field name='HelperName'>
+			Конфигуратор комплектов рольставен DUS-330
+		</field>
+		<field name='defaultCurrencyID'>
+			643
+		</field>
+	</configurator>
+	
+	<configurator id="SectionalDoorsEcoFast">
+		<field name='HelperName'>
+			 sectional doors configurator ECO Fast
+		</field>
+		<field name='defaultCurrencyID'>
+			643
+		</field>
+	</configurator>
+	
+	<configurator id="SectionalDoorsRSD01">
+		<field name='HelperName'>
+			 sectional doors configurator RSD01
+		</field>
+		<field name='defaultCurrencyID'>
+			643
+		</field>
+	</configurator>
+	
+	<configurator id="SelfWicketDUS000">
+		<field name='HelperName'>
+			Конфигуратор DUS-000
+		</field>
+		<field name='defaultCurrencyID'>
+			643
+		</field>
+	</configurator>
+	
+	<configurator id="SpeedDoorsDUS550">
+		<field name='HelperName'>
+			Конфигуратор скоростных ворот 
+		</field>
+		<field name='defaultCurrencyID'>
+			643
+		</field>
+	</configurator>
+	
+	<configurator id="SpeedDoorsDUS5511">
+		<field name='HelperName'>
+			Конфигуратор скоростных ворот Dynamic Roll Basis 
+		</field>
+		<field name='defaultCurrencyID'>
+			643
+		</field>
+	</configurator>
+	
+	<configurator id="SpeedDoorsDUS5512">
+		<field name='HelperName'>
+			Конфигуратор скоростных ворот Dynamic Roll Plus 
+		</field>
+		<field name='defaultCurrencyID'>
+			643
+		</field>
+	</configurator>
+	
+	<configurator id="SpeedDoorsDUS5513">
+		<field name='HelperName'>
+			Конфигуратор скоростных ворот Dynamic Roll Food DUS-551-3
+		</field>
+		<field name='defaultCurrencyID'>
+			643
+		</field>
+	</configurator>
+	
+	<configurator id="SpeedDoorsDUS5514">
+		<field name='HelperName'>
+			Конфигуратор скоростных ворот Dynamic Roll Frigo-2 DUS-551-4
+		</field>
+		<field name='defaultCurrencyID'>
+			643
+		</field>
+	</configurator>
+	
+	<configurator id="SpeedDoorsDUS5515">
+		<field name='HelperName'>
+			Конфигуратор скоростных ворот Dynamic Roll CB DUS-551-5
+		</field>
+		<field name='defaultCurrencyID'>
+			643
+		</field>
+	</configurator>
+	
+	<configurator id="SpeedDoorsDUS5516">
+		<field name='HelperName'>
+			Конфигуратор скоростных ворот Dynamic Roll EASY DUS-551-6
+		</field>
+		<field name='defaultCurrencyID'>
+			643
+		</field>
+	</configurator>
+	
+	<configurator id="ThermicrollSpiralDUS552">
+		<field name='HelperName'>
+			Конфигуратор спиральных ворот THERMICROLL SPIRAL 40 DUS-552
+		</field>
+		<field name='defaultCurrencyID'>
+			643
+		</field>
+	</configurator>
+	
+	<configurator id="SingleWicketDUS430">
+		<field name='HelperName'>
+			Конфигуратор отдельно-стоящей калитки DUS-430
+		</field>
+		<field name='defaultCurrencyID'>
+			643
+		</field>
+	</configurator>
+	
+	<configurator id="GarageDoorsDUS431">
+		<field name='HelperName'>
+			Конфигуратор гаражной калитки 
+		</field>
+		<field name='defaultCurrencyID'>
+			643
+		</field>
+	</configurator>
+	
+	<configurator id="GarageDoorsDUS431R">
+		<field name='HelperName'>
+			Конфигуратор калитки из роллетного профиля DUS-431(R)
+		</field>
+		<field name='defaultCurrencyID'>
+			643
+		</field>
+	</configurator>
+	
+	<configurator id="FenceSystemDUS927">
+		<field name='HelperName'>
+			Конфигуратор систем ограждения DUS-927
+		</field>
+		<field name='defaultCurrencyID'>
+			643
+		</field>
+	</configurator>
+	
+	<configurator id="FenceGateDUS928">
+		<field name='HelperName'>
+			Конфигуратор распашных ворот для системы ограждений DUS-928
+		</field>
+		<field name='defaultCurrencyID'>
+			643
+		</field>
+	</configurator>
+	
+	<configurator id="FwnceWicketDUS931">
+		<field name='HelperName'>
+			Конфигуратор калитки для системы ограждений DUS-931
+		</field>
+		<field name='defaultCurrencyID'>
+			643
+		</field>
+	</configurator>
+	
+	<configurator id="SerialSectionalDoors">
+		<field name='HelperName'>
+			 sectional doors configurator (RSD02/ISD01/ISD02)
+		</field>
+		<field name='defaultCurrencyID'>
+			643
+		</field>
+	</configurator>
+	
+	<configurator id="DockSystemDUS530">
+		<field name='HelperName'>
+            Configurator of the dock leveller DUS-530
+		</field>
+		<field name='defaultCurrencyID'>
+			643
+		</field>
+	</configurator>
+	
+	<configurator id="DockSystemDUS5301">
+		<field name='HelperName'>
+            Configurator of the dock leveller DUS-530-1
+		</field>
+		<field name='defaultCurrencyID'>
+			643
+		</field>
+	</configurator>
+	
+	<configurator id="DockSystemDUS5302">
+		<field name='HelperName'>
+            Configurator of the dock leveller DUS-530-2
+		</field>
+		<field name='defaultCurrencyID'>
+			643
+		</field>
+	</configurator>
+	
+	<configurator id="DockSystemDUS596">
+		<field name='HelperName'>
+            Configurator of the dock leveller DUS-596
+		</field>
+		<field name='defaultCurrencyID'>
+			643
+		</field>
+	</configurator>
+	
+	<configurator id="DockFrameDUS521">
+		<field name='HelperName'>
+			Dock shelters with retractable structure DUS-521
+		</field>
+		<field name='defaultCurrencyID'>
+			643
+		</field>
+	</configurator>
+	
+	<configurator id="DockFrameDUS522">
+		<field name='HelperName'>
+			Inflatable dock shelters DUS-522
+		</field>
+		<field name='defaultCurrencyID'>
+			643
+		</field>
+	</configurator>
+	
+	<configurator id="DockFrameDUS523">
+		<field name='HelperName'>
+			Dock shelters with non-collapsable DUS-523
+		</field>
+		<field name='defaultCurrencyID'>
+			643
+		</field>
+	</configurator>
+	
+	<configurator id="LiftingTableDUS560">
+		<field name='HelperName'>
+			Конфигуратор Лифт ножницевидный DUS-560 (Armo, Транспрогресс)
+		</field>
+		<field name='defaultCurrencyID'>
+			643
+		</field>
+	</configurator>
+	
+	<configurator id="LiftingTableDUS5602">
+		<field name='HelperName'>
+			Конфигуратор Лифт ножницевидный DUS-560 ()
+		</field>
+		<field name='defaultCurrencyID'>
+			643
+		</field>
+	</configurator>
+	
+	<configurator id="DockHouseDUS570">
+		<field name='HelperName'>
+			Конфигуратор тамбура перегрузочного стандартной серии DUS-570
+		</field>
+		<field name='defaultCurrencyID'>
+			643
+		</field>
+	</configurator>
+	
+	<configurator id="DockHouseDUS571">
+		<field name='HelperName'>
+			Конфигуратор тамбура перегрузочного легкой серии DUS-571
+		</field>
+		<field name='defaultCurrencyID'>
+			643
+		</field>
+	</configurator>
+	
+	<configurator id="DockHouseDUS590">
+		<field name='HelperName'>
+			Конфигуратор фермы выносной  DUS-590
+		</field>
+		<field name='defaultCurrencyID'>
+			643
+		</field>
+	</configurator>
+	
+	<configurator id="StripPVCDoorsDUS510">
+		<field name='HelperName'>
+			Конфигуратор пленочных завес DUS-510
+		</field>
+		<field name='defaultCurrencyID'>
+			643
+		</field>
+	</configurator>
+	
+	<configurator id="SwingPVCDoorsDUS580">
+		<field name='HelperName'>
+			Конфигуратор распашных пленочных ворот DUS-580
+		</field>
+		<field name='defaultCurrencyID'>
+			643
+		</field>
+	</configurator>
+	
+	<configurator id="BillGateDUS120">
+		<field name='HelperName'>
+			Конфигуратор распашных гаражных ворот DUS-120
+		</field>
+		<field name='defaultCurrencyID'>
+			643
+		</field>
+	</configurator>
+	
+	<configurator id="StreetGateDUS210">
+		<field name='HelperName'>
+			Конфигуратор уличных сдвижных ворот DUS-210
+		</field>
+		<field name='defaultCurrencyID'>
+			643
+		</field>
+	</configurator>
+	
+	<configurator id="StreetGateDUS2101">
+		<field name='HelperName'>
+			Конфигуратор уличных сдвижных ворот DUS-210-1
+		</field>
+		<field name='defaultCurrencyID'>
+			643
+		</field>
+	</configurator>
+	
+	<configurator id="StreetGateDUS220">
+		<field name='HelperName'>
+			Конфигуратор уличных распашных ворот DUS-220
+		</field>
+		<field name='defaultCurrencyID'>
+			643
+		</field>
+	</configurator>
+	
+	<configurator id="FoldedGateDUS232">
+		<field name='HelperName'>
+			Конфигуратор складных ворот DUS-232
+		</field>
+		<field name='defaultCurrencyID'>
+			643
+		</field>
+	</configurator>
+	
+	<configurator id="FoldedGateDUS2321">
+		<field name='HelperName'>
+			Конфигуратор складных ворот  DUS-232-1
+		</field>
+		<field name='defaultCurrencyID'>
+			643
+		</field>
+	</configurator>
+	
+	<configurator id="FireGateDUS233">
+		<field name='HelperName'>
+			Конфигуратор сдвижных противопожарных ворот DUS-233
+		</field>
+		<field name='defaultCurrencyID'>
+			643
+		</field>
+	</configurator>
+	
+	<configurator id="FireGateDUS235">
+		<field name='HelperName'>
+			Конфигуратор распашных противопожарных ворот DUS-235
+		</field>
+		<field name='defaultCurrencyID'>
+			643
+		</field>
+	</configurator>
+	
+	<configurator id="FireGateDUS237">
+		<field name='HelperName'>
+			Конфигуратор секционных противопожарных ворот DUS-237
+		</field>
+		<field name='defaultCurrencyID'>
+			643
+		</field>
+	</configurator>
+	
+	<configurator id="SingleWicketDUS320">
+		<field name='HelperName'>
+			Конфигуратор отдельно-стоящей калитки DUS-320
+		</field>
+		<field name='defaultCurrencyID'>
+			643
+		</field>
+	</configurator>
+	
+	<configurator id="SingleWicketDUS3201">
+		<field name='HelperName'>
+			Конфигуратор отдельно-стоящей калитки DUS-320-1
+		</field>
+		<field name='defaultCurrencyID'>
+			643
+		</field>
+	</configurator>
+	
+	<configurator id="SelfDoorsDUS466">
+		<field name='HelperName'>
+			Конфигуратор комплекта сдвижных ворот "Собери Сам" DUS-466
+		</field>
+		<field name='defaultCurrencyID'>
+			643
+		</field>
+	</configurator>
+	
+	<configurator id="SelfWicketDUS4663">
+		<field name='HelperName'>
+			Конфигуратор калитки "Собери Сам" с подрезкой DUS-466-3
+		</field>
+		<field name='defaultCurrencyID'>
+			643
+		</field>
+	</configurator>
+	
+	<configurator id="StreetGateDUS410">
+		<field name='HelperName'>
+			Конфигуратор распашных уличных ворот DUS-410
+		</field>
+		<field name='defaultCurrencyID'>
+			643
+		</field>
+	</configurator>
+	
+	<configurator id="StreetGateDUS420">
+		<field name='HelperName'>
+			Конфигуратор уличных сдвижных ворот DUS-420
+		</field>
+		<field name='defaultCurrencyID'>
+			643
+		</field>
+	</configurator>
+	
+	<configurator id="StreetGateDUS430">
+		<field name='HelperName'>
+			Конфигуратор отдельно стоящей калитки DUS-430
+		</field>
+		<field name='defaultCurrencyID'>
+			643
+		</field>
+	</configurator>
+	
+	<configurator id="FlapBridgeDUS540">
+		<field name='HelperName'>
+			Конфигуратор моста откидного DUS-540
+		</field>
+		<field name='defaultCurrencyID'>
+			643
+		</field>
+	</configurator>
+	
+	<configurator id="RampMobileDUS595">
+		<field name='HelperName'>
+			Конфигуратор рампы мобильной DUS-595
+		</field>
+		<field name='defaultCurrencyID'>
+			643
+		</field>
+	</configurator>
+	
+	<configurator id="SlidingTopSheetDUS524">
+		<field name='HelperName'>
+			Конфигуратор механизма подвижного верхнего листа DUS-524
+		</field>
+		<field name='defaultCurrencyID'>
+			643
+		</field>
+	</configurator>
+	
+	<configurator id="FenceSectionDUS450">
+		<field name='HelperName'>
+			Конфигуратор  Заборная секция DUS-450
+		</field>
+		<field name='defaultCurrencyID'>
+			643
+		</field>
+	</configurator>
+	
+	<configurator id="SectionalDoorsDUS462">
+		<field name='HelperName'>
+            Konfigurators sekcījas gāražu vārtu RSD01 DUS-462
+		</field>
+		<field name='defaultCurrencyID'>
+			643
+		</field>
+	</configurator>
+	
+	<configurator id="SectionalDoorsDUS462CZ">
+		<field name='HelperName'>
+            Konfigurators sekcījas gāražu vārtu RSD01 DUS-462 (CZ)
+		</field>
+		<field name='defaultCurrencyID'>
+			643
+		</field>
+	</configurator>
+	
+	<configurator id="ISectionalDoorsDUS462CZ">
+		<field name='HelperName'>
+            Konfigurators sekcijas garazu vartu RSD01 DUS-462 (CZ)
+		</field>
+		<field name='defaultCurrencyID'>
+			643
+		</field>
+	</configurator>
+	
+	<configurator id="SectionalDoorsDUS465">
+		<field name='HelperName'>
+			Конфигуратор секционных ворот RSD01 Compact DUS-465
+		</field>
+		<field name='defaultCurrencyID'>
+			643
+		</field>
+	</configurator>
+	
+	<configurator id="DropPanelDUS467">
+		<field name='HelperName'>
+			Конфигуратор  Фальшпанель DUS-467
+		</field>
+		<field name='defaultCurrencyID'>
+			643
+		</field>
+	</configurator>
+	
+	<configurator id="SectionalDoorsDUS470">
+		<field name='HelperName'>
+            Konfigurators sekcijas garazu vartu RSD02 DUS-470
+		</field>
+		<field name='defaultCurrencyID'>
+			643
+		</field>
+	</configurator>
+	
+	<configurator id="SectionalDoorsDUS470CZ">
+		<field name='HelperName'>
+			Konfigurators sekcijas garazu vartu RSD02 DUS-470 (CZ)
+		</field>
+		<field name='defaultCurrencyID'>
+			643
+		</field>
+	</configurator>
+	
+	<configurator id="SectionalDoorsDUS480">
+		<field name='HelperName'>
+			Configurator of sectional industrial doors ISD01 DUS-480
+		</field>
+		<field name='defaultCurrencyID'>
+			643
+		</field>
+	</configurator>
+	
+	<configurator id="SectionalDoorsDUS490">
+		<field name='HelperName'>
+			Configurator of sectional panoramic doors ISD02 DUS-490
+		</field>
+		<field name='defaultCurrencyID'>
+			643
+		</field>
+	</configurator>
+	
+	<configurator id="SectionalDoorsISDCZ">
+		<field name='HelperName'>
+			Configurator of sectional industrial doors ISD01/ISD02 (CZ)
+		</field>
+		<field name='defaultCurrencyID'>
+			643
+		</field>
+	</configurator>
+	
+	<configurator id="SectionalDoorsYett01">
+		<field name='HelperName'>
+             sectional doors configurator YETT01 DUS-600
+		</field>
+		<field name='defaultCurrencyID'>
+			643
+		</field>
+	</configurator>
+	
+	<configurator id="SectionalDoorsDUS600CZ">
+		<field name='HelperName'>
+             sectional doors configurator YETT01 DUS-600 (CZ)
+		</field>
+		<field name='defaultCurrencyID'>
+			643
+		</field>
+	</configurator>
+	
+	<configurator id="ISectionalDoorsDUS600CZ">
+		<field name='HelperName'>
+             sectional doors configurator YETT01(I) DUS-600 (CZ)
+		</field>
+		<field name='defaultCurrencyID'>
+			643
+		</field>
+	</configurator>
+	
+	<configurator id="SectionalDoorsYett01CZ">
+		<field name='HelperName'>
+             sectional doors configurator YETT01(S) DUS-600 (CZ)
+		</field>
+		<field name='defaultCurrencyID'>
+			643
+		</field>
+	</configurator>
+	
+	<configurator id="ISectionalDoorsYett01CZ">
+		<field name='HelperName'>
+             sectional doors configurator YETT01(SI) DUS-600 (CZ)
+		</field>
+		<field name='defaultCurrencyID'>
+			643
+		</field>
+	</configurator>
+	
+	<configurator id="SectionalDoorsYett02">
+		<field name='HelperName'>
+             sectional doors configurator YETT02 DUS-700
+		</field>
+		<field name='defaultCurrencyID'>
+			643
+		</field>
+	</configurator>
+	
+	<configurator id="SectionalDoorsYett0230">
+		<field name='HelperName'>
+             sectional doors configurator YETT02 DUS-700-30
+		</field>
+		<field name='defaultCurrencyID'>
+			643
+		</field>
+	</configurator>
+	
+	<configurator id="SectionalDoorsDUS700CZ">
+		<field name='HelperName'>
+             sectional doors configurator YETT02 DUS-700 (CZ)
+		</field>
+		<field name='defaultCurrencyID'>
+			643
+		</field>
+	</configurator>
+	
+	<configurator id="SectionalDoorsYett02CZ">
+		<field name='HelperName'>
+             sectional doors configurator YETT02(S) DUS-700 (CZ)
+		</field>
+		<field name='defaultCurrencyID'>
+			643
+		</field>
+	</configurator>
+	
+	<configurator id="ISectionalDoorsDUS700CZ">
+		<field name='HelperName'>
+             sectional doors configurator YETT02(I) DUS-700 (CZ)
+		</field>
+		<field name='defaultCurrencyID'>
+			643
+		</field>
+	</configurator>
+	
+	<configurator id="ISectionalDoorsYett02CZ">
+		<field name='HelperName'>
+             sectional doors configurator YETT02(SI) DUS-700 (CZ)
+		</field>
+		<field name='defaultCurrencyID'>
+			643
+		</field>
+	</configurator>
+	
+	<configurator id="ModularUnitDUS621S">
+		<field name='HelperName'>
+			Конфигуратор Модульных конструкций (стандарт) DUS-621
+		</field>
+		<field name='defaultCurrencyID'>
+			643
+		</field>
+	</configurator>
+	
+	<configurator id="ModularSystemDUS621G">
+		<field name='HelperName'>
+			Конфигуратор модульных конструкций DUS-621. Комплект гаража
+		</field>
+		<field name='defaultCurrencyID'>
+			643
+		</field>
+	</configurator>
+	
+	<configurator id="ModularSystemDUS621O">
+		<field name='HelperName'>
+			Конфигуратор модульных конструкций DUS-621. Офис мобильный
+		</field>
+		<field name='defaultCurrencyID'>
+			643
+		</field>
+	</configurator>
+	
+	<configurator id="ModularSystemDUS621P">
+		<field name='HelperName'>
+			Конфигуратор модульных конструкций DUS-621. Пост охраны
+		</field>
+		<field name='defaultCurrencyID'>
+			643
+		</field>
+	</configurator>
+	
+	<configurator id="ModularSystemDUS621M">
+		<field name='HelperName'>
+			Конфигуратор модульных конструкций DUS-621. Автомобильная мойка
+		</field>
+		<field name='defaultCurrencyID'>
+			643
+		</field>
+	</configurator>
+	
+	<configurator id="ModularSystemDUS621B">
+		<field name='HelperName'>
+			Конфигуратор модульных конструкций DUS-621. Бытовка
+		</field>
+		<field name='defaultCurrencyID'>
+			643
+		</field>
+	</configurator>
+	
+	<configurator id="SteelDoorDUS6401">
+		<field name='HelperName'>
+			Конфигуратор стальных дверей DUS-640-1
+		</field>
+		<field name='defaultCurrencyID'>
+			643
+		</field>
+	</configurator>
+	
+	<configurator id="AutomaticsDUS999">
+		<field name='HelperName'>
+			Конфигуратор Автоматика
+		</field>
+		<field name='defaultCurrencyID'>
+			643
+		</field>
+	</configurator>
+	
+	<configurator id="Automatics">
+		<field name='HelperName'>
+			Конфигуратор Автоматика 
+		</field>
+		<field name='defaultCurrencyID'>
+			643
+		</field>
+	</configurator>
+	
+	<configurator id="AutomaticsFAAC">
+		<field name='HelperName'>
+			Конфигуратор Автоматика FAAC
+		</field>
+		<field name='defaultCurrencyID'>
+			643
+		</field>
+	</configurator>
+	
+	<configurator id="AutomaticsGfA">
+		<field name='HelperName'>
+			Конфигуратор Автоматика GfA
+		</field>
+		<field name='defaultCurrencyID'>
+			643
+		</field>
+	</configurator>
+	
+	<configurator id="AutomaticsBFT">
+		<field name='HelperName'>
+			Конфигуратор Автоматика BFT
+		</field>
+		<field name='defaultCurrencyID'>
+			643
+		</field>
+	</configurator>
+</document>

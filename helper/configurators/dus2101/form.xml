@@ -1,0 +1,1444 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE document
+    [
+        <!ELEMENT document (system, task, description, record+)>
+            <!ATTLIST   document
+                        id        ID        #REQUIRED
+                        type      NMTOKEN   #REQUIRED
+            >
+        <!ELEMENT system EMPTY>
+            <!ATTLIST   system
+                        id        ID        #REQUIRED
+                        version   NMTOKEN   #REQUIRED
+            >
+        <!ELEMENT task EMPTY>
+            <!ATTLIST   task
+                        id        ID        #REQUIRED
+                        version   NMTOKEN   #REQUIRED
+            >
+        <!ELEMENT description EMPTY>
+            <!ATTLIST   description
+                        id        ID        #REQUIRED
+                        version   NMTOKEN   #REQUIRED
+            >
+        <!ELEMENT record (field+)>
+            <!ATTLIST   record
+                        id        ID        #REQUIRED
+            >
+        <!ELEMENT field ANY>
+            <!ATTLIST   field
+                        name      NMTOKEN   #REQUIRED
+            >
+    ]
+>
+
+
+<document id='variablesDescription' type='Respond'>
+    <system id='-CIS' version='1'/>
+    <task id='CALCHELPER' version='2'/>
+    <description id='StreetGateDUS2101' version='1'/>
+
+        <!-- РАЗДЕЛ ДЛЯ ПОЛЕЙ ФОРМЫ КОНФИГУРАТОРА -->
+        <!-- Комплектация заказа -->
+        <!-- Полная -->
+        <record id='Compound_Default'>
+            <field name='ID'>sg_compound_default</field>
+            <field name='Kind'>RADIOBUTTON</field>
+            <field name='Type'>BOOLEAN</field>
+            <field name='GroupID'>CompoundGroup</field>
+            <field name='SubGroupID'>compound_group</field>
+            <field name='CurrentValue'>true</field>
+        </record>
+        <!-- Комплект ворот -->
+        <record id='Compound_ShieldOnly'>
+            <field name='ID'>sg_compound_shiedonly</field>
+            <field name='Kind'>RADIOBUTTON</field>
+            <field name='Type'>BOOLEAN</field>
+            <field name='GroupID'>CompoundGroup</field>
+            <field name='SubGroupID'>compound_group</field>
+            <field name='CurrentValue'>false</field>
+        </record>
+
+        <!-- Параметры проёма -->
+        <!-- Ширина (B) -->
+        <record id='SquareWidth'>
+            <field name='Kind'>INPUT FIELD</field>
+            <field name='Type'>NUMBER</field>
+            <field name='Format'>0-9::4.0</field>
+            <field name='GroupID'>SquareInfoGroup</field>
+            <field name='CurrentValue'>3000</field>
+            <field name='UnitID'>003</field>
+        </record>
+        <!-- связь с 1С -->
+        <record id='SquareWidth_up'>
+            <field name='ID'>sg_width</field><field name='Kind'>CONSTANT</field><field name='Type'>NUMBER</field><field name='SubGroupID'>square_group</field>
+        </record>
+        <!-- Высота (H) -->
+        <record id='SquareHeight'>
+            <field name='Kind'>INPUT FIELD</field>
+            <field name='Type'>NUMBER</field>
+            <field name='Format'>0-9::4.0</field>
+            <field name='GroupID'>SquareInfoGroup</field>
+            <field name='CurrentValue'>2000</field>
+            <field name='UnitID'>003</field>
+        </record>
+        <!-- связь с 1С -->
+        <record id='SquareHeight_up'>
+            <field name='ID'>sg_height</field><field name='Kind'>CONSTANT</field><field name='Type'>NUMBER</field><field name='SubGroupID'>square_group</field>
+        </record>
+        <!-- Общая площадь проёма -->
+        <record id='SquareAperture'>
+            <field name='Kind'>DISPLAY FIELD</field>
+            <field name='Type'>STRING</field>
+            <field name='GroupID'>SquareInfoGroup</field>
+            <field name='UnitID'>055</field>
+        </record>
+
+        <!-- Особенности открытия ворот -->
+        <!-- Просвет -->
+        <!-- Просвет (P) -->
+        <record id='SquareClearance'>
+            <field name='Kind'>INPUT FIELD</field>
+            <field name='Type'>NUMBER</field>
+            <field name='Format'>0-9::3.0</field>
+            <field name='GroupID'>ProductInfoGroup</field>
+            <field name='CurrentValue'>100</field>
+            <field name='UnitID'>003</field>
+        </record>
+        <!-- связь с 1С -->
+        <record id='SquareClearance_up'>
+            <field name='ID'>sg_clearance</field><field name='Kind'>CONSTANT</field><field name='Type'>NUMBER</field><field name='SubGroupID'>square_clearance_group</field>
+        </record>
+
+        <!-- Расстояние до препятствия -->
+        <!-- Расстояние до препятствия (L) -->
+        <record id='ObstacleDistance'>
+            <field name='Kind'>INPUT FIELD</field>
+            <field name='Type'>NUMBER</field>
+            <field name='Format'>0-9::6.0</field>
+            <field name='GroupID'>ProductInfoGroup</field>
+            <field name='CurrentValue'>12000</field>
+            <field name='UnitID'>003</field>
+        </record>
+        <!-- связь с 1С -->
+        <record id='ObstacleDistance_up'>
+            <field name='ID'>sg_obstacle_distance</field><field name='Kind'>CONSTANT</field><field name='Type'>NUMBER</field><field name='SubGroupID'>obstacle_distance_group</field>
+        </record>
+
+        <!-- Перепад -->
+        <!-- Перепад (pr) -->
+        <record id='SquareOverfall'>
+            <field name='Kind'>INPUT FIELD</field>
+            <field name='Type'>NUMBER</field>
+            <field name='Format'>0-9::4.0</field>
+            <field name='GroupID'>ProductInfoGroup</field>
+            <field name='UnitID'>003</field>
+        </record>
+        <!-- связь с 1С -->
+        <record id='SquareOverfall_up'>
+            <field name='ID'>sg_square_overfall</field><field name='Kind'>CONSTANT</field><field name='Type'>NUMBER</field><field name='SubGroupID'>square_overfall_group</field>
+        </record>
+
+        <!-- Направление открытия полотна -->
+        <!-- Левое -->
+        <record id='Opening_Left'>
+            <field name='ID'>sg_opening_left</field>
+            <field name='Kind'>RADIOBUTTON</field>
+            <field name='Type'>BOOLEAN</field>
+            <field name='GroupID'>ProductInfoGroup</field>
+            <field name='SubGroupID'>shield_opening_group</field>
+            <field name='CurrentValue'>false</field>
+        </record>
+        <!-- Правое -->
+        <record id='Opening_Right'>
+            <field name='ID'>sg_opening_right</field>
+            <field name='Kind'>RADIOBUTTON</field>
+            <field name='Type'>BOOLEAN</field>
+            <field name='GroupID'>ProductInfoGroup</field>
+            <field name='SubGroupID'>shield_opening_group</field>
+            <field name='CurrentValue'>true</field>
+        </record>
+
+        <!-- Материал столбов -->
+        <!-- Материал столбов: -->
+        <record id='ColumnMaterialTitle_1'>
+            <field name='Kind'>DISPLAY FIELD</field>
+            <field name='Type'>STRING</field>
+            <field name='GroupID'>ProductInfoGroup</field>
+        </record>
+        <record id='ColumnMaterial_List'>
+            <field name='Kind'>POP-UP MENU</field>
+            <field name='Type'>LIST</field>
+            <field name='GroupID'>ProductInfoGroup</field>
+            <field name='SubGroupID'>column_material_group</field>
+        </record>
+        <!-- связь с 1С -->
+        <record id='columnMaterial_up'>
+            <field name='ID'>sg_column_material</field><field name='Kind'>CONSTANT</field><field name='Type'>STRING</field><field name='SubGroupID'>column_material_group</field>
+        </record>
+
+        <!-- Материал ограды -->
+        <!-- Материал ограды: -->
+        <record id='FenceMaterialTitle_1'>
+            <field name='Kind'>DISPLAY FIELD</field>
+            <field name='Type'>STRING</field>
+            <field name='GroupID'>ProductInfoGroup</field>
+        </record>
+        <record id='FenceMaterial_List'>
+            <field name='Kind'>POP-UP MENU</field>
+            <field name='Type'>LIST</field>
+            <field name='GroupID'>ProductInfoGroup</field>
+            <field name='SubGroupID'>fence_material_group</field>
+        </record>
+        <!-- связь с 1С -->
+        <record id='fenceMaterial_up'>
+            <field name='ID'>sg_fence_material</field><field name='Kind'>CONSTANT</field><field name='Type'>STRING</field><field name='SubGroupID'>fence_material_group</field>
+        </record>
+
+        <!-- Поверхность земли -->
+        <!-- Поверхность земли: -->
+        <record id='GroundMaterialTitle_1'>
+            <field name='Kind'>DISPLAY FIELD</field>
+            <field name='Type'>STRING</field>
+            <field name='GroupID'>ProductInfoGroup</field>
+        </record>
+        <record id='GroundMaterial_List'>
+            <field name='Kind'>POP-UP MENU</field>
+            <field name='Type'>LIST</field>
+            <field name='GroupID'>ProductInfoGroup</field>
+            <field name='SubGroupID'>ground_material_group</field>
+        </record>
+        <!-- связь с 1С -->
+        <record id='groundMaterial_up'>
+            <field name='ID'>sg_ground_material</field><field name='Kind'>CONSTANT</field><field name='Type'>STRING</field><field name='SubGroupID'>ground_material_group</field>
+        </record>
+
+        <!-- Щит ворот -->
+        <!-- Цвет щита -->
+        <!-- Стандартный -->
+        <record id='OuterColorStandard'>
+            <field name='ID'>sg_outer_color_standard</field>
+            <field name='Kind'>RADIOBUTTON</field>
+            <field name='Type'>BOOLEAN</field>
+            <field name='GroupID'>GateShieldGroup</field>
+            <field name='SubGroupID'>outer_color_group</field>
+            <field name='CurrentValue'>true</field>
+        </record>
+        <!-- Нестандартный -->
+        <record id='OuterColorNonStandard'>
+            <field name='ID'>sg_outer_color_nonstandard</field>
+            <field name='Kind'>RADIOBUTTON</field>
+            <field name='Type'>BOOLEAN</field>
+            <field name='GroupID'>GateShieldGroup</field>
+            <field name='SubGroupID'>outer_color_group</field>
+            <field name='CurrentValue'>false</field>
+        </record>
+        <record id='OuterColor_List'>
+            <field name='Kind'>POP-UP MENU</field>
+            <field name='Type'>LIST</field>
+            <field name='GroupID'>GateShieldGroup</field>
+            <field name='SubGroupID'>outer_color_group</field>
+        </record>
+        <!-- По образцу RAL (4-х значное число) -->
+        <record id='OuterColor_Custom'>
+            <field name='ID'>sg_outer_color_custom</field>
+            <field name='Kind'>RADIOBUTTON</field>
+            <field name='Type'>BOOLEAN</field>
+            <field name='GroupID'>GateShieldGroup</field>
+            <field name='SubGroupID'>outer_color_group</field>
+            <field name='CurrentValue'>false</field>
+        </record>
+        <record id='OuterColor_Value'>
+            <field name='Kind'>INPUT FIELD</field>
+            <field name='Type'>NUMBER</field>
+            <field name='Format'>0-9::4.0</field>
+            <field name='GroupID'>GateShieldGroup</field>
+            <field name='SubGroupID'>outer_color_group</field>
+        </record>
+        <!-- связь с 1С -->
+        <record id='outerColor_up'>
+            <field name='ID'>sg_outer_color</field><field name='Kind'>CONSTANT</field><field name='Type'>STRING</field><field name='SubGroupID'>outer_color_group</field>
+        </record>
+
+        <!-- Тип краски -->
+        <!-- Матовая -->
+        <record id='ColorType_Mat'>
+            <field name='ID'>sg_color_type_mat</field>
+            <field name='Kind'>RADIOBUTTON</field>
+            <field name='Type'>BOOLEAN</field>
+            <field name='GroupID'>GateShieldGroup</field>
+            <field name='SubGroupID'>color_type_group</field>
+            <field name='CurrentValue'>true</field>
+        </record>
+        <!-- Глянцевая -->
+        <record id='ColorType_Glossy'>
+            <field name='ID'>sg_color_type_glossy</field>
+            <field name='Kind'>RADIOBUTTON</field>
+            <field name='Type'>BOOLEAN</field>
+            <field name='GroupID'>GateShieldGroup</field>
+            <field name='SubGroupID'>color_type_group</field>
+            <field name='CurrentValue'>false</field>
+        </record>
+
+        <!-- Силовая рама и столб-ловитель -->
+        <!-- Изготовление -->
+        <!-- Силовая рама: -->
+        <record id='RackDeliveryGroupTitle_1'>
+            <field name='Kind'>DISPLAY FIELD</field>
+            <field name='Type'>STRING</field>
+            <field name='GroupID'>PowerRackGroup</field>
+        </record>
+        <!-- В сборе -->
+        <record id='RackDelivery_Default'>
+            <field name='ID'>sg_rack_delivery_in</field>
+            <field name='Kind'>RADIOBUTTON</field>
+            <field name='Type'>BOOLEAN</field>
+            <field name='GroupID'>PowerRackGroup</field>
+            <field name='SubGroupID'>rack_delivery_group</field>
+            <field name='CurrentValue'>true</field>
+        </record>
+        <!-- В разборе -->
+        <record id='RackDelivery_1'>
+            <field name='ID'>sg_rack_delivery_out</field>
+            <field name='Kind'>RADIOBUTTON</field>
+            <field name='Type'>BOOLEAN</field>
+            <field name='GroupID'>PowerRackGroup</field>
+            <field name='SubGroupID'>rack_delivery_group</field>
+            <field name='CurrentValue'>false</field>
+        </record>
+
+        <!-- Тип -->
+        <!-- Навесная -->
+        <record id='RackType_Default'>
+            <field name='ID'>sg_rack_type_mounted</field>
+            <field name='Kind'>RADIOBUTTON</field>
+            <field name='Type'>BOOLEAN</field>
+            <field name='GroupID'>PowerRackGroup</field>
+            <field name='SubGroupID'>rack_type_group</field>
+            <field name='CurrentValue'>true</field>
+        </record>
+        <!-- Бетонируемая -->
+        <record id='RackType_Concreted'>
+            <field name='ID'>sg_rack_type_concreted</field>
+            <field name='Kind'>RADIOBUTTON</field>
+            <field name='Type'>BOOLEAN</field>
+            <field name='GroupID'>PowerRackGroup</field>
+            <field name='SubGroupID'>rack_type_group</field>
+            <field name='CurrentValue'>false</field>
+        </record>
+
+        <!-- Тип столб-ловителя -->
+        <!-- Столб-ловитель: -->
+        <record id='PoleCatcherGroupTitle_1'>
+            <field name='Kind'>DISPLAY FIELD</field>
+            <field name='Type'>STRING</field>
+            <field name='GroupID'>PowerRackGroup</field>
+        </record>
+        <!-- Навесной -->
+        <record id='PoleCatcher_Default'>
+            <field name='ID'>sg_pole_catcher_mounted</field>
+            <field name='Kind'>RADIOBUTTON</field>
+            <field name='Type'>BOOLEAN</field>
+            <field name='GroupID'>PowerRackGroup</field>
+            <field name='SubGroupID'>pole_catcher</field>
+            <field name='CurrentValue'>true</field>
+        </record>
+        <!-- Бетонируемый -->
+        <record id='PoleCatcher_Concreted'>
+            <field name='ID'>sg_pole_catcher_concreted</field>
+            <field name='Kind'>RADIOBUTTON</field>
+            <field name='Type'>BOOLEAN</field>
+            <field name='GroupID'>PowerRackGroup</field>
+            <field name='SubGroupID'>pole_catcher</field>
+            <field name='CurrentValue'>false</field>
+        </record>
+        <!-- Дополнительный столб -->
+        <record id='PoleCatcherGroupTitle_2'>
+            <field name='Kind'>DISPLAY FIELD</field>
+            <field name='Type'>STRING</field>
+            <field name='GroupID'>PowerRackGroup</field>
+        </record>
+        <!-- связь с 1С -->
+        <record id='PoleCatcher_Concreted_Value'>
+            <field name='ID'>sg_pole_catcher_value</field>
+            <field name='Kind'>INPUT FIELD</field>
+            <field name='Type'>NUMBER</field>
+            <field name='Format'>0-9::1.0</field>
+            <field name='GroupID'>PowerRackGroup</field>
+            <field name='SubGroupID'>pole_catcher</field>
+            <field name='CurrentValue'></field>
+            <field name='UnitID'>006</field>
+        </record>
+        <!-- Высота столб-ловителя -->
+        <record id='PoleCatcherHeight'>
+            <field name='ID'>sg_pole_catcher_height</field>
+            <field name='Kind'>DISPLAY FIELD</field>
+            <field name='Type'>STRING</field>
+            <field name='GroupID'>PowerRackGroup</field>
+            <field name='CurrentValue'></field>
+            <field name='UnitID'>003</field>
+        </record>
+
+        <!-- Цвет -->
+        <!-- В цвет полотна -->
+        <record id='RackColorStandard'>
+            <field name='ID'>sg_rack_color_standard</field>
+            <field name='Kind'>RADIOBUTTON</field>
+            <field name='Type'>BOOLEAN</field>
+            <field name='GroupID'>PowerRackGroup</field>
+            <field name='SubGroupID'>rack_color_group</field>
+            <field name='CurrentValue'>true</field>
+        </record>
+        <!-- На выбор -->
+        <record id='RackColorNonStandard'>
+            <field name='ID'>sg_rack_color_nonstandard</field>
+            <field name='Kind'>RADIOBUTTON</field>
+            <field name='Type'>BOOLEAN</field>
+            <field name='GroupID'>PowerRackGroup</field>
+            <field name='SubGroupID'>rack_color_group</field>
+            <field name='CurrentValue'>false</field>
+        </record>
+        <record id='RackColor_List'>
+            <field name='Kind'>POP-UP MENU</field>
+            <field name='Type'>LIST</field>
+            <field name='GroupID'>PowerRackGroup</field>
+            <field name='SubGroupID'>rack_color_group</field>
+        </record>
+        <!-- По образцу RAL (4-х значное число) -->
+        <record id='RackColor_Custom'>
+            <field name='ID'>sg_rack_color_custom</field>
+            <field name='Kind'>RADIOBUTTON</field>
+            <field name='Type'>BOOLEAN</field>
+            <field name='GroupID'>PowerRackGroup</field>
+            <field name='SubGroupID'>rack_color_group</field>
+        </record>
+        <record id='RackColor_Value'>
+            <field name='Kind'>INPUT FIELD</field>
+            <field name='Type'>NUMBER</field>
+            <field name='Format'>0-9::4.0</field>
+            <field name='GroupID'>PowerRackGroup</field>
+            <field name='SubGroupID'>rack_color_group</field>
+        </record>
+        <!-- связь с 1С -->
+        <record id='rackColor_up'>
+            <field name='ID'>sg_rack_color</field><field name='Kind'>CONSTANT</field><field name='Type'>STRING</field><field name='SubGroupID'>rack_color_group</field>
+        </record>
+
+        <!-- Привод -->
+        <!-- Установить привод -->
+        <record id='DriveSetup'>
+            <field name='ID'>sg_drive_setup</field>
+            <field name='Kind'>CHECKBOX</field>
+            <field name='Type'>BOOLEAN</field>
+            <field name='GroupID'>DriveGroup</field>
+            <field name='SubGroupID'>drive_setup_group</field>
+            <field name='CurrentValue'>false</field>
+        </record>
+
+        <!-- Модель привода -->
+        <!-- Модель привода: -->
+        <record id='DriveModelStandard'>
+            <field name='Kind'>DISPLAY FIELD</field>
+            <field name='Type'>STRING</field>
+            <field name='GroupID'>DriveGroup</field>
+        </record>
+        <record id='DriveModelStandard_List'>
+            <field name='Kind'>POP-UP MENU</field>
+            <field name='Type'>LIST</field>
+            <field name='GroupID'>DriveGroup</field>
+            <field name='SubGroupID'>drive_model_group</field>
+        </record>
+        <!-- связь с 1С -->
+        <record id='driveModel_up'>
+            <field name='ID'>cp_drive_model</field><field name='Kind'>CONSTANT</field><field name='Type'>STRING</field><field name='SubGroupID'>drive_model_group</field>
+        </record>
+
+        <!-- ______________ -->
+        <record id='DriveGroupTitle_1'>
+            <field name='Kind'>DISPLAY FIELD</field>
+            <field name='Type'>STRING</field>
+            <field name='GroupID'>DriveGroup</field>
+        </record>
+        <!-- Комплект установочный для электропривода -->
+        <record id='DriveOptional_ElectricSet'>
+            <field name='ID'>00000118864</field>
+            <field name='Kind'>CHECKBOX</field>
+            <field name='Type'>BOOLEAN</field>
+            <field name='GroupID'>DriveGroup</field>
+            <field name='SubGroupID'>drive_optional_group</field>
+            <field name='CurrentValue'>false</field>
+        </record>
+
+        <!-- Автоматика и устройства безопасности -->
+        <!-- Рейка зубчатая RACK-8 30х8 L=1 метр -->
+        <record id='ShiftingGates_RACK_8'>
+            <field name='Kind'>DISPLAY FIELD</field>
+            <field name='Type'>STRING</field>
+            <field name='GroupID'>ControlDevicesGroup</field>
+        </record>
+        <!-- связь с 1С -->
+        <record id='ShiftingGates_RACK_8_Count'>
+            <field name='ID'>CB000005852</field>
+            <field name='Kind'>INPUT FIELD</field>
+            <field name='Type'>NUMBER</field>
+            <field name='Format'>0-9::3.0</field>
+            <field name='GroupID'>ControlDevicesGroup</field>
+            <field name='SubGroupID'>control_devices</field>
+            <field name='CurrentValue'></field>
+            <field name='UnitID'>796</field>
+        </record>
+        <!-- Рейка зубчатая DHRACK 1м 12x30 () -->
+        <record id='ShiftingGates_DHRACK'>
+            <field name='Kind'>DISPLAY FIELD</field>
+            <field name='Type'>STRING</field>
+            <field name='GroupID'>ControlDevicesGroup</field>
+            <field name='Style'>fontStyle:italic</field>
+        </record>
+        <!-- связь с 1С -->
+        <record id='ShiftingGates_DHRACK_Count'>
+            <field name='ID'>00000114706</field>
+            <field name='Kind'>INPUT FIELD</field>
+            <field name='Type'>NUMBER</field>
+            <field name='Format'>0-9::3.0</field>
+            <field name='GroupID'>ControlDevicesGroup</field>
+            <field name='SubGroupID'>control_devices</field>
+            <field name='CurrentValue'></field>
+            <field name='UnitID'>003</field>
+        </record>
+        <!-- Рейка 30 × 30 1 метр (для 884) (FAAC) -->
+        <record id='ShiftingGatesGroup_719328'>
+            <field name='Kind'>DISPLAY FIELD</field>
+            <field name='Type'>STRING</field>
+            <field name='GroupID'>ControlDevicesGroup</field>
+            <field name='Style'>fontStyle:italic</field>
+        </record>
+        <!-- связь с 1С -->
+        <record id='ShiftingGatesGroup_719328_Count'>
+            <field name='ID'>00000105268</field>
+            <field name='Kind'>INPUT FIELD</field>
+            <field name='Type'>NUMBER</field>
+            <field name='Format'>0-9::3.0</field>
+            <field name='GroupID'>ControlDevicesGroup</field>
+            <field name='SubGroupID'>control_devices</field>
+            <field name='UnitID'>003</field>
+        </record>
+        <!-- Блок GSM управления приводом , через телефон -->
+        <record id='AdditionalDevicesGroup_GSM'>
+            <field name='Kind'>DISPLAY FIELD</field>
+            <field name='Type'>STRING</field>
+            <field name='GroupID'>ControlDevicesGroup</field>
+        </record>
+        <!-- связь с 1С -->
+        <record id='AdditionalDevicesGroup_GSM_Count'>
+            <field name='ID'>00000134225</field>
+            <field name='Kind'>INPUT FIELD</field>
+            <field name='Type'>NUMBER</field>
+            <field name='Format'>0-9::3.0</field>
+            <field name='GroupID'>ControlDevicesGroup</field>
+            <field name='SubGroupID'>control_devices</field>
+            <field name='UnitID'>796</field>
+        </record>
+        <!-- Клавиатура Keypad кодовая беспроводная -->
+        <record id='AdditionalDevicesGroup_Keypad'>
+            <field name='Kind'>DISPLAY FIELD</field>
+            <field name='Type'>STRING</field>
+            <field name='GroupID'>ControlDevicesGroup</field>
+        </record>
+        <!-- связь с 1С -->
+        <record id='AdditionalDevicesGroup_Keypad_Count'>
+            <field name='ID'>00000125451</field>
+            <field name='Kind'>INPUT FIELD</field>
+            <field name='Type'>NUMBER</field>
+            <field name='Format'>0-9::3.0</field>
+            <field name='GroupID'>ControlDevicesGroup</field>
+            <field name='SubGroupID'>control_devices</field>
+            <field name='UnitID'>796</field>
+        </record>
+        <!-- Ключ-кнопка KEYSWITCH_N новая -->
+        <record id='AdditionalDevicesGroup_KEYSWITCH_N'>
+            <field name='Kind'>DISPLAY FIELD</field>
+            <field name='Type'>STRING</field>
+            <field name='GroupID'>ControlDevicesGroup</field>
+        </record>
+        <!-- связь с 1С -->
+        <record id='AdditionalDevicesGroup_KEYSWITCH_N_Count'>
+            <field name='ID'>00000142282</field>
+            <field name='Kind'>INPUT FIELD</field>
+            <field name='Type'>NUMBER</field>
+            <field name='Format'>0-9::3.0</field>
+            <field name='GroupID'>ControlDevicesGroup</field>
+            <field name='SubGroupID'>control_devices</field>
+            <field name='UnitID'>796</field>
+        </record>
+        <!-- Кнопка STOP аварийной остановки привода -->
+        <record id='AdditionalDevicesGroup_STOP'>
+            <field name='Kind'>DISPLAY FIELD</field>
+            <field name='Type'>STRING</field>
+            <field name='GroupID'>ControlDevicesGroup</field>
+        </record>
+        <!-- связь с 1С -->
+        <record id='AdditionalDevicesGroup_STOP_Count'>
+            <field name='ID'>00000144288</field>
+            <field name='Kind'>INPUT FIELD</field>
+            <field name='Type'>NUMBER</field>
+            <field name='Format'>0-9::3.0</field>
+            <field name='GroupID'>ControlDevicesGroup</field>
+            <field name='SubGroupID'>control_devices</field>
+            <field name='UnitID'>796</field>
+        </record>
+        <!-- Приемник внешний DHRE-2 2-х канальный -->
+        <record id='AdditionalDevicesGroup_DHRE_2'>
+            <field name='Kind'>DISPLAY FIELD</field>
+            <field name='Type'>STRING</field>
+            <field name='GroupID'>ControlDevicesGroup</field>
+        </record>
+        <!-- связь с 1С -->
+        <record id='AdditionalDevicesGroup_DHRE_2_Count'>
+            <field name='ID'>00000117356</field>
+            <field name='Kind'>INPUT FIELD</field>
+            <field name='Type'>NUMBER</field>
+            <field name='Format'>0-9::3.0</field>
+            <field name='GroupID'>ControlDevicesGroup</field>
+            <field name='SubGroupID'>control_devices</field>
+            <field name='UnitID'>796</field>
+        </record>
+        <!-- Приемник Receiver 433 встраиваемый для пультов -->
+        <record id='AdditionalDevicesGroup_Receiver_433'>
+            <field name='Kind'>DISPLAY FIELD</field>
+            <field name='Type'>STRING</field>
+            <field name='GroupID'>ControlDevicesGroup</field>
+        </record>
+        <!-- связь с 1С -->
+        <record id='AdditionalDevicesGroup_Receiver_433_Count'>
+            <field name='ID'>00000134249</field>
+            <field name='Kind'>INPUT FIELD</field>
+            <field name='Type'>NUMBER</field>
+            <field name='Format'>0-9::3.0</field>
+            <field name='GroupID'>ControlDevicesGroup</field>
+            <field name='SubGroupID'>control_devices</field>
+            <field name='UnitID'>796</field>
+        </record>
+        <!-- Пульт Transmitter 2 2-х канальный 433МГц -->
+        <record id='AdditionalDevicesGroup_Transmitter_2'>
+            <field name='Kind'>DISPLAY FIELD</field>
+            <field name='Type'>STRING</field>
+            <field name='GroupID'>ControlDevicesGroup</field>
+        </record>
+        <!-- связь с 1С -->
+        <record id='AdditionalDevicesGroup_Transmitter_2_Count'>
+            <field name='ID'>00000148476</field>
+            <field name='Kind'>INPUT FIELD</field>
+            <field name='Type'>NUMBER</field>
+            <field name='Format'>0-9::3.0</field>
+            <field name='GroupID'>ControlDevicesGroup</field>
+            <field name='SubGroupID'>control_devices</field>
+            <field name='UnitID'>796</field>
+        </record>
+        <!-- Пульт Transmitter 4 4-х канальный 433МГц -->
+        <record id='AdditionalDevicesGroup_Transmitter_4'>
+            <field name='Kind'>DISPLAY FIELD</field>
+            <field name='Type'>STRING</field>
+            <field name='GroupID'>ControlDevicesGroup</field>
+        </record>
+        <!-- связь с 1С -->
+        <record id='AdditionalDevicesGroup_Transmitter_4_Count'>
+            <field name='ID'>00000107003</field>
+            <field name='Kind'>INPUT FIELD</field>
+            <field name='Type'>NUMBER</field>
+            <field name='Format'>0-9::3.0</field>
+            <field name='GroupID'>ControlDevicesGroup</field>
+            <field name='SubGroupID'>control_devices</field>
+            <field name='UnitID'>796</field>
+        </record>
+        <!-- Пульт Transmitter 4-White 4-х канальный 433МГц белый -->
+        <record id='AdditionalDevicesGroup_Transmitter_4_White'>
+            <field name='Kind'>DISPLAY FIELD</field>
+            <field name='Type'>STRING</field>
+            <field name='GroupID'>ControlDevicesGroup</field>
+        </record>
+        <!-- связь с 1С -->
+        <record id='AdditionalDevicesGroup_Transmitter_4_White_Count'>
+            <field name='ID'>CB000151038</field>
+            <field name='Kind'>INPUT FIELD</field>
+            <field name='Type'>NUMBER</field>
+            <field name='Format'>0-9::3.0</field>
+            <field name='GroupID'>ControlDevicesGroup</field>
+            <field name='SubGroupID'>control_devices</field>
+            <field name='UnitID'>796</field>
+        </record>
+        <!-- Пульт Transmitter 4-Yellow 4-х канальный 433МГц желтый -->
+        <record id='AdditionalDevicesGroup_Transmitter_4_Yellow'>
+            <field name='Kind'>DISPLAY FIELD</field>
+            <field name='Type'>STRING</field>
+            <field name='GroupID'>ControlDevicesGroup</field>
+        </record>
+        <!-- связь с 1С -->
+        <record id='AdditionalDevicesGroup_Transmitter_4_Yellow_Count'>
+            <field name='ID'>CB000151043</field>
+            <field name='Kind'>INPUT FIELD</field>
+            <field name='Type'>NUMBER</field>
+            <field name='Format'>0-9::3.0</field>
+            <field name='GroupID'>ControlDevicesGroup</field>
+            <field name='SubGroupID'>control_devices</field>
+            <field name='UnitID'>796</field>
+        </record>
+        <!-- Пульт Transmitter 4-Green 4-х канальный 433МГц зеленый -->
+        <record id='AdditionalDevicesGroup_Transmitter_4_Green'>
+            <field name='Kind'>DISPLAY FIELD</field>
+            <field name='Type'>STRING</field>
+            <field name='GroupID'>ControlDevicesGroup</field>
+        </record>
+        <!-- связь с 1С -->
+        <record id='AdditionalDevicesGroup_Transmitter_4_Green_Count'>
+            <field name='ID'>CB000151041</field>
+            <field name='Kind'>INPUT FIELD</field>
+            <field name='Type'>NUMBER</field>
+            <field name='Format'>0-9::3.0</field>
+            <field name='GroupID'>ControlDevicesGroup</field>
+            <field name='SubGroupID'>control_devices</field>
+            <field name='UnitID'>796</field>
+        </record>
+        <!-- Пульт Transmitter 4-Orange 4-х канальный 433МГц оранжевый -->
+        <record id='AdditionalDevicesGroup_Transmitter_4_Orange'>
+            <field name='Kind'>DISPLAY FIELD</field>
+            <field name='Type'>STRING</field>
+            <field name='GroupID'>ControlDevicesGroup</field>
+        </record>
+        <!-- связь с 1С -->
+        <record id='AdditionalDevicesGroup_Transmitter_4_Orange_Count'>
+            <field name='ID'>CB000151042</field>
+            <field name='Kind'>INPUT FIELD</field>
+            <field name='Type'>NUMBER</field>
+            <field name='Format'>0-9::3.0</field>
+            <field name='GroupID'>ControlDevicesGroup</field>
+            <field name='SubGroupID'>control_devices</field>
+            <field name='UnitID'>796</field>
+        </record>
+        <!-- Пульт Transmitter 4-Pink 4-х канальный 433МГц розовый -->
+        <record id='AdditionalDevicesGroup_Transmitter_4_Pink'>
+            <field name='Kind'>DISPLAY FIELD</field>
+            <field name='Type'>STRING</field>
+            <field name='GroupID'>ControlDevicesGroup</field>
+        </record>
+        <!-- связь с 1С -->
+        <record id='AdditionalDevicesGroup_Transmitter_4_Pink_Count'>
+            <field name='ID'>CB000151040</field>
+            <field name='Kind'>INPUT FIELD</field>
+            <field name='Type'>NUMBER</field>
+            <field name='Format'>0-9::3.0</field>
+            <field name='GroupID'>ControlDevicesGroup</field>
+            <field name='SubGroupID'>control_devices</field>
+            <field name='UnitID'>796</field>
+        </record>
+        <!-- Пульт Transmitter 4-Black 4-х канальный 433МГц черный -->
+        <record id='AdditionalDevicesGroup_Transmitter_4_Black'>
+            <field name='Kind'>DISPLAY FIELD</field>
+            <field name='Type'>STRING</field>
+            <field name='GroupID'>ControlDevicesGroup</field>
+        </record>
+        <!-- связь с 1С -->
+        <record id='AdditionalDevicesGroup_Transmitter_4_Black_Count'>
+            <field name='ID'>CB000151039</field>
+            <field name='Kind'>INPUT FIELD</field>
+            <field name='Type'>NUMBER</field>
+            <field name='Format'>0-9::3.0</field>
+            <field name='GroupID'>ControlDevicesGroup</field>
+            <field name='SubGroupID'>control_devices</field>
+            <field name='UnitID'>796</field>
+        </record>
+        <!-- Пульт Transmitter-Premium 4-х канальный премиум 433МГц -->
+        <record id='AdditionalDevicesGroup_Transmitter_Premium'>
+            <field name='Kind'>DISPLAY FIELD</field>
+            <field name='Type'>STRING</field>
+            <field name='GroupID'>ControlDevicesGroup</field>
+        </record>
+        <!-- связь с 1С -->
+        <record id='AdditionalDevicesGroup_Transmitter_Premium_Count'>
+            <field name='ID'>00000144593</field>
+            <field name='Kind'>INPUT FIELD</field>
+            <field name='Type'>NUMBER</field>
+            <field name='Format'>0-9::3.0</field>
+            <field name='GroupID'>ControlDevicesGroup</field>
+            <field name='SubGroupID'>control_devices</field>
+            <field name='UnitID'>796</field>
+        </record>
+        <!-- Пульт 4-х канальный с солнечной батареей, 433МГц -->
+        <record id='AdditionalDevicesGroup_Transmitter_PRO'>
+            <field name='Kind'>DISPLAY FIELD</field>
+            <field name='Type'>STRING</field>
+            <field name='GroupID'>ControlDevicesGroup</field>
+        </record>
+        <!-- связь с 1С -->
+        <record id='AdditionalDevicesGroup_Transmitter_PRO_Count'>
+            <field name='ID'>00000139476</field>
+            <field name='Kind'>INPUT FIELD</field>
+            <field name='Type'>NUMBER</field>
+            <field name='Format'>0-9::3.0</field>
+            <field name='GroupID'>ControlDevicesGroup</field>
+            <field name='SubGroupID'>control_devices</field>
+            <field name='UnitID'>796</field>
+        </record>
+        <!-- Антенна 433MHz (с кронштейном и 5-ю метрами кабеля) -->
+        <record id='AdditionalDevicesGroup_Antenna_433'>
+            <field name='Kind'>DISPLAY FIELD</field>
+            <field name='Type'>STRING</field>
+            <field name='GroupID'>ControlDevicesGroup</field>
+        </record>
+        <!-- связь с 1С -->
+        <record id='AdditionalDevicesGroup_Antenna_433_Count'>
+            <field name='ID'>CB000180612</field>
+            <field name='Kind'>INPUT FIELD</field>
+            <field name='Type'>NUMBER</field>
+            <field name='Format'>0-9::3.0</field>
+            <field name='GroupID'>ControlDevicesGroup</field>
+            <field name='SubGroupID'>control_devices</field>
+            <field name='UnitID'>796</field>
+        </record>
+        <!-- Лампа сигнальная LAMP с антенной 220В -->
+        <record id='AdditionalDevicesGroup_LAMP'>
+            <field name='Kind'>DISPLAY FIELD</field>
+            <field name='Type'>STRING</field>
+            <field name='GroupID'>ControlDevicesGroup</field>
+        </record>
+        <!-- связь с 1С -->
+        <record id='AdditionalDevicesGroup_LAMP_Count'>
+            <field name='ID'>00000112966</field>
+            <field name='Kind'>INPUT FIELD</field>
+            <field name='Type'>NUMBER</field>
+            <field name='Format'>0-9::3.0</field>
+            <field name='GroupID'>ControlDevicesGroup</field>
+            <field name='SubGroupID'>control_devices</field>
+            <field name='UnitID'>796</field>
+        </record>
+        <!-- Лампа сигнальная LAMP-LED светодиодная, 12-24-220В -->
+        <record id='AdditionalDevicesGroup_LAMP_LED'>
+            <field name='Kind'>DISPLAY FIELD</field>
+            <field name='Type'>STRING</field>
+            <field name='GroupID'>ControlDevicesGroup</field>
+        </record>
+        <!-- связь с 1С -->
+        <record id='AdditionalDevicesGroup_LAMP_LED_Count'>
+            <field name='ID'>00000148530</field>
+            <field name='Kind'>INPUT FIELD</field>
+            <field name='Type'>NUMBER</field>
+            <field name='Format'>0-9::3.0</field>
+            <field name='GroupID'>ControlDevicesGroup</field>
+            <field name='SubGroupID'>control_devices</field>
+            <field name='UnitID'>796</field>
+        </record>
+        <!-- Комплект WDKIT встраиваемого датчика открытой калитки -->
+        <record id='AdditionalDevicesGroup_WDKIT'>
+            <field name='Kind'>DISPLAY FIELD</field>
+            <field name='Type'>STRING</field>
+            <field name='GroupID'>ControlDevicesGroup</field>
+        </record>
+        <!-- связь с 1С -->
+        <record id='AdditionalDevicesGroup_WDKIT_Count'>
+            <field name='ID'>00000121034</field>
+            <field name='Kind'>INPUT FIELD</field>
+            <field name='Type'>NUMBER</field>
+            <field name='Format'>0-9::3.0</field>
+            <field name='GroupID'>ControlDevicesGroup</field>
+            <field name='SubGroupID'>control_devices</field>
+            <field name='UnitID'>796</field>
+        </record>
+        <!-- Стойка DHPC для фотоэлемента 0,5 м -->
+        <record id='AdditionalDevicesGroup_DHPC'>
+            <field name='Kind'>DISPLAY FIELD</field>
+            <field name='Type'>STRING</field>
+            <field name='GroupID'>ControlDevicesGroup</field>
+        </record>
+        <!-- связь с 1С -->
+        <record id='AdditionalDevicesGroup_DHPC_Count'>
+            <field name='ID'>00000012095</field>
+            <field name='Kind'>INPUT FIELD</field>
+            <field name='Type'>NUMBER</field>
+            <field name='Format'>0-9::3.0</field>
+            <field name='GroupID'>ControlDevicesGroup</field>
+            <field name='SubGroupID'>control_devices</field>
+            <field name='UnitID'>796</field>
+        </record>
+        <!-- Фотоэлементы PHOTOCELL-N дальность до 20м -->
+        <record id='AdditionalDevicesGroup_PHOTOCELL_N'>
+            <field name='Kind'>DISPLAY FIELD</field>
+            <field name='Type'>STRING</field>
+            <field name='GroupID'>ControlDevicesGroup</field>
+        </record>
+        <!-- связь с 1С -->
+        <record id='AdditionalDevicesGroup_PHOTOCELL_N_Count'>
+            <field name='ID'>00000139366</field>
+            <field name='Kind'>INPUT FIELD</field>
+            <field name='Type'>NUMBER</field>
+            <field name='Format'>0-9::3.0</field>
+            <field name='GroupID'>ControlDevicesGroup</field>
+            <field name='SubGroupID'>control_devices</field>
+            <field name='UnitID'>796</field>
+        </record>
+        <!-- Фотоэлементы PHOTOCELL-R с поворотной платой -->
+        <record id='AdditionalDevicesGroup_PHOTOCELL_R'>
+            <field name='Kind'>DISPLAY FIELD</field>
+            <field name='Type'>STRING</field>
+            <field name='GroupID'>ControlDevicesGroup</field>
+        </record>
+        <!-- связь с 1С -->
+        <record id='AdditionalDevicesGroup_PHOTOCELL_R_Count'>
+            <field name='ID'>00000147124</field>
+            <field name='Kind'>INPUT FIELD</field>
+            <field name='Type'>NUMBER</field>
+            <field name='Format'>0-9::3.0</field>
+            <field name='GroupID'>ControlDevicesGroup</field>
+            <field name='SubGroupID'>control_devices</field>
+            <field name='UnitID'>796</field>
+        </record>
+        <!-- Обогреватель Heater для приводов универсальный 120W -->
+        <record id='AdditionalDevicesGroup_Heater'>
+            <field name='Kind'>DISPLAY FIELD</field>
+            <field name='Type'>STRING</field>
+            <field name='GroupID'>ControlDevicesGroup</field>
+        </record>
+        <!-- связь с 1С -->
+        <record id='AdditionalDevicesGroup_Heater_Count'>
+            <field name='ID'>00000135956</field>
+            <field name='Kind'>INPUT FIELD</field>
+            <field name='Type'>NUMBER</field>
+            <field name='Format'>0-9::3.0</field>
+            <field name='GroupID'>ControlDevicesGroup</field>
+            <field name='SubGroupID'>control_devices</field>
+            <field name='UnitID'>796</field>
+        </record>
+        <!-- Пульт 2-канальный  (БЕЛЫЙ) -->
+        <record id='AdditionalDevicesGroup_XT2_868SLH'>
+            <field name='Kind'>DISPLAY FIELD</field>
+            <field name='Type'>STRING</field>
+            <field name='GroupID'>ControlDevicesGroup</field>
+        </record>
+        <!-- связь с 1С -->
+        <record id='AdditionalDevicesGroup_XT2_868SLH_Count'>
+            <field name='ID'>00000137048</field>
+            <field name='Kind'>INPUT FIELD</field>
+            <field name='Type'>NUMBER</field>
+            <field name='Format'>0-9::3.0</field>
+            <field name='GroupID'>ControlDevicesGroup</field>
+            <field name='SubGroupID'>control_devices</field>
+            <field name='UnitID'>796</field>
+        </record>
+        <!-- Пульт 4-канальный (БЕЛЫЙ) -->
+        <record id='AdditionalDevicesGroup_XT4_868SLH'>
+            <field name='Kind'>DISPLAY FIELD</field>
+            <field name='Type'>STRING</field>
+            <field name='GroupID'>ControlDevicesGroup</field>
+        </record>
+        <!-- связь с 1С -->
+        <record id='AdditionalDevicesGroup_XT4_868SLH_Count'>
+            <field name='ID'>00000137049</field>
+            <field name='Kind'>INPUT FIELD</field>
+            <field name='Type'>NUMBER</field>
+            <field name='Format'>0-9::3.0</field>
+            <field name='GroupID'>ControlDevicesGroup</field>
+            <field name='SubGroupID'>control_devices</field>
+            <field name='UnitID'>796</field>
+        </record>
+        <!-- Приемник 868 МГЦ (встраеваемый) со встр. антеной -->
+        <record id='AdditionalDevicesGroup_RX_RP1_868_SLH'>
+            <field name='Kind'>DISPLAY FIELD</field>
+            <field name='Type'>STRING</field>
+            <field name='GroupID'>ControlDevicesGroup</field>
+        </record>
+        <!-- связь с 1С -->
+        <record id='AdditionalDevicesGroup_RX_RP1_868_SLH_Count'>
+            <field name='ID'>00000100572</field>
+            <field name='Kind'>INPUT FIELD</field>
+            <field name='Type'>NUMBER</field>
+            <field name='Format'>0-9::3.0</field>
+            <field name='GroupID'>ControlDevicesGroup</field>
+            <field name='SubGroupID'>control_devices</field>
+            <field name='UnitID'>796</field>
+        </record>
+        <!-- Приемник XF868 для приводов D600, D1000, 391E -->
+        <record id='AdditionalDevicesGroup_XF868'>
+            <field name='Kind'>DISPLAY FIELD</field>
+            <field name='Type'>STRING</field>
+            <field name='GroupID'>ControlDevicesGroup</field>
+        </record>
+        <!-- связь с 1С -->
+        <record id='AdditionalDevicesGroup_XF868_Count'>
+            <field name='ID'>00000120741</field>
+            <field name='Kind'>INPUT FIELD</field>
+            <field name='Type'>NUMBER</field>
+            <field name='Format'>0-9::3.0</field>
+            <field name='GroupID'>ControlDevicesGroup</field>
+            <field name='SubGroupID'>control_devices</field>
+            <field name='UnitID'>796</field>
+        </record>
+        <!-- Приемник внешний в корпусе -->
+        <record id='AdditionalDevicesGroup_XR2_868'>
+            <field name='Kind'>DISPLAY FIELD</field>
+            <field name='Type'>STRING</field>
+            <field name='GroupID'>ControlDevicesGroup</field>
+        </record>
+        <!-- связь с 1С -->
+        <record id='AdditionalDevicesGroup_XR2_868_Count'>
+            <field name='ID'>00000126562</field>
+            <field name='Kind'>INPUT FIELD</field>
+            <field name='Type'>NUMBER</field>
+            <field name='Format'>0-9::3.0</field>
+            <field name='GroupID'>ControlDevicesGroup</field>
+            <field name='SubGroupID'>control_devices</field>
+            <field name='UnitID'>796</field>
+        </record>
+        <!-- Ключ-выключатель (накладной) -->
+        <record id='AdditionalDevicesGroup_T10E'>
+            <field name='Kind'>DISPLAY FIELD</field>
+            <field name='Type'>STRING</field>
+            <field name='GroupID'>ControlDevicesGroup</field>
+        </record>
+        <!-- связь с 1С -->
+        <record id='AdditionalDevicesGroup_T10E_Count'>
+            <field name='ID'>00000100573</field>
+            <field name='Kind'>INPUT FIELD</field>
+            <field name='Type'>NUMBER</field>
+            <field name='Format'>0-9::3.0</field>
+            <field name='GroupID'>ControlDevicesGroup</field>
+            <field name='SubGroupID'>control_devices</field>
+            <field name='UnitID'>796</field>
+        </record>
+        <!-- Лампа сигнальная 220 В -->
+        <record id='AdditionalDevicesGroup_FAAC_LIGHT'>
+            <field name='Kind'>DISPLAY FIELD</field>
+            <field name='Type'>STRING</field>
+            <field name='GroupID'>ControlDevicesGroup</field>
+        </record>
+        <!-- связь с 1С -->
+        <record id='AdditionalDevicesGroup_FAAC_LIGHT_Count'>
+            <field name='ID'>00000100574</field>
+            <field name='Kind'>INPUT FIELD</field>
+            <field name='Type'>NUMBER</field>
+            <field name='Format'>0-9::3.0</field>
+            <field name='GroupID'>ControlDevicesGroup</field>
+            <field name='SubGroupID'>control_devices</field>
+            <field name='UnitID'>796</field>
+        </record>
+        <!-- Лампа сигнальная 24В -->
+        <record id='AdditionalDevicesGroup_410014'>
+            <field name='Kind'>DISPLAY FIELD</field>
+            <field name='Type'>STRING</field>
+            <field name='GroupID'>ControlDevicesGroup</field>
+        </record>
+        <!-- связь с 1С -->
+        <record id='AdditionalDevicesGroup_410014_Count'>
+            <field name='ID'>00000120742</field>
+            <field name='Kind'>INPUT FIELD</field>
+            <field name='Type'>NUMBER</field>
+            <field name='Format'>0-9::3.0</field>
+            <field name='GroupID'>ControlDevicesGroup</field>
+            <field name='SubGroupID'>control_devices</field>
+            <field name='UnitID'>796</field>
+        </record>
+        <!-- Фотодатчик двухпроводный XP15B -->
+        <record id='AdditionalDevicesGroup_XP15B'>
+            <field name='Kind'>DISPLAY FIELD</field>
+            <field name='Type'>STRING</field>
+            <field name='GroupID'>ControlDevicesGroup</field>
+        </record>
+        <!-- связь с 1С -->
+        <record id='AdditionalDevicesGroup_XP15B_Count'>
+            <field name='ID'>00000120743</field>
+            <field name='Kind'>INPUT FIELD</field>
+            <field name='Type'>NUMBER</field>
+            <field name='Format'>0-9::3.0</field>
+            <field name='GroupID'>ControlDevicesGroup</field>
+            <field name='SubGroupID'>control_devices</field>
+            <field name='UnitID'>796</field>
+        </record>
+        <!-- Фотоэлементы (передатчик, приемник) 20 м -->
+        <record id='AdditionalDevicesGroup_SAFEBEAM'>
+            <field name='Kind'>DISPLAY FIELD</field>
+            <field name='Type'>STRING</field>
+            <field name='GroupID'>ControlDevicesGroup</field>
+        </record>
+        <!-- связь с 1С -->
+        <record id='AdditionalDevicesGroup_SAFEBEAM_Count'>
+            <field name='ID'>00000100575</field>
+            <field name='Kind'>INPUT FIELD</field>
+            <field name='Type'>NUMBER</field>
+            <field name='Format'>0-9::3.0</field>
+            <field name='GroupID'>ControlDevicesGroup</field>
+            <field name='SubGroupID'>control_devices</field>
+            <field name='UnitID'>796</field>
+        </record>
+        <!-- Фотоэлементы беспроводные  XP15W -->
+        <record id='AdditionalDevicesGroup_XP15W'>
+            <field name='Kind'>DISPLAY FIELD</field>
+            <field name='Type'>STRING</field>
+            <field name='GroupID'>ControlDevicesGroup</field>
+        </record>
+        <!-- связь с 1С -->
+        <record id='AdditionalDevicesGroup_XP15W_Count'>
+            <field name='ID'>00000136474</field>
+            <field name='Kind'>INPUT FIELD</field>
+            <field name='Type'>NUMBER</field>
+            <field name='Format'>0-9::3.0</field>
+            <field name='GroupID'>ControlDevicesGroup</field>
+            <field name='SubGroupID'>control_devices</field>
+            <field name='UnitID'>796</field>
+        </record>
+        <!-- Детектор магнитной петли 1-но канальный -->
+        <record id='AdditionalDevicesGroup_FG1'>
+            <field name='Kind'>DISPLAY FIELD</field>
+            <field name='Type'>STRING</field>
+            <field name='GroupID'>ControlDevicesGroup</field>
+        </record>
+        <!-- связь с 1С -->
+        <record id='AdditionalDevicesGroup_FG1_Count'>
+            <field name='ID'>00000101791</field>
+            <field name='Kind'>INPUT FIELD</field>
+            <field name='Type'>NUMBER</field>
+            <field name='Format'>0-9::3.0</field>
+            <field name='GroupID'>ControlDevicesGroup</field>
+            <field name='SubGroupID'>control_devices</field>
+            <field name='UnitID'>796</field>
+        </record>
+        <!-- Детектор магнитной петли 2-х канальный -->
+        <record id='AdditionalDevicesGroup_FG2'>
+            <field name='Kind'>DISPLAY FIELD</field>
+            <field name='Type'>STRING</field>
+            <field name='GroupID'>ControlDevicesGroup</field>
+        </record>
+        <!-- связь с 1С -->
+        <record id='AdditionalDevicesGroup_FG2_Count'>
+            <field name='ID'>00000101792</field>
+            <field name='Kind'>INPUT FIELD</field>
+            <field name='Type'>NUMBER</field>
+            <field name='Format'>0-9::3.0</field>
+            <field name='GroupID'>ControlDevicesGroup</field>
+            <field name='SubGroupID'>control_devices</field>
+            <field name='UnitID'>796</field>
+        </record>
+
+        <!-- Дополнительная комплектация -->
+        <!-- Столб опорный для дополнительной роликовой опоры -->
+        <record id='AdditionalDevices_1'>
+            <field name='Kind'>DISPLAY FIELD</field>
+            <field name='Type'>STRING</field>
+            <field name='GroupID'>EquipmentGroup</field>
+        </record>
+        <!-- связь с 1С -->
+        <record id='AdditionalDevices_1_Count'>
+            <field name='ID'>00000117228</field>
+            <field name='Kind'>INPUT FIELD</field>
+            <field name='Type'>NUMBER</field>
+            <field name='Format'>0-9::2.0</field>
+            <field name='GroupID'>EquipmentGroup</field>
+            <field name='SubGroupID'>additional_devices_group</field>
+            <field name='CurrentValue'></field>
+            <field name='UnitID'>796</field>
+        </record>
+        <!-- Бетон на 1 столб -->
+        <record id='AdditionalDevices_3'>
+            <field name='Kind'>DISPLAY FIELD</field>
+            <field name='Type'>STRING</field>
+            <field name='GroupID'>EquipmentGroup</field>
+        </record>
+        <!-- связь с 1С -->
+        <record id='AdditionalDevices_3_Count'>
+            <field name='ID'>00000114904</field>
+            <field name='Kind'>INPUT FIELD</field>
+            <field name='Type'>NUMBER</field>
+            <field name='Format'>0-9::2.0</field>
+            <field name='GroupID'>EquipmentGroup</field>
+            <field name='SubGroupID'>additional_devices_group</field>
+            <field name='CurrentValue'></field>
+            <field name='UnitID'>796</field>
+        </record>
+        <!-- Бетон для рамы силовой для сдвижных ворот -->
+        <record id='AdditionalDevices_4'>
+            <field name='Kind'>DISPLAY FIELD</field>
+            <field name='Type'>STRING</field>
+            <field name='GroupID'>EquipmentGroup</field>
+        </record>
+        <!-- связь с 1С -->
+        <record id='AdditionalDevices_4_Count'>
+            <field name='ID'>00000114906</field>
+            <field name='Kind'>INPUT FIELD</field>
+            <field name='Type'>NUMBER</field>
+            <field name='Format'>0-9::2.0</field>
+            <field name='GroupID'>EquipmentGroup</field>
+            <field name='SubGroupID'>additional_devices_group</field>
+            <field name='CurrentValue'></field>
+            <field name='UnitID'>796</field>
+        </record>
+        <!-- Задвижка -->
+        <record id='AdditionalDevices_5'>
+            <field name='Kind'>DISPLAY FIELD</field>
+            <field name='Type'>STRING</field>
+            <field name='GroupID'>EquipmentGroup</field>
+        </record>
+        <!-- связь с 1С -->
+        <record id='AdditionalDevices_5_Count'>
+            <field name='ID'>00000000222</field>
+            <field name='Kind'>INPUT FIELD</field>
+            <field name='Type'>NUMBER</field>
+            <field name='Format'>0-9::2.0</field>
+            <field name='GroupID'>EquipmentGroup</field>
+            <field name='SubGroupID'>additional_devices_group</field>
+            <field name='CurrentValue'></field>
+            <field name='UnitID'>796</field>
+        </record>
+        <!-- Опора роликовая поддерживающая -->
+        <record id='AdditionalDevices_9'>
+            <field name='Kind'>DISPLAY FIELD</field>
+            <field name='Type'>STRING</field>
+            <field name='GroupID'>EquipmentGroup</field>
+        </record>
+        <!-- связь с 1С -->
+        <record id='AdditionalDevices_9_Count'>
+            <field name='ID'>00000105717</field>
+            <field name='Kind'>INPUT FIELD</field>
+            <field name='Type'>NUMBER</field>
+            <field name='Format'>0-9::2.0</field>
+            <field name='GroupID'>EquipmentGroup</field>
+            <field name='SubGroupID'>additional_devices_group</field>
+            <field name='CurrentValue'></field>
+            <field name='UnitID'>796</field>
+        </record>
+        <!-- Комплект лежачего полицейского L=1000 мм -->
+        <record id='AdditionalDevices_11'>
+            <field name='Kind'>DISPLAY FIELD</field>
+            <field name='Type'>STRING</field>
+            <field name='GroupID'>EquipmentGroup</field>
+        </record>
+        <!-- связь с 1С -->
+        <record id='AdditionalDevices_11_Count'>
+            <field name='ID'>00000136705</field>
+            <field name='Kind'>INPUT FIELD</field>
+            <field name='Type'>NUMBER</field>
+            <field name='Format'>0-9::2.0</field>
+            <field name='GroupID'>EquipmentGroup</field>
+            <field name='SubGroupID'>additional_devices_group</field>
+            <field name='CurrentValue'></field>
+            <field name='UnitID'>796</field>
+        </record>
+        <!-- Комплект боковых крышек для резинового полицейского -->
+        <record id='AdditionalDevices_12'>
+            <field name='Kind'>DISPLAY FIELD</field>
+            <field name='Type'>STRING</field>
+            <field name='GroupID'>EquipmentGroup</field>
+        </record>
+        <!-- связь с 1С -->
+        <record id='AdditionalDevices_12_Count'>
+            <field name='ID'>00000136699</field>
+            <field name='Kind'>INPUT FIELD</field>
+            <field name='Type'>NUMBER</field>
+            <field name='Format'>0-9::2.0</field>
+            <field name='GroupID'>EquipmentGroup</field>
+            <field name='SubGroupID'>additional_devices_group</field>
+            <field name='CurrentValue'></field>
+            <field name='UnitID'>796</field>
+        </record>
+
+        <!-- Расходные материалы -->
+        <!-- Кабель управления 2х0,75 ШВВП -->
+        <record id='ExpendableMaterials_ControlCabel_2'>
+            <field name='Kind'>DISPLAY FIELD</field>
+            <field name='Type'>STRING</field>
+            <field name='GroupID'>ExpendableMaterialsGroup</field>
+        </record>
+        <!-- связь с 1С -->
+        <record id='ExpendableMaterials_ControlCabel_2_Count'>
+            <field name='ID'>00000001063</field>
+            <field name='Kind'>INPUT FIELD</field>
+            <field name='Type'>NUMBER</field>
+            <field name='Format'>0-9::3.0</field>
+            <field name='GroupID'>ExpendableMaterialsGroup</field>
+            <field name='SubGroupID'>expendable_materials_group</field>
+            <field name='CurrentValue'></field>
+            <field name='UnitID'>006</field>
+        </record>
+        <!-- Кабель силовой 3х0,75 ШВВП -->
+        <record id='ExpendableMaterials_PowerCabel_3'>
+            <field name='Kind'>DISPLAY FIELD</field>
+            <field name='Type'>STRING</field>
+            <field name='GroupID'>ExpendableMaterialsGroup</field>
+        </record>
+        <!-- связь с 1С -->
+        <record id='ExpendableMaterials_PowerCabel_3_Count'>
+            <field name='ID'>00000001143</field>
+            <field name='Kind'>INPUT FIELD</field>
+            <field name='Type'>NUMBER</field>
+            <field name='Format'>0-9::3.0</field>
+            <field name='GroupID'>ExpendableMaterialsGroup</field>
+            <field name='SubGroupID'>expendable_materials_group</field>
+            <field name='CurrentValue'></field>
+            <field name='UnitID'>006</field>
+        </record>
+        <!-- Кабель силовой 4-х жильный -->
+        <record id='ExpendableMaterials_PowerCabel_4'>
+            <field name='Kind'>DISPLAY FIELD</field>
+            <field name='Type'>STRING</field>
+            <field name='GroupID'>ExpendableMaterialsGroup</field>
+        </record>
+        <!-- связь с 1С -->
+        <record id='ExpendableMaterials_PowerCabel_4_Count'>
+            <field name='ID'>00000013129</field>
+            <field name='Kind'>INPUT FIELD</field>
+            <field name='Type'>NUMBER</field>
+            <field name='Format'>0-9::3.0</field>
+            <field name='GroupID'>ExpendableMaterialsGroup</field>
+            <field name='SubGroupID'>expendable_materials_group</field>
+            <field name='CurrentValue'></field>
+            <field name='UnitID'>006</field>
+        </record>
+        <!-- Гофра пластиковая с креплением -->
+        <record id='ExpendableMaterials_CorrugatedPlastic'>
+            <field name='Kind'>DISPLAY FIELD</field>
+            <field name='Type'>STRING</field>
+            <field name='GroupID'>ExpendableMaterialsGroup</field>
+        </record>
+        <!-- связь с 1С -->
+        <record id='ExpendableMaterials_CorrugatedPlastic_Count'>
+            <field name='ID'>00000011882</field>
+            <field name='Kind'>INPUT FIELD</field>
+            <field name='Type'>NUMBER</field>
+            <field name='Format'>0-9::3.0</field>
+            <field name='GroupID'>ExpendableMaterialsGroup</field>
+            <field name='SubGroupID'>expendable_materials_group</field>
+            <field name='CurrentValue'></field>
+            <field name='UnitID'>006</field>
+        </record>
+        <!-- Крепление для гофры D=20 мм -->
+        <record id='ExpendableMaterials_CorrugatedAttachement_20'>
+            <field name='Kind'>DISPLAY FIELD</field>
+            <field name='Type'>STRING</field>
+            <field name='GroupID'>ExpendableMaterialsGroup</field>
+        </record>
+        <!-- связь с 1С -->
+        <record id='ExpendableMaterials_CorrugatedAttachement_20_Count'>
+            <field name='ID'>00000012655</field>
+            <field name='Kind'>INPUT FIELD</field>
+            <field name='Type'>NUMBER</field>
+            <field name='Format'>0-9::2.0</field>
+            <field name='GroupID'>ExpendableMaterialsGroup</field>
+            <field name='SubGroupID'>expendable_materials_group</field>
+            <field name='CurrentValue'></field>
+            <field name='UnitID'>796</field>
+        </record>
+
+        <!-- Упаковка изделия -->
+        <!-- Упаковка в дерево -->
+        <record id='Packaging_Wood'>
+            <field name='ID'>00000016097</field>
+            <field name='Kind'>CHECKBOX</field>
+            <field name='Type'>BOOLEAN</field>
+            <field name='GroupID'>PackagingGroup</field>
+            <field name='SubGroupID'>packaging_group</field>
+            <field name='CurrentValue'>false</field>
+        </record>
+
+        <!-- Примечание к упаковке -->
+        <!-- связь с 1С -->
+        <record id='PackagingInfo_up'>
+            <field name='ID'>cp_packaging_info</field><field name='Kind'>CONSTANT</field><field name='Type'>STRING</field><field name='GroupID'>PackagingInfoGroup</field>
+        </record>
+
+        <!-- Примечание -->
+        <record id='Note'>
+            <field name='ID'>sg_note</field>
+            <field name='Kind'>INPUT AREA</field>
+            <field name='Type'>STRING</field>
+            <field name='GroupID'>NoteGroup</field>
+            <field name='SubGroupID'>note_group</field>
+        </record>
+
+        <!-- РАЗДЕЛ КОНСТАНТ -->
+        <record id='default_square_height'>
+            <field name='Kind'>CONSTANT</field>
+            <field name='Type'>NUMBER</field>
+            <field name='CurrentValue'>2500</field>
+        </record>
+
+        <record id='default_square_width'>
+            <field name='Kind'>CONSTANT</field>
+            <field name='Type'>NUMBER</field>
+            <field name='CurrentValue'>3000</field>
+        </record>
+
+        <record id='minSquareWidth'>
+            <field name='Kind'>CONSTANT</field>
+            <field name='Type'>NUMBER</field>
+            <field name='CurrentValue'>2000</field>
+        </record>
+
+        <record id='maxSquareWidth'>
+            <field name='Kind'>CONSTANT</field>
+            <field name='Type'>NUMBER</field>
+            <field name='CurrentValue'>5000</field>
+        </record>
+
+        <record id='minSquareHeight'>
+            <field name='Kind'>CONSTANT</field>
+            <field name='Type'>NUMBER</field>
+            <field name='CurrentValue'>1000</field>
+        </record>
+
+        <record id='maxSquareHeight'>
+            <field name='Kind'>CONSTANT</field>
+            <field name='Type'>NUMBER</field>
+            <field name='CurrentValue'>2500</field>
+        </record>
+
+        <record id='minSquareClearance'>
+            <field name='Kind'>CONSTANT</field>
+            <field name='Type'>NUMBER</field>
+            <field name='CurrentValue'>50</field>
+        </record>
+
+        <record id='maxSquareClearance'>
+            <field name='Kind'>CONSTANT</field>
+            <field name='Type'>NUMBER</field>
+            <field name='CurrentValue'>150</field>
+        </record>
+
+        <record id='minSquareOverfall'>
+            <field name='Kind'>CONSTANT</field>
+            <field name='Type'>NUMBER</field>
+            <field name='CurrentValue'>0</field>
+        </record>
+
+        <record id='maxSquareOverfall'>
+            <field name='Kind'>CONSTANT</field>
+            <field name='Type'>NUMBER</field>
+            <field name='CurrentValue'>150</field>
+        </record>
+
+        <record id='construct_default'>
+            <field name='ID'>constructCB000006283</field>
+            <field name='Kind'>PROGRESS</field>
+            <field name='Type'>NUMBER</field>
+        </record>
+
+        <record id='is_LatticeHeight_changed'>
+            <field name='Kind'>CONSTANT</field>
+            <field name='Type'>NUMBER</field>
+            <field name='CurrentValue'>0</field>
+        </record>
+
+        <record id='is_PicHeight_changed'>
+            <field name='Kind'>CONSTANT</field>
+            <field name='Type'>NUMBER</field>
+            <field name='CurrentValue'>0</field>
+        </record>
+
+        <record id='is_MinPicHeight_changed'>
+            <field name='Kind'>CONSTANT</field>
+            <field name='Type'>NUMBER</field>
+            <field name='CurrentValue'>0</field>
+        </record>
+
+        <record id='is_ArchHeight_changed'>
+            <field name='Kind'>CONSTANT</field>
+            <field name='Type'>NUMBER</field>
+            <field name='CurrentValue'>0</field>
+        </record>
+
+</document>

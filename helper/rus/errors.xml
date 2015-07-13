@@ -1,0 +1,138 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!-- Константы - конфигуратор продукции (Помощник)  -->
+
+<!DOCTYPE document
+    [
+        <!ELEMENT document (system, task, description, lanquage, error+)>
+            <!ATTLIST    document
+                        id        ID        #REQUIRED
+                        type    NMTOKEN    #REQUIRED
+            >
+            <!ELEMENT system EMPTY>
+                <!ATTLIST    system
+                            id        ID        #REQUIRED
+                            version    NMTOKEN    #REQUIRED
+                >
+            <!ELEMENT task EMPTY>
+                <!ATTLIST    task
+                            id        ID        #REQUIRED
+                            version    NMTOKEN    #REQUIRED
+                >
+            <!ELEMENT description EMPTY>
+                <!ATTLIST    description
+                            id        ID        #REQUIRED
+                            version    NMTOKEN    #REQUIRED
+                >
+            <!ELEMENT lanquage EMPTY>
+                <!ATTLIST    lanquage
+                                id        ID        #REQUIRED
+                >
+            <!ELEMENT error ANY>
+                    <!ATTLIST    error
+                                id        CDATA    #REQUIRED
+                    >
+    ]
+>
+
+<document id='errorsDescription' type='Respond'>
+    <system id='-CIS' version='1'/>
+    <task id='CALCHELPER' version='2'/>
+    <description id='Errors' version='1'/>
+    <lanquage id='RUS'/>
+    
+    <error id='0'>
+        $space$Операция:$space$
+    </error>
+    <error id='1'>
+        Инициализация сервиса обмена с внешней системой произошла с ошибкой.
+    </error>
+    <error id='2'>
+        Некорректное содержание документа.$space$
+    </error>
+    <!-- Ошибка в инструкции: -->
+    <error id='3'>
+        $space$
+    </error>
+    <error id='4'>
+        Ошибка обработки загруженной служебной информации.$space$
+    </error>
+    <error id='5'>
+        Невозможно загрузить конфигуратор изделия для помощника.$space$
+    </error>
+    <error id='6'>
+        Ошибка загрузки [1].$space$
+    </error>
+    <error id='7'>
+        Ошибка загрузки [2].$space$
+    </error>
+    <error id='8'>
+        Ошибка инициализации [1].$space$
+    </error>
+    <error id='9'>
+        Некорректные параметры контрагента. Операция отменена.$space$
+    </error>
+    <error id='10'>
+        Некорректный ответ сервера. Операция отменена.$space$
+    </error>
+    <error id='11'>
+        Попытка запуска некорректной операции.$space$
+    </error>
+    <error id='12'>
+        Сервис на данный момент недоступен (1). Исключение.$space$
+    </error>
+    <error id='13'>
+        Внешний сервис недоступен. Ошибка авторизации.$space$
+    </error>
+    <error id='14'>
+        Сервис на данный момент недоступен (3). Исключение.$space$
+    </error>
+    <error id='15'>
+        Ошибка обмена с корпоративной ИС [1]. Возможно сервис на данный момент недоступен. Пожалуйста повторите попытку позже.$space$
+    </error>
+    <error id='16'>
+        Ошибка обмена с корпоративной ИС [2]. Возможно сервис на данный момент недоступен. Пожалуйста повторите попытку позже.$space$
+    </error>
+    <error id='17'>
+        Ошибка обработки XML [respond].$space$
+    </error>
+    <error id='18'>
+        Некорректная структура документа [respond XML].$space$
+    </error>
+    <error id='19'>
+        Некорректное содержание документа [respond XML].$space$
+    </error>
+    <error id='20'>
+        Ошибка КИС:$space$
+    </error>
+    <error id='21'>
+        Сервис недоступен (-199). Пожалуйста, повторите попытку позже.$space$
+    </error>
+    <error id='22'>
+        Информация КИС:$space$
+    </error>
+    <error id='23'>
+        Сервис на данный момент недоступен (5). Пожалуйста, повторите попытку позже.$space$
+    </error>
+    <error id='24'><![CDATA[<font color='#ff0000'>Значение не соответствует
+формату поля. Число
+слишком большое.</font>]]>
+    </error>
+    <error id='25'>
+        Сервис недоступен. Время ожидания ответа истекло.$space$
+    </error>
+    <error id='26'></error>
+    <!-- Ошибка в инструкции: -->
+    <error id='27'>$space$</error>
+    <error id='28'>$space$</error>
+    <error id='29'>$space$</error>
+    <error id='30'></error>
+    <error id='31'></error>
+    <error id='32'></error>
+    <error id='33'></error>
+    <error id='34'>Некорректная версия XML-обмена.</error>
+    <error id='35'>Отсутствует информация о конфигурации изделия.</error>
+    <error id='36'>Не задан корневой тег конфигурации.</error>
+    <error id='37'>Информация конструктора:</error>
+    <error id='38'></error>
+    <error id='39'>Расчет конструкции не выполнен.</error>
+</document>

@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE document
+	[
+		<!ELEMENT document (system, task, description, record+)>
+			<!ATTLIST	document
+						id		ID		#REQUIRED
+						type	NMTOKEN	#REQUIRED
+			>
+				<!ELEMENT system EMPTY>
+					<!ATTLIST	system
+								id		ID		#REQUIRED
+								version	NMTOKEN	#REQUIRED
+					>
+				<!ELEMENT task EMPTY>
+					<!ATTLIST	task
+								id		ID		#REQUIRED
+								version	NMTOKEN	#REQUIRED
+					>
+				<!ELEMENT description EMPTY>
+					<!ATTLIST	description
+								id		ID		#REQUIRED
+								version	NMTOKEN	#REQUIRED
+					>
+				<!ELEMENT record ANY>
+						<!ATTLIST	record
+									id	ID	#REQUIRED
+						>
+	]
+>
+
+<document id='constantsDescription' type='Respond'>
+	<system id='-CIS' version='1'/>
+	<task id='CALCHELPER' version='2'/>
+	<description id='Constants' version='1'/>
+	<record id='FieldKindLabel'>
+		Kind
+	</record>
+	<record id='FieldTypeLabel'>
+		Type
+	</record>
+	<record id='FieldDefaultValue'>
+		DefaultValue
+	</record>
+	<record id='FieldCurrentValue'>
+		CurrentValue
+	</record>
+	<record id='CalculateDescription'>
+		CalculateDescription
+	</record>
+	<record id='VariableName'>
+		VariableName
+	</record>
+	<record id='CalculateSequenceNumber'>
+		CalculateSequenceNumber
+	</record>
+	<record id='DisplaySequenceNumber'>
+		DisplaySequenceNumber
+	</record>
+	<record id='empty'>
+		empty
+	</record>
+	<record id='Label'>
+		Label
+	</record>
+	<record id='Description'>
+		Description
+	</record>
+	<record id='Format'>
+		Format
+	</record>
+	<record id='Style'>
+		Style
+	</record>
+	<record id='GroupID'>
+		GroupID
+	</record>
+	<record id='GroupName'>
+		GroupName
+	</record>
+	<record id='SubGroupID'>
+		SubGroupID
+	</record>
+	<record id='SubGroupName'>
+		SubGroupName
+	</record>
+	<record id='UnitName'>
+		UnitName
+	</record>
+	<record id='InternalActionsDivider'>
+		;
+	</record>
+	<record id='formatParamDiv'>
+		::
+	</record>
+	<record id='Pointer'>
+		.
+	</record>
+	<record id='stdStrOpenedSymb'>
+		%#
+	</record>
+	<record id='stdStrClosedSymb'>
+		#%
+	</record>
+	<record id='displayedFieldID'>
+		displayedObject
+	</record>
+	<record id='displayedContinerID'>
+		displayedContiner
+	</record>
+	<record id='displayedPartContinerID'>
+		displayedPartContiner
+	</record>
+	<record id='spaceUnit'>
+		$space$
+	</record>
+	<record id='nameSpace'>
+		wms
+	</record>
+	<record id='ExternalField'>
+		ExternalField
+	</record>
+	<record id='External'>
+		External
+	</record>
+	<record id='Internal'>
+		Internal
+	</record>
+	<record id='Transfer'>
+		Transfer
+	</record>
+	<record id='GROUP'>
+		GROUP
+	</record>
+	<record id='FUNCTION'>
+		FUNCTION
+	</record>
+	<record id='CONSTANT'>
+		CONSTANT
+	</record>
+	<record id='PROGRESS'>
+		PROGRESS
+	</record>
+	<record id='inputFIELD'>
+		INPUT FIELD
+	</record>
+	<record id='inputAREA'>
+		INPUT AREA
+	</record>
+	<record id='SELECT'>
+		SELECT
+	</record>
+	<record id='COMBOBOX'>
+		COMBOBOX
+	</record>
+	<record id='HLISTBOX'>
+		H-LIST-BOX
+	</record>
+	<record id='HLIST'>
+		H-LIST
+	</record>
+	<record id='popupMENU'>
+		POP-UP MENU
+	</record>
+	<record id='CHECKBOX'>
+		CHECKBOX
+	</record>
+	<record id='RADIOBUTTON'>
+		RADIOBUTTON
+	</record>
+	<record id='displayFIELD'>
+		DISPLAY FIELD
+	</record>
+	<record id='STRING'>
+		STRING
+	</record>
+	<record id='NUMBER'>
+		NUMBER
+	</record>
+	<record id='BOOLEAN'>
+		BOOLEAN
+	</record>
+	<record id='DATE'>
+		DATE
+	</record>
+	<record id='IMAGE'>
+		IMAGE
+	</record>
+	<record id='SWF'>
+		SWF
+	</record>
+	<record id='LIST'>
+		LIST
+	</record>
+	<record id='ARRAY'>
+		ARRAY
+	</record>
+	<record id='Alert'>
+		ALERT
+	</record>
+	<record id='broadImage'>
+		PICTURE
+	</record>
+	<record id='SOURCE'>
+		SOURCE
+	</record>
+	<record id='DUMMY'>
+		DUMMY
+	</record>
+	<record id='mainImagePath'>
+		images/
+	</record>
+	<record id='queryDoctypeDescription'>
+		<![CDATA[
+<!DOCTYPE document
+	[
+		<!ELEMENT document (system, task, description, lanquage, documentNumber,
+							documentDate, documentRef, lineNumber, wizardName, currency,
+							total, action, errorCode, errorDescription, sessionID, userID, 
+							userTypeID, userLogin, userPswd, regionID, priceTypeID, httpHost, 
+							httpReferer, security, unitsURL, currenciesURL, parameters?, 
+							products?
+							)>
+							
+			<!ATTLIST	document
+						id		ID		#REQUIRED
+						type	NMTOKEN	#REQUIRED
+			>
+				<!ELEMENT system EMPTY>
+					<!ATTLIST	system
+								id		ID		#REQUIRED
+								version	NMTOKEN	#REQUIRED
+					>
+				<!ELEMENT task EMPTY>
+					<!ATTLIST	task
+								id		ID		#REQUIRED
+								version	NMTOKEN	#REQUIRED
+					>
+				<!ELEMENT description EMPTY>
+					<!ATTLIST	description
+								id		ID		#REQUIRED
+								version	NMTOKEN	#REQUIRED
+					>
+				<!ELEMENT lanquage EMPTY>
+					<!ATTLIST	lanquage
+									id		ID		#REQUIRED
+					>
+					
+				<!ELEMENT documentNumber ANY>
+				<!ELEMENT documentDate ANY>
+				<!ELEMENT documentRef ANY>
+				<!ELEMENT lineNumber ANY>
+				<!ELEMENT wizardName ANY>
+				<!ELEMENT currency ANY>
+				<!ELEMENT total ANY>
+				<!ELEMENT action ANY>
+				<!ELEMENT errorCode ANY>
+				<!ELEMENT errorDescription ANY>
+				<!ELEMENT sessionID ANY>
+				<!ELEMENT userID ANY>
+				<!ELEMENT userTypeID ANY>
+				<!ELEMENT regionID ANY>
+				<!ELEMENT priceTypeID ANY>
+				<!ELEMENT httpHost ANY>
+				<!ELEMENT httpReferer ANY>
+				<!ELEMENT webResurce ANY>
+				<!ELEMENT pageLocation ANY>
+				<!ELEMENT security ANY>
+				
+				<!ELEMENT parameters (parameter*)>
+					<!ELEMENT parameter ANY>
+						<!ATTLIST	parameter
+									id		CDATA		#REQUIRED
+									type	CDATA		#REQUIRED
+									unit	CDATA		#IMPLIED
+									price	CDATA		#IMPLIED
+						>
+				
+				<!ELEMENT products (product*)>
+					<!ELEMENT product ANY>
+						<!ATTLIST	product
+									id		CDATA		#REQUIRED
+									type	CDATA		#REQUIRED
+									unit	CDATA		#IMPLIED
+									price	CDATA		#IMPLIED
+						>
+	]
+>
+		]]>
+	</record>
+	<record id='CIS'>
+		1
+	</record>
+
+	<!-- styles_1.xml line delimeter -->
+	<record id='styleStrDivider'>
+		;
+	</record>
+
+	<!-- LST_INDEX_DELIMETER -->
+	<record id='listIndexDelimeter'>
+		##
+	</record>
+	<record id='listIndicesDelimeter'>
+		:
+	</record>
+	<!-- LST_VALUE_DELIMETER -->
+	<record id='listValueDelimeter'>
+		;
+	</record>
+	<!-- LST_ITEM_DELIMETER -->
+	<record id='listItemDelimeter'>
+		|
+	</record>
+	<record id='styleParamDiv'>
+		:
+	</record>
+</document>

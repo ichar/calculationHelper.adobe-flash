@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE document
+    [
+        <!ELEMENT document (system, task, description, style+)>
+            <!ATTLIST    document
+                        id        ID        #REQUIRED
+                        type    NMTOKEN    #REQUIRED
+            >
+            <!ELEMENT system EMPTY>
+                <!ATTLIST    system
+                            id        ID        #REQUIRED
+                            version    NMTOKEN    #REQUIRED
+                >
+            <!ELEMENT task EMPTY>
+                <!ATTLIST    task
+                            id        ID        #REQUIRED
+                            version    NMTOKEN    #REQUIRED
+                >
+            <!ELEMENT description EMPTY>
+                <!ATTLIST    description
+                            id        ID        #REQUIRED
+                            version    NMTOKEN    #REQUIRED
+                >
+            <!ELEMENT style ANY>
+                    <!ATTLIST    style
+                                id        ID        #REQUIRED
+                                type    CDATA    #REQUIRED
+                    >
+    ]
+>
+
+<document id='stylesDescription' type='Respond'>
+    <system id='CIS' version='1'/>
+    <task id='CALCHELPER' version='2'/>
+    <description id='Styles' version='1'/>
+    
+    <style id='MessageAreaText' type='0'>
+        .noerrstyle
+        {
+            font-family:Arial, _sans;
+            font-size:11px;
+            font-weight:normal;
+            color:#6D6E72;
+            text-align:justify;
+            text-indent:0px;
+            margin-left:10px;
+            margin-right:5px;
+        }
+        .errstyle
+        {
+            font-family:Arial, _sans;
+            font-size:11px;
+            font-weight:bold;
+            color:#FF0000;
+            text-align:justify;
+            text-indent:0px;
+            margin-left:10px;
+            margin-right:5px;
+        }
+        .attstyle
+        {
+            font-family:Arial, _sans;
+            font-size:11px;
+            font-weight:bold;
+            color:#0000FF;
+            text-align:justify;
+            text-indent:0px;
+            margin-left:10px;
+            margin-right:5px;
+        }
+        .logstyle
+        {
+            font-family:Arial, _sans;
+            font-size:11px;
+            font-weight:normal;
+            color:#8848A8;
+            text-align:justify;
+            text-indent:0px;
+            margin-left:10px;
+            margin-right:5px;
+        }
+    </style>
+    <style id='HelpAreaText' type='0'>
+        .messStyle
+        {
+            font-family:Arial, _sans;
+            font-size:11px;
+            font-weight:normal;
+            font-style:italic;
+            color:#6D6E72;
+            text-align:justify;
+            text-indent:15px;
+            margin-left:10px;
+        }
+    </style>
+    <style id='CostAreaText' type='0'>
+        .titleStyle
+        {
+            font-family:Arial;
+            font-size:11px;
+            color:#363636;
+            text-align:left;
+        }
+        .attStyle
+        {
+            font-family:Arial;
+            font-size:11px;
+            color:#828282;
+            text-align:left;
+        }
+        .costStyle
+        {
+            font-family:Arial;
+            font-weight:bold;
+            font-size:11px;
+            color:#000000;
+            text-align:left;
+        }
+        .noCostStyle
+        {
+            font-family:Arial;
+            font-size:11px;
+            font-weight:bold;
+            color:#FF0000;
+            text-align:left;
+        }
+    </style>
+    <style id='PartTitle' type='1'>
+        fontFamily:Arial, _sans;
+        fontSize:12;
+        fontWeight:bold;
+        color:#363636;
+        textAlign:left;
+    </style>
+    <style id='FieldsContainer' type='1'>
+        fontFamily:Arial, Candara, _sans, Calibri, Tahoma;
+        fontSize:11;
+        fontWeight:normal;
+        color:#363636;
+        horizontalAlign:left;
+    </style>
+    <style id='StrFieldContent' type='1'>
+        fontFamily:Arial, _sans;
+        fontWeight:normal;
+        color:#363636;
+        width:200;
+    </style>
+    <style id='NumFieldContent' type='1'>
+        fontFamily:Verdana, Arial, _sans;
+        fontWeight:normal;
+        color:#363636;
+        shadowDistance:4px;
+    </style>
+    <style id='FieldArea' type='1'>
+        fontFamily:Arial, _sans;
+        fontWeight:normal;
+        color:#363636;
+        dropShadowEnabled:false;
+        shadowDistance:4;
+        width:240;
+        height:60;
+    </style>
+    <style id='DateFieldArea' type='1'>
+        fontFamily:Arial, _sans;
+        fontWeight:normal;
+        color:#363636;
+        shadowDistance:4;
+        width:85;
+        height:26;
+    </style>
+    <style id='CheckBox' type='1'>
+        color:#363636;
+        fontStyle:normal;
+    </style>
+    <style id='DisabledCheckBoxColor' type='1'>
+        color:#363636;
+        fontStyle:italic;
+    </style>
+    <style id='RadioButton' type='1'>
+        color:#363636;
+        fontStyle:normal;
+    </style>
+    <style id='DisabledRadioButtonColor' type='1'>
+        color:#363636;
+        fontStyle:italic;
+    </style>
+    <style id='MenuElements' type='1'/>
+    <style id='Select' type='1'>
+        fontFamily:Arial, _sans;
+        fontSize:11;
+        fontWeight:bold;
+        selectionColor:#A0A8D4;
+    </style>
+    <style id='ComboBox' type='1'>
+        fontFamily:Arial, _sans;
+        fontSize:11;
+        fontWeight:bold;
+        rollOverColor:#e7e7e7;
+        textRollOverColor:#0000c0;
+        dropdownStyleName:comboBoxDropdown;
+    </style>
+    <style id='PopUpMenu' type='1'>
+        fontFamily:Arial, _sans;
+        fontSize:11;
+        fontWeight:bold;
+    </style>
+    <style id='DataGridArea' type='2'/>
+    <style id='DisplayString' type='1'>
+        fontFamily:Arial, Helvetica, _sans, Calibri, Candara;
+        fontSize:11;
+        fontWeight:normal;
+        color:#004040;
+        textAlign:left;
+    </style>
+    <style id='DispalyString' type='1'>
+        fontFamily:Arial, Helvetica, _sans, Calibri, Candara;
+        fontSize:11;
+        fontWeight:normal;
+        color:#004040;
+        textAlign:left;
+    </style>
+    <style id='Image' type='1'/>
+</document>

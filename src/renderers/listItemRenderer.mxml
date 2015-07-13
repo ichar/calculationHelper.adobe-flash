@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" 
+		   backgroundColor="#F8FCFF" backgroundAlpha="0"
+		   >
+				
+	<mx:VBox horizontalAlign="center" width="100%" y="5">
+		<!--<mx:Image source="{data}" maxWidth="100" maxHeight="75" horizontalAlign="center" verticalAlign="middle" />-->
+		<mx:Image source="{data.uri}" width="{data.width}" height="{data.height}" horizontalAlign="center" verticalAlign="middle" />
+	</mx:VBox>
+	
+</mx:Canvas>

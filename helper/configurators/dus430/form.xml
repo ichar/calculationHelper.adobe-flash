@@ -1,0 +1,977 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE document
+    [
+        <!ELEMENT document (system, task, description, record+)>
+            <!ATTLIST   document
+                        id        ID        #REQUIRED
+                        type      NMTOKEN   #REQUIRED
+            >
+        <!ELEMENT system EMPTY>
+            <!ATTLIST   system
+                        id        ID        #REQUIRED
+                        version   NMTOKEN   #REQUIRED
+            >
+        <!ELEMENT task EMPTY>
+            <!ATTLIST   task
+                        id        ID        #REQUIRED
+                        version   NMTOKEN   #REQUIRED
+            >
+        <!ELEMENT description EMPTY>
+            <!ATTLIST   description
+                        id        ID        #REQUIRED
+                        version   NMTOKEN   #REQUIRED
+            >
+        <!ELEMENT record (field+)>
+            <!ATTLIST   record
+                        id        ID        #REQUIRED
+            >
+        <!ELEMENT field ANY>
+            <!ATTLIST   field
+                        name      NMTOKEN   #REQUIRED
+            >
+    ]
+>
+
+
+<document id='variablesDescription' type='Respond'>
+    <system id='-CIS' version='1'/>
+    <task id='CALCHELPER' version='2'/>
+    <description id='SingleWicketDUS430' version='1'/>
+
+        <!-- РАЗДЕЛ ДЛЯ ПОЛЕЙ ФОРМЫ КОНФИГУРАТОРА -->
+        <!-- Комплектация заказа -->
+
+        <!-- Параметры проёма -->
+        <!-- Ширина (B) -->
+        <record id='SquareWidth'>
+            <field name='Kind'>INPUT FIELD</field>
+            <field name='Type'>NUMBER</field>
+            <field name='Format'>0-9::4.0</field>
+            <field name='GroupID'>SquareInfoGroup</field>
+            <field name='CurrentValue'>3000</field>
+            <field name='UnitID'>003</field>
+        </record>
+        <!-- связь с 1С -->
+        <record id='SquareWidth_up'>
+            <field name='ID'>cp_width</field><field name='Kind'>CONSTANT</field><field name='Type'>NUMBER</field><field name='SubGroupID'>square_group</field>
+        </record>
+        <!-- Высота (H) -->
+        <record id='SquareHeight'>
+            <field name='Kind'>INPUT FIELD</field>
+            <field name='Type'>NUMBER</field>
+            <field name='Format'>0-9::4.0</field>
+            <field name='GroupID'>SquareInfoGroup</field>
+            <field name='CurrentValue'>2000</field>
+            <field name='UnitID'>003</field>
+        </record>
+        <!-- связь с 1С -->
+        <record id='SquareHeight_up'>
+            <field name='ID'>cp_height</field><field name='Kind'>CONSTANT</field><field name='Type'>NUMBER</field><field name='SubGroupID'>square_group</field>
+        </record>
+        <!-- Общая площадь проёма -->
+        <record id='SquareAperture'>
+            <field name='Kind'>DISPLAY FIELD</field>
+            <field name='Type'>STRING</field>
+            <field name='GroupID'>SquareInfoGroup</field>
+            <field name='UnitID'>055</field>
+        </record>
+
+        <!-- Просвет -->
+        <!-- Просвет (P) -->
+        <record id='SquareClearance'>
+            <field name='Kind'>INPUT FIELD</field>
+            <field name='Type'>NUMBER</field>
+            <field name='Format'>0-9::3.0</field>
+            <field name='GroupID'>SquareInfoGroup</field>
+            <field name='CurrentValue'></field>
+            <field name='UnitID'>003</field>
+        </record>
+        <!-- связь с 1С -->
+        <record id='SquareClearance_up'>
+            <field name='ID'>cp_clearance</field><field name='Kind'>CONSTANT</field><field name='Type'>NUMBER</field><field name='SubGroupID'>square_clearance_group</field>
+        </record>
+
+        <!-- Особенности конструкции -->
+        <!-- Направление открытия -->
+        <!-- Наружу -->
+        <record id='Opening_Outside'>
+            <field name='ID'>cp_opening_outside</field>
+            <field name='Kind'>RADIOBUTTON</field>
+            <field name='Type'>BOOLEAN</field>
+            <field name='GroupID'>ProductInfoGroup</field>
+            <field name='SubGroupID'>shield_opening_group</field>
+            <field name='CurrentValue'>true</field>
+        </record>
+        <!-- Внутрь -->
+        <record id='Opening_Inside'>
+            <field name='ID'>cp_opening_inside</field>
+            <field name='Kind'>RADIOBUTTON</field>
+            <field name='Type'>BOOLEAN</field>
+            <field name='GroupID'>ProductInfoGroup</field>
+            <field name='SubGroupID'>shield_opening_group</field>
+            <field name='CurrentValue'>false</field>
+        </record>
+
+        <!-- Положение петель -->
+        <!-- Слева -->
+        <record id='Hinge_Left'>
+            <field name='ID'>cp_door_hinge_left</field>
+            <field name='Kind'>RADIOBUTTON</field>
+            <field name='Type'>BOOLEAN</field>
+            <field name='GroupID'>ProductInfoGroup</field>
+            <field name='SubGroupID'>hinge_group</field>
+            <field name='CurrentValue'>false</field>
+        </record>
+        <!-- Справа -->
+        <record id='Hinge_Right'>
+            <field name='ID'>cp_door_hinge_right</field>
+            <field name='Kind'>RADIOBUTTON</field>
+            <field name='Type'>BOOLEAN</field>
+            <field name='GroupID'>ProductInfoGroup</field>
+            <field name='SubGroupID'>hinge_group</field>
+            <field name='CurrentValue'>true</field>
+        </record>
+
+        <!-- Щит калитки -->
+        <record id='GateShieldGroup'>
+            <field name='Kind'>GROUP</field>
+            <field name='Style'>paddingTop:10</field>
+        </record>
+        <!-- Изготовление -->
+        <!-- В сборе -->
+        <record id='ShieldDelivery_Default'>
+            <field name='ID'>sg_shield_delivery_in</field>
+            <field name='Kind'>RADIOBUTTON</field>
+            <field name='Type'>BOOLEAN</field>
+            <field name='GroupID'>GateShieldGroup</field>
+            <field name='SubGroupID'>shield_delivery_group</field>
+            <field name='CurrentValue'>true</field>
+        </record>
+        <!-- В разборе -->
+        <record id='ShieldDelivery_Out'>
+            <field name='ID'>sg_shield_delivery_out</field>
+            <field name='Kind'>RADIOBUTTON</field>
+            <field name='Type'>BOOLEAN</field>
+            <field name='GroupID'>GateShieldGroup</field>
+            <field name='SubGroupID'>shield_delivery_group</field>
+            <field name='CurrentValue'>false</field>
+        </record>
+
+        <!-- Форма -->
+        <!-- Прямоугольная -->
+        <record id='ShieldForm_Default'>
+            <field name='ID'>sg_shield_form_rect</field>
+            <field name='Kind'>RADIOBUTTON</field>
+            <field name='Type'>BOOLEAN</field>
+            <field name='GroupID'>GateShieldGroup</field>
+            <field name='SubGroupID'>shield_form_group</field>
+            <field name='CurrentValue'>true</field>
+        </record>
+        <!-- Арочная -->
+        <record id='ShieldForm_Arch'>
+            <field name='ID'>sg_shield_form_arch</field>
+            <field name='Kind'>RADIOBUTTON</field>
+            <field name='Type'>BOOLEAN</field>
+            <field name='GroupID'>GateShieldGroup</field>
+            <field name='SubGroupID'>shield_form_group</field>
+            <field name='CurrentValue'>false</field>
+        </record>
+
+        <!-- Заполнение -->
+        <!-- Из сэндвич панелей -->
+        <record id='ShieldBody_Default'>
+            <field name='ID'>sg_shield_body_panel</field>
+            <field name='Kind'>RADIOBUTTON</field>
+            <field name='Type'>BOOLEAN</field>
+            <field name='GroupID'>GateShieldGroup</field>
+            <field name='SubGroupID'>shield_body_group</field>
+            <field name='CurrentValue'>true</field>
+        </record>
+        <!-- Из алюминиевых профилей -->
+        <record id='ShieldBody_Aluminium_Profile'>
+            <field name='ID'>sg_shield_body_aluminium_profile</field>
+            <field name='Kind'>RADIOBUTTON</field>
+            <field name='Type'>BOOLEAN</field>
+            <field name='GroupID'>GateShieldGroup</field>
+            <field name='SubGroupID'>shield_body_group</field>
+            <field name='CurrentValue'>false</field>
+        </record>
+
+        <!-- Навесная рама -->
+        <!-- Без перемычки -->
+        <record id='HingedRack_WithoutJumper'>
+            <field name='ID'>cp_hinged_rack_without_jumper</field>
+            <field name='Kind'>RADIOBUTTON</field>
+            <field name='Type'>BOOLEAN</field>
+            <field name='GroupID'>GateShieldGroup</field>
+            <field name='SubGroupID'>hinged_rack_group</field>
+            <field name='CurrentValue'>false</field>
+        </record>
+        <!-- С перемычкой -->
+        <record id='HingedRack_WithJumper'>
+            <field name='ID'>cp_hinged_rack_with_jumper</field>
+            <field name='Kind'>RADIOBUTTON</field>
+            <field name='Type'>BOOLEAN</field>
+            <field name='GroupID'>GateShieldGroup</field>
+            <field name='SubGroupID'>hinged_rack_group</field>
+            <field name='CurrentValue'>true</field>
+        </record>
+        <!-- Нет -->
+        <record id='HingedRack_No'>
+            <field name='ID'>cp_hinged_rack_no</field>
+            <field name='Kind'>RADIOBUTTON</field>
+            <field name='Type'>BOOLEAN</field>
+            <field name='GroupID'>GateShieldGroup</field>
+            <field name='SubGroupID'>hinged_rack_group</field>
+            <field name='CurrentValue'>false</field>
+        </record>
+
+        <!-- Модель щита по каталогу: -->
+        <record id='ShieldDesign_Standard'>
+            <field name='Kind'>DISPLAY FIELD</field>
+            <field name='Type'>STRING</field>
+            <field name='GroupID'>GateShieldGroup</field>
+        </record>
+        <record id='ShieldDesign_List'>
+            <field name='Kind'>POP-UP MENU</field>
+            <field name='Type'>LIST</field>
+            <field name='GroupID'>GateShieldGroup</field>
+            <field name='SubGroupID'>shield_design_group</field>
+        </record>
+        <!-- связь с 1С -->
+        <record id='ShieldDesign_up'>
+            <field name='ID'>sg_shield_design</field><field name='Kind'>CONSTANT</field><field name='Type'>STRING</field><field name='SubGroupID'>shield_design_group</field>
+        </record>
+
+        <!-- Высота решетки (R) -->
+        <!-- ____________ -->
+        <record id='ShieldGroupTitle_1'>
+            <field name='Kind'>DISPLAY FIELD</field>
+            <field name='Type'>STRING</field>
+            <field name='GroupID'>GateShieldGroup</field>
+        </record>
+        <!-- Высота решётки (R) -->
+        <record id='LatticeHeight'>
+            <field name='Kind'>INPUT FIELD</field>
+            <field name='Type'>NUMBER</field>
+            <field name='Format'>0-9::4.0</field>
+            <field name='GroupID'>GateShieldGroup</field>
+            <field name='CurrentValue'></field>
+            <field name='UnitID'>003</field>
+        </record>
+        <!-- связь с 1С -->
+        <record id='LatticeHeight_up'>
+            <field name='ID'>sg_lattice_height</field><field name='Kind'>CONSTANT</field><field name='Type'>NUMBER</field><field name='SubGroupID'>lattice_property_group</field>
+        </record>
+
+        <!-- Высота пик (N) -->
+        <!-- Высота пик (N) -->
+        <record id='PicHeight'>
+            <field name='Kind'>INPUT FIELD</field>
+            <field name='Type'>NUMBER</field>
+            <field name='Format'>0-9::4.0</field>
+            <field name='GroupID'>GateShieldGroup</field>
+            <field name='CurrentValue'></field>
+            <field name='UnitID'>003</field>
+        </record>
+        <!-- связь с 1С -->
+        <record id='PicHeight_up'>
+            <field name='ID'>sg_pic_height</field><field name='Kind'>CONSTANT</field><field name='Type'>NUMBER</field><field name='SubGroupID'>pic_height_group</field>
+        </record>
+
+        <!-- Высота арки (S) -->
+        <!-- Высота арки (S) -->
+        <record id='ArchHeight'>
+            <field name='Kind'>INPUT FIELD</field>
+            <field name='Type'>NUMBER</field>
+            <field name='Format'>0-9::4.0</field>
+            <field name='GroupID'>GateShieldGroup</field>
+            <field name='CurrentValue'></field>
+            <field name='UnitID'>003</field>
+        </record>
+        <!-- связь с 1С -->
+        <record id='ArchHeight_up'>
+            <field name='ID'>sg_arch_height</field><field name='Kind'>CONSTANT</field><field name='Type'>NUMBER</field><field name='SubGroupID'>arch_height_group</field>
+        </record>
+
+        <!-- Сэндвич-панели -->
+        <!-- Дизайн -->
+        <!-- Внешняя сторона -->
+        <record id='ShieldOuterDesignTitle_1'>
+            <field name='Kind'>DISPLAY FIELD</field>
+            <field name='Type'>STRING</field>
+            <field name='GroupID'>SandwichPanelGroup</field>
+            <field name='Style'>fontWeight:bold;color:#333333;fontSize:11</field>
+        </record>
+        <!-- Дизайн -->
+        <record id='OuterDesign_List'>
+            <field name='ID'>cp_outer_design</field>
+            <field name='Kind'>POP-UP MENU</field>
+            <field name='Type'>LIST</field>
+            <field name='GroupID'>SandwichPanelGroup</field>
+            <field name='SubGroupID'>outer_side_group</field>
+        </record>
+        <record id='outerDesign_up'>
+            <field name='Kind'>CONSTANT</field><field name='Type'>STRING</field><field name='SubGroupID'>outer_side_group</field>
+        </record>
+
+        <!-- Структура -->
+        <!-- Структура -->
+        <record id='OuterComposition_List'>
+            <field name='ID'>cp_outer_composition</field>
+            <field name='Kind'>POP-UP MENU</field>
+            <field name='Type'>LIST</field>
+            <field name='GroupID'>SandwichPanelGroup</field>
+            <field name='SubGroupID'>outer_composition_group</field>
+        </record>
+        <record id='outerComposition_up'>
+            <field name='Kind'>CONSTANT</field><field name='Type'>STRING</field><field name='SubGroupID'>outer_composition_group</field>
+        </record>
+
+        <!-- Варианты оформления Premium -->
+        <!-- В-1 -->
+        <record id='PremiumDesign_A'>
+            <field name='ID'>sg_premium_a</field>
+            <field name='Kind'>RADIOBUTTON</field>
+            <field name='Type'>BOOLEAN</field>
+            <field name='GroupID'>SandwichPanelGroup</field>
+            <field name='SubGroupID'>premium_design_group</field>
+            <field name='CurrentValue'>true</field>
+        </record>
+        <!-- В-2 -->
+        <record id='PremiumDesign_B'>
+            <field name='ID'>sg_premium_b</field>
+            <field name='Kind'>RADIOBUTTON</field>
+            <field name='Type'>BOOLEAN</field>
+            <field name='GroupID'>SandwichPanelGroup</field>
+            <field name='SubGroupID'>premium_design_group</field>
+            <field name='CurrentValue'>false</field>
+        </record>
+        <!-- В-3 -->
+        <record id='PremiumDesign_C'>
+            <field name='ID'>sg_premium_c</field>
+            <field name='Kind'>RADIOBUTTON</field>
+            <field name='Type'>BOOLEAN</field>
+            <field name='GroupID'>SandwichPanelGroup</field>
+            <field name='SubGroupID'>premium_design_group</field>
+            <field name='CurrentValue'>false</field>
+        </record>
+        <!-- В-4 -->
+        <record id='PremiumDesign_D'>
+            <field name='ID'>sg_premium_d</field>
+            <field name='Kind'>RADIOBUTTON</field>
+            <field name='Type'>BOOLEAN</field>
+            <field name='GroupID'>SandwichPanelGroup</field>
+            <field name='SubGroupID'>premium_design_group</field>
+            <field name='CurrentValue'>false</field>
+        </record>
+
+        <!-- Цвет -->
+        <!-- Стандартный (RAL) -->
+        <record id='OuterColorStandard'>
+            <field name='ID'>cp_outer_color_standard</field>
+            <field name='Kind'>RADIOBUTTON</field>
+            <field name='Type'>BOOLEAN</field>
+            <field name='GroupID'>SandwichPanelGroup</field>
+            <field name='SubGroupID'>outer_color_group</field>
+            <field name='CurrentValue'>true</field>
+        </record>
+        <!-- Нестандартный -->
+        <record id='OuterColorNonStandard'>
+            <field name='ID'>cp_outer_color_nonstandard</field>
+            <field name='Kind'>RADIOBUTTON</field>
+            <field name='Type'>BOOLEAN</field>
+            <field name='GroupID'>SandwichPanelGroup</field>
+            <field name='SubGroupID'>outer_color_group</field>
+            <field name='CurrentValue'>false</field>
+        </record>
+        <!-- Имитации дерева -->
+        <record id='OuterColorWood'>
+            <field name='ID'>cp_outer_color_wood</field>
+            <field name='Kind'>RADIOBUTTON</field>
+            <field name='Type'>BOOLEAN</field>
+            <field name='GroupID'>SandwichPanelGroup</field>
+            <field name='SubGroupID'>outer_color_group</field>
+            <field name='CurrentValue'>false</field>
+        </record>
+        <record id='OuterColor_List'>
+            <field name='Kind'>POP-UP MENU</field>
+            <field name='Type'>LIST</field>
+            <field name='GroupID'>SandwichPanelGroup</field>
+            <field name='SubGroupID'>outer_color_group</field>
+        </record>
+        <!-- Индивидуальный (по образцу) -->
+        <record id='OuterColor_Custom'>
+            <field name='ID'>cp_outer_color_custom</field>
+            <field name='Kind'>RADIOBUTTON</field>
+            <field name='Type'>BOOLEAN</field>
+            <field name='GroupID'>SandwichPanelGroup</field>
+            <field name='SubGroupID'>outer_color_group</field>
+            <field name='CurrentValue'>false</field>
+        </record>
+        <record id='OuterColor_Value'>
+            <field name='Kind'>INPUT FIELD</field>
+            <field name='Type'>NUMBER</field>
+            <field name='Format'>0-9::4.0</field>
+            <field name='GroupID'>SandwichPanelGroup</field>
+            <field name='SubGroupID'>outer_color_group</field>
+        </record>
+        <!-- связь с 1С -->
+        <record id='outerColor_up'>
+            <field name='ID'>cp_outer_color_value</field><field name='Kind'>CONSTANT</field><field name='Type'>STRING</field><field name='SubGroupID'>outer_color_group</field>
+        </record>
+
+        <!-- ____________ -->
+        <record id='InnerGroupTitle_1'>
+            <field name='Kind'>DISPLAY FIELD</field>
+            <field name='Type'>STRING</field>
+            <field name='GroupID'>SandwichPanelGroup</field>
+        </record>
+        <!-- Дизайн PREMIUM с внутренней стороны -->
+        <record id='InnerPremiumSetup'>
+            <field name='ID'>sg_inner_premium_setup</field>
+            <field name='Kind'>CHECKBOX</field>
+            <field name='Type'>BOOLEAN</field>
+            <field name='GroupID'>SandwichPanelGroup</field>
+            <field name='SubGroupID'>inner_optional_group</field>
+            <field name='CurrentValue'>false</field>
+        </record>
+
+        <!-- Оформление с внутренней стороны -->
+        <!-- связь с 1С -->
+        <record id='innerDesign_up'>
+            <field name='ID'>sg_inner_design</field><field name='Kind'>CONSTANT</field><field name='Type'>STRING</field><field name='GroupID'>InnerSideGroup</field>
+        </record>
+        <!-- связь с 1С -->
+        <record id='innerComposition_up'>
+            <field name='ID'>sg_inner_composition</field><field name='Kind'>CONSTANT</field><field name='Type'>STRING</field><field name='GroupID'>InnerSideGroup</field>
+        </record>
+        <!-- связь с 1С -->
+        <record id='innerColor_up'>
+            <field name='ID'>cp_inner_color_value</field><field name='Kind'>CONSTANT</field><field name='Type'>STRING</field><field name='GroupID'>InnerSideGroup</field>
+        </record>
+
+        <!-- Алюминиевый профиль -->
+        <record id='AluminiumProfileGroup'>
+            <field name='Kind'>GROUP</field>
+            <field name='Style'>paddingTop:25;</field>
+        </record>
+        <!-- Цвет профиля -->
+        <!-- Стандартный -->
+        <record id='SashColorStandard'>
+            <field name='ID'>sg_sash_color_standard</field>
+            <field name='Kind'>RADIOBUTTON</field>
+            <field name='Type'>BOOLEAN</field>
+            <field name='GroupID'>AluminiumProfileGroup</field>
+            <field name='SubGroupID'>sash_color_group</field>
+            <field name='CurrentValue'>true</field>
+        </record>
+        <!-- Нестандартный -->
+        <record id='SashColorNonStandard'>
+            <field name='ID'>sg_sash_color_nonstandard</field>
+            <field name='Kind'>RADIOBUTTON</field>
+            <field name='Type'>BOOLEAN</field>
+            <field name='GroupID'>AluminiumProfileGroup</field>
+            <field name='SubGroupID'>sash_color_group</field>
+            <field name='CurrentValue'>false</field>
+        </record>
+        <record id='SashColor_List'>
+            <field name='Kind'>POP-UP MENU</field>
+            <field name='Type'>LIST</field>
+            <field name='GroupID'>AluminiumProfileGroup</field>
+            <field name='SubGroupID'>sash_color_group</field>
+        </record>
+        <!-- По образцу RAL (4-х значное число) -->
+        <record id='SashColor_Custom'>
+            <field name='ID'>sg_sash_color_custom</field>
+            <field name='Kind'>RADIOBUTTON</field>
+            <field name='Type'>BOOLEAN</field>
+            <field name='GroupID'>AluminiumProfileGroup</field>
+            <field name='SubGroupID'>sash_color_group</field>
+        </record>
+        <record id='SashColor_Value'>
+            <field name='Kind'>INPUT FIELD</field>
+            <field name='Type'>NUMBER</field>
+            <field name='Format'>0-9::4.0</field>
+            <field name='GroupID'>AluminiumProfileGroup</field>
+            <field name='SubGroupID'>sash_color_group</field>
+        </record>
+        <!-- связь с 1С -->
+        <record id='sashColor_up'>
+            <field name='ID'>sg_sash_color</field><field name='Kind'>CONSTANT</field><field name='Type'>STRING</field><field name='SubGroupID'>sash_color_group</field>
+        </record>
+
+        <!-- Окантовка -->
+        <!-- Цвет окантовки -->
+        <!-- В цвет полотна -->
+        <record id='EdgingColorStandard'>
+            <field name='ID'>cp_edging_color_standard</field>
+            <field name='Kind'>RADIOBUTTON</field>
+            <field name='Type'>BOOLEAN</field>
+            <field name='GroupID'>EdgingGroup</field>
+            <field name='SubGroupID'>edging_color_group</field>
+            <field name='CurrentValue'>true</field>
+        </record>
+        <!-- На выбор -->
+        <record id='EdgingColorNonStandard'>
+            <field name='ID'>cp_edging_color_nonstandard</field>
+            <field name='Kind'>RADIOBUTTON</field>
+            <field name='Type'>BOOLEAN</field>
+            <field name='GroupID'>EdgingGroup</field>
+            <field name='SubGroupID'>edging_color_group</field>
+            <field name='CurrentValue'>false</field>
+        </record>
+        <record id='EdgingColor_List'>
+            <field name='Kind'>POP-UP MENU</field>
+            <field name='Type'>LIST</field>
+            <field name='GroupID'>EdgingGroup</field>
+            <field name='SubGroupID'>edging_color_group</field>
+        </record>
+        <!-- По образцу RAL (4-х значное число) -->
+        <record id='EdgingColor_Custom'>
+            <field name='ID'>cp_edging_color_custom</field>
+            <field name='Kind'>RADIOBUTTON</field>
+            <field name='Type'>BOOLEAN</field>
+            <field name='GroupID'>EdgingGroup</field>
+            <field name='SubGroupID'>edging_color_group</field>
+        </record>
+        <record id='EdgingColor_Value'>
+            <field name='Kind'>INPUT FIELD</field>
+            <field name='Type'>NUMBER</field>
+            <field name='Format'>0-9::4.0</field>
+            <field name='GroupID'>EdgingGroup</field>
+            <field name='SubGroupID'>edging_color_group</field>
+        </record>
+        <!-- связь с 1С -->
+        <record id='edgingColor_up'>
+            <field name='ID'>cp_edging_color_value</field><field name='Kind'>CONSTANT</field><field name='Type'>STRING</field><field name='SubGroupID'>edging_color_group</field>
+        </record>
+
+        <!-- Силовая рама -->
+        <!-- Рама калитки -->
+        <!-- Рама калитки -->
+        <record id='WithRack_List'>
+            <field name='ID'>cp_rack_model</field>
+            <field name='Kind'>POP-UP MENU</field>
+            <field name='Type'>LIST</field>
+            <field name='GroupID'>PowerRackGroup</field>
+            <field name='SubGroupID'>rack_group</field>
+        </record>
+        <record id='withRack_up'>
+            <field name='Kind'>CONSTANT</field><field name='Type'>STRING</field><field name='SubGroupID'>rack_group</field>
+        </record>
+
+        <!-- Цвет силовой рамы -->
+        <!-- _________ -->
+        <record id='RackColorGroupTitle_1'>
+            <field name='Kind'>DISPLAY FIELD</field>
+            <field name='Type'>STRING</field>
+            <field name='GroupID'>PowerRackGroup</field>
+        </record>
+        <!-- Оформление силовой рамы: -->
+        <record id='RackColorGroupTitle_2'>
+            <field name='Kind'>DISPLAY FIELD</field>
+            <field name='Type'>STRING</field>
+            <field name='GroupID'>PowerRackGroup</field>
+        </record>
+        <!-- В цвет полотна -->
+        <record id='RackColorStandard'>
+            <field name='ID'>cp_rack_color_standard</field>
+            <field name='Kind'>RADIOBUTTON</field>
+            <field name='Type'>BOOLEAN</field>
+            <field name='GroupID'>PowerRackGroup</field>
+            <field name='SubGroupID'>rack_color_group</field>
+            <field name='CurrentValue'>true</field>
+        </record>
+        <!-- На выбор -->
+        <record id='RackColorNonStandard'>
+            <field name='ID'>cp_rack_color_nonstandard</field>
+            <field name='Kind'>RADIOBUTTON</field>
+            <field name='Type'>BOOLEAN</field>
+            <field name='GroupID'>PowerRackGroup</field>
+            <field name='SubGroupID'>rack_color_group</field>
+            <field name='CurrentValue'>false</field>
+        </record>
+        <record id='RackColor_List'>
+            <field name='Kind'>POP-UP MENU</field>
+            <field name='Type'>LIST</field>
+            <field name='GroupID'>PowerRackGroup</field>
+            <field name='SubGroupID'>rack_color_group</field>
+        </record>
+        <!-- По образцу RAL (4-х значное число) -->
+        <record id='RackColor_Custom'>
+            <field name='ID'>cp_rack_color_custom</field>
+            <field name='Kind'>RADIOBUTTON</field>
+            <field name='Type'>BOOLEAN</field>
+            <field name='GroupID'>PowerRackGroup</field>
+            <field name='SubGroupID'>rack_color_group</field>
+        </record>
+        <record id='RackColor_Value'>
+            <field name='Kind'>INPUT FIELD</field>
+            <field name='Type'>NUMBER</field>
+            <field name='Format'>0-9::4.0</field>
+            <field name='GroupID'>PowerRackGroup</field>
+            <field name='SubGroupID'>rack_color_group</field>
+        </record>
+        <!-- связь с 1С -->
+        <record id='rackColor_up'>
+            <field name='ID'>cp_rack_color_value</field><field name='Kind'>CONSTANT</field><field name='Type'>STRING</field><field name='SubGroupID'>rack_color_group</field>
+        </record>
+
+        <!-- Тип краски -->
+        <!-- Матовая -->
+        <record id='RackColorType_Mat'>
+            <field name='ID'>cp_color_type_mat</field>
+            <field name='Kind'>RADIOBUTTON</field>
+            <field name='Type'>BOOLEAN</field>
+            <field name='GroupID'>PowerRackGroup</field>
+            <field name='SubGroupID'>color_type_group</field>
+            <field name='CurrentValue'>false</field>
+        </record>
+        <!-- Глянцевая -->
+        <record id='RackColorType_Glossy'>
+            <field name='ID'>cp_color_type_glossy</field>
+            <field name='Kind'>RADIOBUTTON</field>
+            <field name='Type'>BOOLEAN</field>
+            <field name='GroupID'>PowerRackGroup</field>
+            <field name='SubGroupID'>color_type_group</field>
+            <field name='CurrentValue'>true</field>
+        </record>
+
+        <!-- Ручки и задвижки -->
+        <!-- Замок -->
+        <!-- Замок -->
+        <record id='WithLock_List'>
+            <field name='ID'>cp_lock_model</field>
+            <field name='Kind'>POP-UP MENU</field>
+            <field name='Type'>LIST</field>
+            <field name='GroupID'>HandleAndLockGroup</field>
+            <field name='SubGroupID'>lock_group</field>
+        </record>
+        <record id='withLock_up'>
+            <field name='Kind'>CONSTANT</field><field name='Type'>STRING</field><field name='SubGroupID'>lock_group</field>
+        </record>
+
+        <!-- Ручка калитки -->
+        <!-- Ручка алюминиевая -->
+        <record id='WithAluminiumHandle_List'>
+            <field name='ID'>cp_aluminium_handle_model</field>
+            <field name='Kind'>POP-UP MENU</field>
+            <field name='Type'>LIST</field>
+            <field name='GroupID'>HandleAndLockGroup</field>
+            <field name='SubGroupID'>aluminium_handle_group</field>
+        </record>
+        <record id='withAluminiumHandle_up'>
+            <field name='Kind'>CONSTANT</field><field name='Type'>STRING</field><field name='SubGroupID'>aluminium_handle_group</field>
+        </record>
+
+        <!-- Примечание к выбору ручки -->
+        <!-- связь с 1С -->
+        <record id='HandleInfo_up'>
+            <field name='ID'>cp_handle_info</field><field name='Kind'>CONSTANT</field><field name='Type'>STRING</field><field name='GroupID'>HandleInfoGroup</field>
+        </record>
+
+        <!-- Дополнительная комплектация -->
+        <!-- Бетон на 1 столб -->
+        <record id='AdditionalDevices_3'>
+            <field name='Kind'>DISPLAY FIELD</field>
+            <field name='Type'>STRING</field>
+            <field name='GroupID'>EquipmentGroup</field>
+        </record>
+        <!-- связь с 1С -->
+        <record id='AdditionalDevices_3_Count'>
+            <field name='ID'>00000114904</field>
+            <field name='Kind'>INPUT FIELD</field>
+            <field name='Type'>NUMBER</field>
+            <field name='Format'>0-9::2.0</field>
+            <field name='GroupID'>EquipmentGroup</field>
+            <field name='SubGroupID'>additional_devices_group</field>
+            <field name='CurrentValue'></field>
+            <field name='UnitID'>796</field>
+        </record>
+        <!-- Бетон для рамы бетонируемой -->
+        <record id='AdditionalDevices_4'>
+            <field name='Kind'>DISPLAY FIELD</field>
+            <field name='Type'>STRING</field>
+            <field name='GroupID'>EquipmentGroup</field>
+        </record>
+        <!-- связь с 1С -->
+        <record id='AdditionalDevices_4_Count'>
+            <field name='ID'>00000114905</field>
+            <field name='Kind'>INPUT FIELD</field>
+            <field name='Type'>NUMBER</field>
+            <field name='Format'>0-9::2.0</field>
+            <field name='GroupID'>EquipmentGroup</field>
+            <field name='SubGroupID'>additional_devices_group</field>
+            <field name='CurrentValue'></field>
+            <field name='UnitID'>796</field>
+        </record>
+        <!-- Комплект лежачего полицейского L=1000 мм -->
+        <record id='AdditionalDevices_11'>
+            <field name='Kind'>DISPLAY FIELD</field>
+            <field name='Type'>STRING</field>
+            <field name='GroupID'>EquipmentGroup</field>
+        </record>
+        <!-- связь с 1С -->
+        <record id='AdditionalDevices_11_Count'>
+            <field name='ID'>00000136705</field>
+            <field name='Kind'>INPUT FIELD</field>
+            <field name='Type'>NUMBER</field>
+            <field name='Format'>0-9::2.0</field>
+            <field name='GroupID'>EquipmentGroup</field>
+            <field name='SubGroupID'>additional_devices_group</field>
+            <field name='CurrentValue'></field>
+            <field name='UnitID'>796</field>
+        </record>
+        <!-- Комплект боковых крышек для резинового полицейского -->
+        <record id='AdditionalDevices_12'>
+            <field name='Kind'>DISPLAY FIELD</field>
+            <field name='Type'>STRING</field>
+            <field name='GroupID'>EquipmentGroup</field>
+        </record>
+        <!-- связь с 1С -->
+        <record id='AdditionalDevices_12_Count'>
+            <field name='ID'>00000136699</field>
+            <field name='Kind'>INPUT FIELD</field>
+            <field name='Type'>NUMBER</field>
+            <field name='Format'>0-9::2.0</field>
+            <field name='GroupID'>EquipmentGroup</field>
+            <field name='SubGroupID'>additional_devices_group</field>
+            <field name='CurrentValue'></field>
+            <field name='UnitID'>796</field>
+        </record>
+
+        <!-- Упаковка изделия -->
+        <!-- Пенопласт -->
+        <record id='Packaging_Styrofoam'>
+            <field name='Kind'>CHECKBOX</field>
+            <field name='Type'>BOOLEAN</field>
+            <field name='GroupID'>PackagingGroup</field>
+            <field name='SubGroupID'>packaging_group</field>
+            <field name='CurrentValue'>false</field>
+        </record>
+        <!-- Картон -->
+        <record id='Packaging_Cardboard'>
+            <field name='Kind'>CHECKBOX</field>
+            <field name='Type'>BOOLEAN</field>
+            <field name='GroupID'>PackagingGroup</field>
+            <field name='SubGroupID'>packaging_group</field>
+            <field name='CurrentValue'>false</field>
+        </record>
+
+        <!-- Примечание к выбору навесной рамы -->
+        <!-- связь с 1С -->
+        <record id='HingedRackInfo_up'>
+            <field name='ID'>cp_hinged_rack_info</field><field name='Kind'>CONSTANT</field><field name='Type'>STRING</field><field name='GroupID'>HingedRackInfoGroup</field>
+        </record>
+
+        <!-- Примечание -->
+        <record id='Note'>
+            <field name='ID'>cp_note</field>
+            <field name='Kind'>INPUT AREA</field>
+            <field name='Type'>STRING</field>
+            <field name='GroupID'>NoteGroup</field>
+            <field name='SubGroupID'>note_group</field>
+        </record>
+
+        <!-- РАЗДЕЛ КОНСТАНТ -->
+        <record id='default_square_width'>
+            <field name='Kind'>CONSTANT</field>
+            <field name='Type'>NUMBER</field>
+            <field name='CurrentValue'>1000</field>
+        </record>
+
+        <record id='default_square_height'>
+            <field name='Kind'>CONSTANT</field>
+            <field name='Type'>NUMBER</field>
+            <field name='CurrentValue'>2100</field>
+        </record>
+
+        <record id='default_edging_color'>
+            <field name='Kind'>CONSTANT</field>
+            <field name='Type'>NUMBER</field>
+            <field name='CurrentValue'>8014</field>
+        </record>
+
+        <record id='default_pic_height'>
+            <field name='Kind'>CONSTANT</field>
+            <field name='Type'>NUMBER</field>
+            <field name='CurrentValue'>0</field>
+        </record>
+
+        <record id='default_minpic_height'>
+            <field name='Kind'>CONSTANT</field>
+            <field name='Type'>NUMBER</field>
+            <field name='CurrentValue'>150</field>
+        </record>
+
+        <record id='default_arch_height'>
+            <field name='Kind'>CONSTANT</field>
+            <field name='Type'>NUMBER</field>
+            <field name='CurrentValue'>0</field>
+        </record>
+
+        <record id='minSquareWidth'>
+            <field name='Kind'>CONSTANT</field>
+            <field name='Type'>NUMBER</field>
+            <field name='CurrentValue'>600</field>
+        </record>
+
+        <record id='maxSquareWidth'>
+            <field name='Kind'>CONSTANT</field>
+            <field name='Type'>NUMBER</field>
+            <field name='CurrentValue'>1500</field>
+        </record>
+
+        <record id='minSquareHeight'>
+            <field name='Kind'>CONSTANT</field>
+            <field name='Type'>NUMBER</field>
+            <field name='CurrentValue'>1000</field>
+        </record>
+
+        <record id='maxSquareHeight'>
+            <field name='Kind'>CONSTANT</field>
+            <field name='Type'>NUMBER</field>
+            <field name='CurrentValue'>3000</field>
+        </record>
+
+        <record id='minSquareClearance'>
+            <field name='Kind'>CONSTANT</field>
+            <field name='Type'>NUMBER</field>
+            <field name='CurrentValue'>35</field>
+        </record>
+
+        <record id='maxSquareClearance'>
+            <field name='Kind'>CONSTANT</field>
+            <field name='Type'>NUMBER</field>
+            <field name='CurrentValue'>150</field>
+        </record>
+
+        <record id='minSquareOverfall'>
+            <field name='Kind'>CONSTANT</field>
+            <field name='Type'>NUMBER</field>
+            <field name='CurrentValue'>0</field>
+        </record>
+
+        <record id='maxSquareOverfall'>
+            <field name='Kind'>CONSTANT</field>
+            <field name='Type'>NUMBER</field>
+            <field name='CurrentValue'>150</field>
+        </record>
+
+        <record id='minLatticeHeight'>
+            <field name='Kind'>CONSTANT</field>
+            <field name='Type'>NUMBER</field>
+            <field name='CurrentValue'>200</field>
+        </record>
+
+        <record id='maxLatticeHeight'>
+            <field name='Kind'>CONSTANT</field>
+            <field name='Type'>NUMBER</field>
+            <field name='CurrentValue'>0</field>
+        </record>
+
+        <record id='minLatticeStep'>
+            <field name='Kind'>CONSTANT</field>
+            <field name='Type'>NUMBER</field>
+            <field name='CurrentValue'>100</field>
+        </record>
+
+        <record id='maxLatticeStep'>
+            <field name='Kind'>CONSTANT</field>
+            <field name='Type'>NUMBER</field>
+            <field name='CurrentValue'>120</field>
+        </record>
+
+        <record id='minPicHeight'>
+            <field name='Kind'>CONSTANT</field>
+            <field name='Type'>NUMBER</field>
+            <field name='CurrentValue'>150</field>
+        </record>
+
+        <record id='maxPicHeight'>
+            <field name='Kind'>CONSTANT</field>
+            <field name='Type'>NUMBER</field>
+            <field name='CurrentValue'>0</field>
+        </record>
+
+        <record id='minMinPicHeight'>
+            <field name='Kind'>CONSTANT</field>
+            <field name='Type'>NUMBER</field>
+            <field name='CurrentValue'>150</field>
+        </record>
+
+        <record id='minArchHeight'>
+            <field name='Kind'>CONSTANT</field>
+            <field name='Type'>NUMBER</field>
+            <field name='CurrentValue'>0</field>
+        </record>
+
+        <record id='maxArchHeight'>
+            <field name='Kind'>CONSTANT</field>
+            <field name='Type'>NUMBER</field>
+            <field name='CurrentValue'>0</field>
+        </record>
+
+        <record id='default_title_enable'>
+            <field name='Kind'>CONSTANT</field>
+            <field name='Type'>NUMBER</field>
+            <field name='CurrentValue'>1</field>
+        </record>
+
+        <record id='construct_default'>
+            <field name='ID'>construct00000121172</field>
+            <field name='Kind'>PROGRESS</field>
+            <field name='Type'>NUMBER</field>
+        </record>
+
+        <record id='is_LatticeHeight_changed'>
+            <field name='Kind'>CONSTANT</field>
+            <field name='Type'>NUMBER</field>
+            <field name='CurrentValue'>0</field>
+        </record>
+
+        <record id='is_PicHeight_changed'>
+            <field name='Kind'>CONSTANT</field>
+            <field name='Type'>NUMBER</field>
+            <field name='CurrentValue'>0</field>
+        </record>
+
+        <record id='is_MinPicHeight_changed'>
+            <field name='Kind'>CONSTANT</field>
+            <field name='Type'>NUMBER</field>
+            <field name='CurrentValue'>0</field>
+        </record>
+
+        <record id='is_ArchHeight_changed'>
+            <field name='Kind'>CONSTANT</field>
+            <field name='Type'>NUMBER</field>
+            <field name='CurrentValue'>0</field>
+        </record>
+
+        <record id='constOuterCompositionDefault'>
+            <field name='Kind'>CONSTANT</field>
+            <field name='Type'>NUMBER</field>
+            <field name='CurrentValue'>0</field>
+        </record>
+
+        <record id='constInnerCompositionDefault'>
+            <field name='Kind'>CONSTANT</field>
+            <field name='Type'>NUMBER</field>
+            <field name='CurrentValue'>0</field>
+        </record>
+
+        <record id='ShieldBody_Aluminium_Grid'>
+            <field name='Kind'>CONSTANT</field>
+            <field name='Type'>NUMBER</field>
+            <field name='CurrentValue'>0</field>
+        </record>
+
+        <record id='ShieldBody_Aluminium_Panel'>
+            <field name='Kind'>CONSTANT</field>
+            <field name='Type'>NUMBER</field>
+            <field name='CurrentValue'>0</field>
+        </record>
+
+</document>

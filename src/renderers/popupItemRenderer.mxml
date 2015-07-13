@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" 
+		   backgroundColor="#F8FCFF" backgroundAlpha="0"
+		   >
+				
+	<mx:HBox>
+		<mx:Label horizontalCenter="" text="{data.label}"/>
+	</mx:HBox>
+	
+</mx:Canvas>

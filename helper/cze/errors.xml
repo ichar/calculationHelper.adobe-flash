@@ -1,0 +1,135 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!-- Константы - конфигуратор продукции (Помощник)  -->
+
+<!DOCTYPE document
+    [
+        <!ELEMENT document (system, task, description, lanquage, error+)>
+            <!ATTLIST    document
+                        id        ID        #REQUIRED
+                        type    NMTOKEN    #REQUIRED
+            >
+            <!ELEMENT system EMPTY>
+                <!ATTLIST    system
+                            id        ID        #REQUIRED
+                            version    NMTOKEN    #REQUIRED
+                >
+            <!ELEMENT task EMPTY>
+                <!ATTLIST    task
+                            id        ID        #REQUIRED
+                            version    NMTOKEN    #REQUIRED
+                >
+            <!ELEMENT description EMPTY>
+                <!ATTLIST    description
+                            id        ID        #REQUIRED
+                            version    NMTOKEN    #REQUIRED
+                >
+            <!ELEMENT lanquage EMPTY>
+                <!ATTLIST    lanquage
+                                id        ID        #REQUIRED
+                >
+            <!ELEMENT error ANY>
+                    <!ATTLIST    error
+                                id        CDATA    #REQUIRED
+                    >
+    ]
+>
+
+<document id='errorsDescription' type='Respond'>
+    <system id='-CIS' version='1'/>
+    <task id='CALCHELPER' version='2'/>
+    <description id='Errors' version='1'/>
+    <lanquage id='CZE'/>
+    
+    <error id='0'>
+        $space$provoz:$space$
+    </error>
+    <error id='1'>
+        Inicializace služby výměnou s vnějším systémem s došlo k chybě.
+    </error>
+    <error id='2'>
+        Nesprávné obsah dokumentu.$space$
+    </error>
+    <!-- Chyba v návodu:-->
+    <error id='3'>
+        $space$
+    </error>
+    <error id='4'>
+        Chyba při zpracování dat služba je načtena.$space$
+    </error>
+    <error id='5'>
+        To není možné stáhnout výrobek konfigurátor pro asistenta.$space$
+    </error>
+    <error id='6'>
+        nepodařilo se načíst [1].$space$
+    </error>
+    <error id='7'>
+        nepodařilo se načíst [2].$space$
+    </error>
+    <error id='8'>
+        nepodařilo se inicializovat [1].$space$
+    </error>
+    <error id='9'>
+        Na serveru je dokument nebyl předložen ve formátu XML.$space$
+    </error>
+    <error id='10'>
+        Chyba při zpracovávání XML na straně serveru.$space$
+    </error>
+    <error id='11'>
+        Pokus o spuštění nesprávné činnosti.$space$
+    </error>
+    <error id='12'>
+        Služba je v současné době k dispozici (1). Zkuste to prosím později.$space$
+    </error>
+    <error id='13'>
+        Služba je v současné době k dispozici (2). Zkuste to prosím později.$space$
+    </error>
+    <error id='14'>
+        Služba je v současné době k dispozici (3). Zkuste to prosím později.$space$
+    </error>
+    <error id='15'>
+        Nepodařilo se podělit s firemní IP [1]. Možná, že služba je momentálně nedostupná. Zkuste to prosím později.$space$
+    </error>
+    <error id='16'>
+        Nepodařilo se podělit s firemní IP [2]. Možná, že služba je momentálně nedostupná. Zkuste to prosím později.$space$
+    </error>
+    <error id='17'>
+        Chyba při zpracovávání XML [respond].$space$
+    </error>
+    <error id='18'>
+        Není správná struktura dokumentu [respond XML].$space$
+    </error>
+    <error id='19'>
+        Neodstraní obsah dokumentu [respond XML].$space$
+    </error>
+    <error id='20'>
+        Nepodařilo CIS [respond XML]:$space$
+    </error>
+    <error id='21'>
+        Služba je v současné době k dispozici (-199). Zkuste to prosím později.$space$
+    </error>
+    <error id='22'>
+        Služba je v současné době k dispozici (4). Zkuste to prosím později.$space$
+    </error>
+    <error id='23'>
+        Služba je v současné době k dispozici (5). Zkuste to prosím později.$space$
+    </error>
+    <error id='24'><![CDATA[<font color='#ff0000'>Hodnota neodpovídá
+formát tohoto pole. Číslo
+je příliš velké.</font>]]>
+    </error>
+    <error id='25'></error>
+    <error id='26'></error>
+    <!-- Ошибка в инструкции: -->
+    <error id='27'>$space$</error>
+    <error id='28'>$space$</error>
+    <error id='29'>$space$</error>
+    <error id='30'></error>
+    <error id='31'></error>
+    <error id='32'></error>
+    <error id='33'></error>
+    <error id='34'>Некорректная версия XML-обмена.</error>
+    <error id='35'>Отсутствует информация о конфигурации изделия.</error>
+    <error id='36'>Не задан корневой тег конфигурации.</error>
+    <error id='37'>Информация конструктора:</error>
+    <error id='39'>Расчет конструкции не выполнен.</error>
+</document>

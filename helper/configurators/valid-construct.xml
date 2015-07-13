@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE document
+	[
+		<!ELEMENT document (system, task, description, construct+)>
+			<!ATTLIST	document
+						id		ID		#REQUIRED
+						type	NMTOKEN	#REQUIRED
+			>
+			<!ELEMENT system EMPTY>
+				<!ATTLIST	system
+							id		ID		#REQUIRED
+							version	NMTOKEN	#REQUIRED
+				>
+			<!ELEMENT task EMPTY>
+				<!ATTLIST	task
+							id		ID		#REQUIRED
+							version	NMTOKEN	#REQUIRED
+				>
+			<!ELEMENT description EMPTY>
+				<!ATTLIST	description
+							id		ID		#REQUIRED
+							version	NMTOKEN	#REQUIRED
+				>
+			<!ELEMENT construct (field+)>
+				<!ATTLIST	construct
+							id		ID		#REQUIRED
+				>
+				<!ELEMENT field ANY>
+						<!ATTLIST	field
+									name	NMTOKEN	#REQUIRED
+						>
+	]
+>
+
+<document id='validationList' type='Respond'>
+	<system id='-CIS' version='1'/>
+	<task id='CALCHELPER' version='2'/>
+	<description id='Construction Field Items Restrictions' version='1'/>
+	
+	<construct id="DoorsOuterDesignBand">
+		<field name='Name'>
+			OuterDesign_List
+		</field>
+		<field name='Enabled'>
+			Off
+		</field>
+		<field name='Value'>
+			WithMiddleBand:WideBand
+		</field>
+		<field name='DusCode'>
+			120:410:420:430:450:465:467:470:480:490:600:700
+		</field>
+	</construct>
+	
+	<construct id="DoorsOuterDesignWave">
+		<field name='Name'>
+			OuterDesign_List
+		</field>
+		<field name='Enabled'>
+			On
+		</field>
+		<field name='Region'>
+			!(000000027:000000002:000000022:000000026)
+		</field>
+		<field name='Value'>
+			Wave
+		</field>
+		<field name='DusCode'>
+			467
+		</field>
+	</construct>
+	
+	<construct id="DoorsOuterColorListW9">
+		<field name='Name'>
+			OuterColor_List
+		</field>
+		<field name='Enabled'>
+			Off
+		</field>
+		<field name='Value'>
+			Alder
+		</field>
+		<field name='Region'>
+			000000001
+		</field>
+		<field name='DusCode'>
+			120:410:420:430:450:465:467:470:480:490:600:700
+		</field>
+	</construct>
+	
+	<construct id="DoorsOuterColorListW10">
+		<field name='Name'>
+			OuterColor_List
+		</field>
+		<field name='Enabled'>
+			On
+		</field>
+		<field name='Value'>
+			ForestWalnut
+		</field>
+		<field name='DusCode'>
+			120:410:420:430:450:465:467:470:480:490:600:700
+		</field>
+	</construct>
+	
+	<construct id="DoorsOuterColorListW1">
+		<field name='Name'>
+			OuterColor_List
+		</field>
+		<field name='Enabled'>
+			On
+		</field>
+		<field name='Value'>
+			Walnut
+		</field>
+		<field name='Region'>
+			!(ukraine)
+		</field>
+		<field name='DusCode'>
+			410:420:430:450:465:467:470:480:490:600:700
+		</field>
+	</construct>
+	
+	<construct id="DoorsOuterColorListRAL">
+		<field name='Name'>
+			OuterColor_List
+		</field>
+		<field name='Enabled'>
+			Off
+		</field>
+		<field name='Value'>
+			9010:3000:7016
+		</field>
+		<field name='Region'>
+			!(europe)
+		</field>
+		<field name='DusCode'>
+			450:465:470:480:490:600:700
+		</field>
+	</construct>
+	
+	<construct id="DoorsOuterColorListPanel">
+		<field name='Name'>
+			OuterColor_List
+		</field>
+		<field name='Enabled'>
+			Off
+		</field>
+		<field name='Value'>
+			Cherry:Maple
+		</field>
+		<field name='Condition'>
+			OuterDesign_List=Panel
+		</field>
+		<field name='DusCode'>
+			450:465:470:480:490:600:700
+		</field>
+	</construct>
+	
+	<construct id="DoorsLiftingType">
+		<field name='Name'>
+			LiftingType
+		</field>
+		<field name='Enabled'>
+			Off
+		</field>
+		<field name='Value'>
+			LowDownwardRollBack
+		</field>
+		<field name='DusCode'>
+			470:480:490:700
+		</field>
+	</construct>
+	
+	<construct id="DoorsDoorType">
+		<field name='Name'>
+			DoorType
+		</field>
+		<field name='Enabled'>
+			On
+		</field>
+		<field name='Value'>
+			V4
+		</field>
+		<field name='Region'>
+			!(moscow)
+		</field>
+		<field name='DusCode'>
+			470:480:490:700
+		</field>
+	</construct>
+</document>

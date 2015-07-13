@@ -1,0 +1,1056 @@
+/****************************
+ *  Public Functions List
+ ***/
+
+function strip(s:String):String
+{
+    return s.replace(/^\s+|\s+$/g, ''); // trim leading/trailing spaces
+}
+
+function get_compound_id(id:String):String
+{
+    var _s:String = ':';
+    return strip(id.indexOf(_s) > -1 ? id.split(_s)[0] : id);
+}
+
+function get_compound_article(id:String):String
+{
+    var _s:String = ':';
+    return id.indexOf(_s) > -1 ? id.split(_s)[1] : '';
+}
+
+function initDefaultImage()
+{
+    for (var _i:int=0; _i < imagePath.length; _i++) {
+        imagePath[_i] = '';
+        imageVisibility[_i] = false;
+        imageX[_i] = 0;
+        imageY[_i] = 0;
+    }
+}
+
+function getMarkedSubstring(value:String, marks:String):String
+{
+    var m:Array = marks.split(' ');
+    if (!value || m.length < 2)
+        return '';
+    var start:int = value.indexOf(m[0]) + 1;
+    var end:int = value.indexOf(m[1]);
+    return start > -1 && end > -1 && end > start ? value.slice(start, end) : value;
+}
+
+function IsStringStartedWith(x:String, s:String):Boolean
+{
+    return (s && x && x.substr(0, s.length) == s) ? true : false;
+}
+
+function IsStringEndedWith(x:String, s:String):Boolean
+{
+    return (s && x && x.substr(-s.length) == s) ? true : false;
+}
+
+function getList(outer:String):Array
+{
+    var _n:Number = outer ? outer.indexOf(LST_INDEX_DELIMETER) : -1;
+    _n = (!_n || _n < 0) ? 0 : _n + LST_INDEX_DELIMETER.length;
+    var _lst:Array = new Array();
+    if (outer)
+        _lst = outer.substr(_n).split(LST_VALUE_DELIMETER);
+    return _lst;
+}
+
+function getListLength(outer:String):Number
+{
+    var _lst:Array = getList(outer);
+    if (!_lst || !_lst.length || (_lst.length == 1 && !_lst[0]))
+        return 0;
+    return _lst.length;
+}
+
+function getListItem(outer:String, index:Number):Array
+{
+    if (index < 0) return null;
+
+    var _lst:Array = getList(outer);
+    if (!_lst || !_lst.length || index > _lst.length) return null;
+
+    var _item:Array = _lst[index].split(LST_ITEM_DELIMETER);
+    for (var _i:int=0; _i < _item.length; _i++) {
+        _item[_i] = strip(_item[_i]);
+    }
+
+    return _item;
+}
+
+function getListItemById(outer:String, id:String):Array
+{
+    if (!id || outer.indexOf(id) == -1) return null;
+
+    var _lst:Array = getList(outer);
+    var _item:Array = new Array();
+    
+    for (var _i:int=0; _i < _lst.length; _i++) {
+        _item = _lst[_i].split(LST_ITEM_DELIMETER);
+        if (_item) {
+            var _id:String = get_compound_id(_item[0]);
+            if (_id == id || strip(_item[0]) == id || _item[0].split(':').indexOf(id) > -1)
+                break;
+        }
+    }
+
+    if (_i >= _lst.length) return null;
+    
+    return _item;
+}
+
+function get_id_or_name(outer:String, id:String, index:Number):String
+{
+
+    var _lst:Array = getList(outer);
+    for (var _i:int=0; _i < _lst.length; _i++) {
+        var _item:Array = _lst[_i].split(LST_ITEM_DELIMETER);
+        if (_item) {
+            var _id:String = get_compound_id(_item[0]);
+            var _article:String = get_compound_article(_item[0]);
+            if (_id == id || _article == id || strip(_item[0]) == id || (_item.length > 1 && strip(_item[1]) == id))
+                return index < 1 ? _id : strip(_item[index]);
+        }
+    }
+    return id;
+}
+
+function getListValidId(outer:String, id:String):String
+{
+    return get_id_or_name(outer, id, 0);
+}
+
+function getListValidName(outer:String, id:String):String
+{
+    return get_id_or_name(outer, id, 1);
+}
+
+function makeOuterList(lst:Array, selected_index:Number):String
+{
+    if (!selected_index || selected_index < 0 || !lst || selected_index > lst.length-1)
+        selected_index = 0;
+    return selected_index + LST_INDEX_DELIMETER + lst.join(LST_VALUE_DELIMETER);
+}
+
+function getListMapping(outer:String):Object
+{
+    var _lst:Array = getList(outer);
+    if (!_lst || !_lst.length) return null;
+    
+    var _map:Object = new Object();
+    for (var _i:int=0; _i < _lst.length; _i++) {
+        if (_lst[_i]) {
+            var _item:Array = _lst[_i].split(LST_ITEM_DELIMETER);
+            if (_item.length >= 2 && _item[0]) {
+                var _id:String = strip(_item[0]);
+                var _value:Array = new Array();
+                for (var _k:int=1; _k < _item.length; _k++) {
+                    _value.push(strip(_item[_k]));
+                }
+                _map[_id] = _value;
+            }
+        }
+    }
+
+    return _map;
+}
+
+function getListSelectedIndex(outer:String):Number
+{
+    var _n:Number = outer.indexOf(LST_INDEX_DELIMETER);
+    return (!_n || _n < 1) ? 0 : parseInt(strip(outer.substring(0, _n)));
+}
+
+function getListSelectedIndices(outer:String):String
+{
+    var _n:Number = outer.indexOf(LST_INDEX_DELIMETER);
+    return strip(outer.substring(0, !_n || _n < 1 ? 0 : _n));
+}
+
+function getListSelectedId(outer:String):String
+{
+    return getListSelectedItem(outer, 0);
+}
+
+function setListSelectedId(outer:String, id:String):String
+{
+    return setListSelectedIndexById(outer, id);
+}
+
+function getListSelectedItem(outer:String, index:Number):String
+{
+    var _item:Array = getListItem(outer, getListSelectedIndex(outer));
+    if (!_item)
+        return '';
+    if (index >= 0 && index < _item.length)
+        return strip(_item[index]);
+    return '';
+}
+
+function getListSelectedItems(outer:String, index:Number, splitter:String):String
+{
+    var _indices:Array = getListSelectedIndices(outer).split(LST_INDICES_DELIMETER);
+    var _value:String = '';
+    var _item:Array;
+
+    for (var _index=0; _index < _indices.length; _index++) {
+        _item = getListItem(outer, parseInt(_indices[_index]));
+        if (!_item)
+            continue;
+        if (index >= 0 && index < _item.length) {
+            if (_value && splitter) _value += splitter;
+            _value += strip(_item[index]);
+        }
+    }
+
+    return _value;
+}
+
+function getListSelectedValue(outer:String):Array
+{
+    return getListItem(outer, getListSelectedIndex(outer));
+}
+
+function setListSelectedIndex(outer:String, selected_index:Number):String
+{
+    var _n:Number = outer.indexOf(LST_INDEX_DELIMETER);
+    if (_n < 0) _n = 0;
+    return selected_index + LST_INDEX_DELIMETER + outer.substr(_n+LST_INDEX_DELIMETER.length);
+}
+
+function iterList(id:String):Boolean
+{
+    var _outer:String = getSelfValue(id);
+    if (!_outer)
+        return false;
+    var _selected_index:Number = getListSelectedIndex(_outer);
+    if (_selected_index >= getListLength(_outer) - 1)
+        return false;
+    else {
+        _outer = setListSelectedIndex(_outer, _selected_index + 1);
+        setValue(id, _outer);
+        return true;
+    }
+}
+
+function setListSelectedIndices(outer:String, selected_indices:Array):String
+{
+    var _n:Number = outer.indexOf(LST_INDEX_DELIMETER);
+    if (_n < 0) _n = 0;
+    return selected_indices.join(LST_INDICES_DELIMETER) + LST_INDEX_DELIMETER + outer.substr(_n+LST_INDEX_DELIMETER.length);
+}
+
+function setListSelectedIndexById(outer:String, id:String):String
+{
+    var _lst:Array = getList(outer);
+    if (!_lst || !_lst.length) return outer;
+
+    for (var _i:int=0; _i < _lst.length; _i++) {
+        if (!_lst[_i])
+            continue;
+        var _item:Array = _lst[_i].split(LST_ITEM_DELIMETER);
+        if (_item) {
+            var _id:String = get_compound_id(_item[0]);
+            if (_id == id || strip(_item[0]) == id)
+                break;
+        }
+    }
+
+    //  значение не найдено
+    if (_i >= _lst.length) return outer;
+
+    return makeOuterList(_lst, _i);
+}
+
+function setListSelectedIndicesById(outer:String, selected_indices:Array):String
+{
+    var _lst:Array = getList(outer);
+    if (!_lst || !_lst.length) return outer;
+
+    var _indices:array = new Array();
+    var _id:String = '';
+
+    for (var _j:int=0; _j < _lst.length; _j++) {
+        id = selected_indices[_j];
+        for (var _i:int=0; _i < _lst.length; _i++) {
+            if (!_lst[_i])
+                continue;
+            var _item:Array = _lst[_i].split(LST_ITEM_DELIMETER);
+            if (_item) {
+                var _id:String = get_compound_id(_item[0]);
+                if (_id == id || strip(_item[0]) == id)
+                    _indices.push(_i);
+            }
+        }
+    }
+
+    //  значение не найдено
+    if (!_indices) _indices.push(0);
+
+    return setListSelectedIndices(outer, _indices);
+}
+
+function addListItem(outer:String, item:Array):String
+{
+    var _lst:Array = getList(outer);
+    var _selected_index:Number = getListSelectedIndex(outer);
+
+    var _value:String = item.join(LST_ITEM_DELIMETER);
+    _lst.push(_value);
+
+    return makeOuterList(_lst, _selected_index);
+}
+
+function removeListItem(outer:String, index:Numeric):String
+{
+    if (index < 0)
+        return outer;
+
+    var _selected_index:Number = getListSelectedIndex(outer);
+    var _lst:Array = getList(outer);
+
+    if (index > _lst.length - 1) return outer;
+
+    var _new_lst:Array = new Array();
+    for (var _i:int=0; _i < _lst.length; _i++) {
+        if (_i == index)
+            continue;
+        _new_lst.push(_lst[_i]);
+    }
+    if (_selected_index == index)
+        _selected_index = 0;
+
+    return makeOuterList(_new_lst, _selected_index);
+}
+
+function removeListItemById(outer:String, id:String):String
+{
+    if (!id) return outer;
+
+    var _lst:Array = getList(outer);
+    var _new_lst:Array = new Array();
+    
+    for (var _r:int=0; _r < _lst.length; _r++) {
+        var _item:Array = _lst[_r].split(LST_ITEM_DELIMETER);
+        if (!_item || _item.length == 0)
+            continue;
+        if (strip(_item[0]) != id)
+            _new_lst.push(_lst[_r]);
+    }
+    
+    return makeOuterList(_new_lst, 0);
+}
+
+function blockItems(id:String, items:Array, source:String):String
+{
+    var _selected_id:String = getListSelectedId(getSelfValue(id));
+   
+    setValue(id, source);
+
+    blockListItems(id, items);
+
+    return setListSelectedId(getValue(id), _selected_id);
+}
+
+function blockListItems(id:String, items:Array)
+{
+    if (!id || !items || items.length == 0)
+        return;
+
+    var _outer:String = getSelfValue(id);
+
+    for (var _b:int=0; _b < items.length; _b++) {
+        var _item:Array = getListItemById(_outer, items[_b]);
+        if (_item && _item.length > 0) {
+            _outer = removeListItemById(_outer, strip(_item[0]));
+        }
+    }
+
+    setValue(id, _outer);
+}
+
+function blockListItem(id:String, item:String)
+{
+    if (!id || !item)
+        return;
+
+    var _outer:String = getSelfValue(id);
+    var _item:Array = getListItemById(_outer, item);
+
+    if (_item && _item.length > 0) {
+        var _rid:String = strip(_item[0]);
+        var _id:String = getListSelectedId(_outer);
+        _outer = removeListItemById(_outer, _rid);
+        if (_id)
+            _outer = setListSelectedIndexById(_outer, _id);
+        setValue(id, _outer);
+    }
+}
+
+function checkConstruct(ob:Object):Boolean
+{
+    var _re_region:RegExp = /(!?)\(?([\w\:]+)\)?/i;
+    var _re_condition:RegExp = /([\w]+)([=#])\(?([\w\:]+)\)?/i;
+    var _m:Array = new Array();
+    var _is_valid:Boolean = new Boolean(true);
+    var _is_break:Boolean = new Boolean(false);
+
+    if (ob) {
+        if ('region' in ob) {
+            //
+            // Регион: {!}{(}v1[:v2]{)}
+            //
+            if (ob['region'] && regionID && regionID != 'n/a') {
+                _m = ob['region'].match(_re_region);
+                if (_m && _m.length == 3) {
+                    var _is_not:Boolean = _m[1] == '!' ? true : false;
+                    var _regions:Array = _m[2].split(':');
+                    if (_regions && _regions.length) {
+                        _is_valid = false;
+                        _is_break = false;
+                        for (var _r:int=0; _r < _regions.length; _r++) {
+                            if ([regionID, countryID].indexOf(_regions[_r]) > -1 || IsCountry(_regions[_r])) {
+                                _is_valid = _is_not ? false : true;
+                                _is_break = true;
+                                break;
+                            }
+                        }
+                        if (_is_not && !_is_break && !_is_valid)
+                            _is_valid = true;
+                    }
+                }
+            }
+        }
+        
+        if (_is_valid && 'condition' in ob) {
+            //
+            // Условие исполнения: <id>{=|#}v1[:v2]
+            //
+            if (ob['condition']) {
+                _m = ob['condition'].match(_re_condition);
+                if (_m && _m.length == 4) {
+                    var _id:String = _m[1];
+                    var _is_not:Boolean = _m[2] == '#' ? true : false;
+                    var _values:Array = _m[3].split(':');
+                    if (_id && _values && _values.length) {
+                        _is_valid = false;
+                        if (_values.indexOf(getListSelectedItem(getValue(_id), 0)) > -1) {
+                            _is_valid = _is_not ? false : true;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    return _is_valid;
+}
+
+function blockConstructListItems(id:String)
+{
+    if (!(id && IsExist('constructs') && IsExist(id)))
+        return;
+
+    var _ob:Object;
+    var _items:Array;
+    
+    if (id in constructs) {
+        var _selected_id:String = getListSelectedId(self[id]);
+        for (var _i:int=0; _i < constructs[id].length; _i++) {
+            _ob = constructs[id][_i];
+            if (!checkConstruct(_ob))
+                continue;
+            //
+            // OK
+            //
+            _items = _ob['value'].split(':');
+            if (_items && _items.length)
+                blockListItems(id, _items);
+        }
+        self[id] = setListSelectedId(self[id], _selected_id);
+    }
+}
+
+function blockConstructStatus(id:String, splitter:String)
+{
+    if (!id || !IsExist('constructs'))
+        return;
+
+    var _ob:Object;
+    var _items:Array;
+    
+    if (id in constructs) {
+        for (var _i:int=0; _i < constructs[id].length; _i++) {
+            _ob = constructs[id][_i];
+            if (!checkConstruct(_ob))
+                continue;
+            //
+            // OK
+            //
+            _items = _ob['value'].split(':');
+            if (_items && _items.length) {
+                var prefix:String = id + splitter;
+                for (var _n:int=0; _n < _items.length; _n++) {
+                    var _id:String = prefix + _items[_n];
+                    if (IsEnabled(_id)) {
+                        objectStatus[_id] = 0;
+                    }
+                }
+                setValidBooleanItemByKey(prefix);
+            }
+        }
+    }
+}
+
+function blockConstructConstants(ids:Array)
+{
+    if (!ids || !ids.length || !IsExist('constructs'))
+        return;
+
+    var _ob:Object;
+    var _items:Array;
+    var _id:String;
+    var _v:String;
+
+    for (var _c:int=0; _c < ids.length; _c++) {
+        _id = ids[_c];
+        if (IsExist(_id) && _id in constructs) {
+            for (var _i:int=0; _i < constructs[_id].length; _i++) {
+                _ob = constructs[_id][_i];
+                if (!checkConstruct(_ob))
+                    continue;
+                //
+                // OK
+                //
+                _items = _ob['value'].split(':');
+                if (_items && _items.length == 1) {
+                    _v = _items[0];
+                    setValue(id, isNaN(_v) ? _v : Number(_v));
+                }
+            }
+        }
+    }
+}
+
+function blockConstructSquare()
+{
+    if (!IsExist('constructs'))
+        return;
+
+    var _id:String = 'Square';
+    var _ids:Array = new Array('minSquareWidth', 'maxSquareWidth', 'minSquareHeight', 'maxSquareHeight');
+
+    var _ob:Object;
+    var _items:Array;
+    var _v:String;
+
+    if (_id in constructs) {
+        for (var _i:int=0; _i < constructs[_id].length; _i++) {
+            _ob = constructs[_id][_i];
+            if (!checkConstruct(_ob))
+                continue;
+            //
+            // OK
+            //
+            _items = _ob['value'].split(':');
+            if (_items && _items.length == 4) {
+                for (var _c:int=0; _c < 4; _c++) {
+                    if (!IsExist(_ids[_c]))
+                        continue;
+                    _v = _items[_c];
+                    if (IsExist(_ids[_c]) && !isNaN(_v))
+                        setValue(_ids[_c], Number(_v));
+                }
+            }
+        }
+    }
+}
+
+function initListState(sid:String, source:String, filter:Array)
+{
+    if (!sid || !source)
+        return;
+
+    var _outer:String = getSelfValue(sid);
+    var _selected_id:String = getListSelectedIndex(_outer) > 0 ? getListSelectedId(_outer) : '';
+    var _lst:Array = getList(source);
+    var _new_lst:Array = new Array();
+    var _selected_index:Number = 0;
+    var _index:Number = -1;
+
+    for (var _i:int=0; _i < _lst.length; _i++) {
+        var _item:Array = _lst[_i].split(LST_ITEM_DELIMETER);
+        if (!(_item && _item.length))
+            continue;
+        var _x:String = get_compound_id(_item[0]);
+        if (filter.indexOf(_x) > -1)
+            continue;
+        ++_index;
+        _new_lst.push(_lst[_i]);
+        if (!_selected_id)
+            continue;
+        if (_selected_id == _item[0] || _selected_id == _x)
+            _selected_index = _index;
+    }
+
+    setValue(sid, makeOuterList(_new_lst, _selected_index));
+}
+
+function cloneListItem(destination:String, source:String, id:String):String
+{
+    if (destination && getListItemById(destination, id))
+        return destination;
+
+    var _lst:Array = getList(source);
+    var _item:Array = new Array();
+
+    for (var _i:int=0; _i < _lst.length; _i++) {
+        if (!_lst[_i])
+            continue;
+        _item = _lst[_i].split(LST_ITEM_DELIMETER);
+        if (_item) {
+            var _id:String = get_compound_id(_item[0]);
+            if (_id == id || strip(_item[0]) == id)
+                break;
+        }
+    }
+
+    if (_item && _i < _lst.length)
+        return addListItem(destination, _item); //setListSelectedIndex(, 0);
+    else
+        return destination;
+}
+
+function applyFilter(outer:String, filter:Array, selected_id:String):String
+{
+    var LOCAL_LIST_DELIMETER:String = ':';
+
+    if (filter && filter.length > 1 && filter[1]) {
+        var values:Array = filter[1].split(LOCAL_LIST_DELIMETER);
+        var s:String = '';
+
+        for (var _k:int=0; _k < values.length; _k++) {
+            var id:String = strip(values[_k]);
+            if (!id)
+                continue;
+            s = cloneListItem(s, outer, id);
+        }
+
+        if (selected_id)
+        {
+            s = setListSelectedIndexById(s, selected_id);
+        }
+        return s;
+    } else {
+        return outer;
+    }
+}
+
+function getFilter(filter1:Array):Array
+{
+    if (filter1 && filter1.length > 1)
+        return [strip(filter1[0]), filter1[1]];
+    else
+        return ['', ''];
+}
+
+function getFilterByIntersection(filter1:Array, filter2:Array):Array
+{
+    if (!filter1 || filter1.length < 1)
+        return filter2;
+    if (!filter2 || filter2.length < 1)
+        return filter1;
+
+    var _new_lst:Array = new Array();
+
+    //  0 - идентификатор фильтра
+    _new_lst.push(strip(filter1[0]) + '&' + strip(filter2[0]));
+
+    var LOCAL_LIST_DELIMETER:String = ':';
+
+    var _x1:Array = filter1[1].split(LOCAL_LIST_DELIMETER);
+    var _x2:Array = filter2[1].split(LOCAL_LIST_DELIMETER);
+
+    var _value:String = '';
+
+    for (var _i:int=0; _i < _x1.length; _i++) {
+        if (_x2.indexOf(_x1[_i]) > -1) {
+            if (_value) 
+                _value += LOCAL_LIST_DELIMETER;
+            _value += _x1[_i];
+        }
+    }
+
+    //  1 - значение фильтра (<key1>:<key2>:...:<keyN>)
+    _new_lst.push(_value);
+
+    return _new_lst;
+}
+
+// ------------------------------------------------------------------------
+
+function makeDecimal(s:Number, win:Boolean):String
+{
+    return win ? s.toString().replace(/\./g, ',') : s.toString();
+}
+
+function roundNumber(value:Number, index:Number, win:Boolean):String
+{
+    var _d:int = 1;
+    var _s:String = '';
+
+    for (var _i:int=0; _i < index; _i++) { 
+        _d = _d * 10;
+        _s += '0';
+    }
+
+    var _v:Number = Math.floor(value);
+    var _x:Number = value - _v;
+
+    if (_x) _s = (strip(_x.toString().substr(2, index+2)) + _s).substr(0, index);
+    _s = strip(int(_v).toString()) + (index ? '.' + _s : '');
+
+    return win ? _s.replace(/\./g, ',') : _s;
+}
+
+function roundDecimal(value:Number, index:Number):String
+{
+    return roundNumber(value, index, true);
+}
+
+function roundInteger(value:Number, index:Number):String
+{
+    if (value <= 0)
+        return '0';
+
+    var _x:Number = int(value);
+    var _v:Number = Math.floor(value);
+
+    if (index > 0 && value - _v > 0) {
+        _x += 1;
+    }
+
+    return _x.toString();
+}
+
+function addMargin(outer:String, item:Array):String
+{
+    var _x:Number = parseInt(item[0]);
+
+    if (!isNaN(_x) && _x > 0 && item.length > 3) {
+        var _v:Array = new Array('', 'NUMBER', '', 0);
+        _v[0] = item[0];
+        _v[2] = ('000' + item[2].toString()).substr(-3);
+        _v[3] = item[3];
+        return addListItem(outer, _v);
+    }
+    else if (isNaN(_x) && item.length == 4 && item[1].toUpperCase() == 'NUMBER') {
+        var _v:Array = new Array('', 'STRING', '', 0);
+        _v[0] = item[0];
+        _v[2] = ('000' + item[2].toString()).substr(-3);
+        _v[3] = item[3];
+        return addListItem(outer, _v);
+    }
+    else
+        return outer;
+}
+
+function addExtraMargin(outer:String, item:Array):String
+{
+    return addListItem(outer, item);
+}
+
+function addListOfMargins(ob:Object, prices:String, count:Number):String
+{
+    if (!count || count < 0 || !ob)
+        return margins;
+
+    for (_id in ob) 
+    {
+        var _item:Array = getListItemById(prices, _id);
+        if (_item && _item.length > 2)
+        {
+            var _code:String = _item[2];
+            var _n:Number = ob[_id];
+            if (_code && _n)
+                margins = addExtraMargin(margins, [_code, 'STRING', 796, _n*count]);
+        }
+    }
+
+    return margins;
+}
+
+function makeDefaultRAL(value:Number, default_value:String):String
+{
+    var _x:String = makeRAL(value);
+    return _x ? _x : (default_value ? default_value : '');
+}
+
+function makeRAL(value:Number):String
+{
+    if (value < 1000 || value > 9999)
+        return '';
+    var _x:String = '0000' + (value > 0 ? value.toString() : '0');
+    return _x.substr(_x.length - 4, 4);
+}
+
+function arange2Values(value:Array):Array
+{
+    if (value[0] > value[1])
+    {
+        value[0] = value[0] + value[1];
+        value[1] = value[0] - value[1];
+        value[0] = value[0] - value[1];
+    }
+    return value;
+}
+
+function getSystemOption(option:String, locale:String):String
+{
+    var _x:String = "!!! system: option<br>";
+    var _messages:Object = 
+    {
+        'system': "Caution:Предупреждение"
+    };
+    var _options:Object = 
+    {
+        'Debug'             : "DEBUG (Only For Testing Purposes): ТОЛЬКО ДЛЯ ЦЕЛЕЙ ТЕСТИРОВАНИЯ",
+        'withoutRestriction': "Without Restrictions             : БЕЗ КОНТРОЛЯ ОГРАНИЧЕНИЙ",
+        'prices_disable'    : "No Prices Calculation            : БЕЗ РАСЧЁТА СТОИМОСТИ",
+        'validation_disable': "Validation Disabled              : БЕЗ ОГРАНИЧЕНИЙ",
+        'isWorkWithout1C'   : "Without 1C                       : БЕЗ 1С"
+    };
+
+    var _index:String = locale.toLowerCase() == 'rus' ? 1 : 0;
+    return strip(_x.replace('system', _messages['system'].split(':')[_index]).replace('option', _options[option].split(':')[_index].toUpperCase()));
+}
+
+function IsExist(item:String):Boolean 
+{ 
+    return self.hasOwnProperty(item) ? true : false;
+}
+
+function IsEnabled(item:String):Boolean 
+{ 
+    return self.hasOwnProperty(item) && objectStatus[item] ? true : false;
+}
+
+function IsDisabled(item:String):Boolean 
+{ 
+    return self.hasOwnProperty(item) && !objectStatus[item] ? true : false;
+}
+
+function IsFormFieldSelected(item:String):Boolean
+{
+    return IsEnabled(item) && self[item] ? true : false;
+}
+
+function IsTrue(item:String):Boolean 
+{ 
+    return IsFormFieldSelected(item); 
+}
+
+function IsFalse(item:String):Boolean 
+{ 
+    return !IsFormFieldSelected(item);
+}
+
+function getFormFieldValue(item:String):Object
+{
+    //
+    //  Returns a forms's field value
+    //
+    return IsEnabled(item) ? self[item] : null;
+}
+
+function getValue(item:String):Object 
+{ 
+    return getFormFieldValue(item); 
+}
+
+function getSelfValue(item:String):Object 
+{ 
+    return self.hasOwnProperty(item) ? self[item] : null; 
+}
+
+function setFormFieldValue(item:String, value:Object) 
+{
+    //
+    //  Sets a forms's field value
+    //
+    if (self.hasOwnProperty(item)) 
+        self[item] = value;
+}
+
+function setValue(item:String, value:Object) 
+{ 
+    setFormFieldValue(item, value); 
+}
+
+function setValidBooleanItem(items:Array):Boolean
+{
+    //  
+    //  Sets valid enabled item in the middle of given items list
+    //
+    var _item:String = '';
+    var _valid:String = '';
+    var _changed:Boolean = true;
+    var _should_be_changed:Boolean = true;
+
+    for (var _i:int=0; _i < items.length; _i++) {
+        _item = items[_i];
+        if (objectStatus[_item] && !_valid)
+            _valid = _item;
+        if (getSelfValue(_item)) {
+            if (!objectStatus[_item]) {
+                setValue(_item, false);
+                _changed = true;
+            } else {
+                _should_be_changed = false;
+            }
+        }
+    }
+    
+    if (_should_be_changed && _valid)
+        setValue(_valid, true);
+    return _changed;
+}
+
+function setValidBooleanItemByKey(key:String):Boolean
+{
+    var _items:Array = new Array();
+    var _item:String = '';
+
+    for (_item in self) {
+        if (IsStringStartedWith(_item, key))
+            _items.push(_item);
+    }
+
+    return setValidBooleanItem(_items);
+}
+
+function setStatus(items:Array, status:Number)
+{
+    var _item:String = '';
+
+    for (var _i:int=0; _i < items.length; _i++) {
+        _item = items[_i];
+        //if (!self.hasOwnProperty(_item))
+        //    continue;
+        objectStatus[_item] = status;
+    }
+}
+
+function checkItemsIsValid(items:Array):Boolean
+{
+    var _item:String = '';
+
+    for (var _i:int=0; _i < items.length; _i++) {
+        _item = items[_i];
+        if (!(self.hasOwnProperty(_item) && objectStatus[_item]))
+            return false;
+    }
+
+    return true;
+}
+
+function change2Items(items:Array)
+{
+    var _item:Object = getSelfValue(items[0]);
+    setValue(items[0], getSelfValue(items[1]));
+    setValue(items[1], _item);
+}
+
+function setObjectStatus(items:Array, status:Number)
+{
+    var _item:String = '';
+    var _count_keyword:String = '_Count';
+
+    for (var _i:int=0; _i < items.length; _i++) {
+        _item = items[_i];
+        //if (!(self.hasOwnProperty(_item)) || objectStatus.indexOf(_item) == -1)
+        //    continue;
+        objectStatus[_item] = status;
+        if (IsStringEndedWith(_item, _count_keyword)) {
+            _item = _item.substr(0, _item.length-6);
+            if (!(self.hasOwnProperty(_item)))
+                continue;
+            objectStatus[_item] = status;
+        }
+    }
+}
+
+function setStatusByKey(key:String, status:Number)
+{
+    var _item:String = '';
+    var _reserved:Array = new Array('_up', '_Code');
+    var _valid:Boolean;
+
+    for (_item in self) {
+        if (IsStringStartedWith(_item, key)) {
+            _valid = true;
+            for (var _i:int=0; _i < _reserved.length; _i++) {
+                var _x:String = _reserved[_i];
+                if (IsStringEndedWith(_item, _x)) {
+                    _valid = false;
+                    break;
+                }
+            }
+            if (_valid)
+                objectStatus[_item] = status;
+        }
+    }
+}
+
+function setStatusByKeys(keys:Array, status:Number, sensitive:Boolean)
+{
+    if (!(keys && keys.length))
+        return;
+
+    var _item:String = '';
+
+    for (item in self) {
+        var _item:String = !sensitive ? item.toLowerCase() : item;
+        for (var _i:int=0; _i < keys.length; _i++) {
+            var _key:String = !sensitive ? keys[_i].toLowerCase() : keys[_i];
+            if (IsStringStartedWith(_item, _key) && objectStatus.hasOwnProperty(item)) {
+                objectStatus[item] = status;
+                break;
+            }
+        }
+    }
+}
+
+function getObjectAsString(ob:Object):String
+{
+    var _value:String = '';
+    for (_id in ob) {
+        if (_value) _value += ',';
+        _value += _id + ':' + ob[_id].toString();
+    }
+    return _value;
+}
+
+function getObjectItemsCount(ob:Object):Number
+{
+    var _value:Number = 0;
+    for (_id in ob) {
+        if (_id && ob[_id]) _value += ob[_id];
+    }
+    return _value;
+}
+
+function incValueInObject(ob:Object, value:String):Object
+{
+    if (!(value in ob)) ob[value] = 0;
+    ob[value] += 1;
+    return ob;
+}
+
+//
+// ========================================================================
+//

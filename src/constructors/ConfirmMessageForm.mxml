@@ -1,0 +1,212 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<mx:Panel xmlns:mx="http://www.adobe.com/2006/mxml"
+          visible="true" width="580" height="202"
+          styleName="panelStyle"
+          paddingBottom="10" paddingLeft="10" paddingRight="10" paddingTop="10"
+          horizontalScrollPolicy="off" verticalScrollPolicy="off"
+          move="moveHandler(event)" creationComplete="init()"
+          title="Confirm Message Form">
+
+    <mx:Style>
+        .formArea
+        {
+            backgroundColor:#FFFFE8;
+            borderColor:#F08C84;
+            borderThickness:1px;
+            borderStyle:solid;
+            paddingTop:10;
+            paddingBottom:10;
+            paddingLeft:10;
+            paddingRight:10;
+        }
+        .infoArea
+        {
+            fontFamily:Tahoma;
+            fontWeight:normal;
+            fontSize:12px;
+            textAlign:left;
+            color:#604000;
+        }
+    </mx:Style>
+
+    <mx:Script>
+        <![CDATA[
+            import mx.core.Application;
+            import mx.managers.PopUpManager;
+            import mx.events.DragEvent;
+            import mx.events.MoveEvent;
+            import mx.events.ResizeEvent;
+
+            private var app:Object = Application.application;
+            private var parentObject:Object = app.mainClassObj;
+            private var boolWasMoved:Boolean = false;
+
+            private var TAG_MASK:RegExp = /{.*?}/gi;
+            private var BR_MASK:RegExp = /<br>/gi;
+
+            private var IsDebug:Boolean = false;
+
+            private function init():void
+            {
+                var caption:String = this.parentObject.msgArray[41];
+                var info:String = this.parentObject.helperProjectVars["confirmMessage"];
+                var title:String = this.parentObject.msgArray[27];
+                var force:Boolean = true;
+                var offset:Number = 0;
+
+                this.parentObject.helperProjectVars["isConfirmation"] = true;
+
+                this.confirmCaption.text = caption;
+                this.confirmInfo.htmlText = '<p>'+info.replace(/{/g, '<').replace(/}/g, '>')+'</p>'; //.replace(BR_MASK, '')
+                //this.confirmInfo.text = info.replace(TAG_MASK, '');
+
+                var style:StyleSheet = new StyleSheet();
+                var span:Object = new Object();
+                span.fontWeight = "bold";
+                span.marginLeft = 20;
+                style.setStyle(".heading", span);
+                this.confirmInfo.styleSheet = style;
+                this.confirmInfo.validateNow();
+
+                offset = this.confirmInfo.textHeight - this.confirmInfo.height + 10;
+                this.confirmInfo.height += offset;
+                this.confirmInfo.validateSize();
+
+                if (offset != 0)
+                {
+                    this.confirmMessageForm.height += offset;
+                    this.formContainer.height += offset;
+                    this.infoContainer.height += offset;
+                    this.height += offset;
+                }
+
+                this.confirmButton.label = this.parentObject.msgArray[20];
+                this.rejectButton.label = this.parentObject.msgArray[21];
+
+                this.title = title;
+
+                this.getPosition(force);
+            }
+
+            private function getPosition(force:Boolean):void
+            {
+                var frm:Array = this.parentObject.confirmFormPosition;
+
+                if (frm.length == 2 && !force)
+                {
+                    this.x = frm[0];
+                    this.y = frm[1];
+                }
+                else
+                {
+                    this.x = (app.width - this.width) / 2;
+                    this.y = (app.height - this.height) / 2;
+                }
+
+                try
+                {
+                    if (this.x + this.width > this.parent.width) this.x = this.parent.width - this.width;
+                    if (this.y + this.height > this.parent.height) this.y = this.parent.height - this.height;
+                } 
+                catch(errorNum:Error) {}
+
+                this.x = int(this.x);
+                this.y = int(this.y);
+
+                this.visible = true;
+            }
+
+            private function setPosition():void
+            {
+                if (this.boolWasMoved)
+                    this.parentObject.confirmFormPosition = new Array(this.x, this.y);
+            }
+
+            protected function moveHandler(event:MoveEvent):void
+            {
+                var x:Number = this.width;
+                var y:Number = this.height;
+
+                if (this.visible) {
+                    if (this.IsDebug)
+                        this.status = "[move x:" + this.x.toString() + " y:" + this.y.toString() + "]";
+                    if (this.x < 0) this.x = 0;
+                    if (this.x + x > this.parent.width) this.x = int(this.parent.width - x);
+                    if (this.y < 0) this.y = 0;
+                    if (this.y + y > this.parent.height) this.y = int(this.parent.height - y);
+                    this.boolWasMoved = true;
+                }
+            }
+
+            private function deactivate(code:Number):void
+            {
+                this.setPosition();
+                PopUpManager.removePopUp(this);
+                this.parentObject.helperProjectVars["helperErrorCode"] = code == 1 ? 0 : -1;
+                this.parentObject.helperProjectVars["confirmCode"] = code;
+                this.parentObject.go(1);
+            }
+
+            private function confirmButtonPressed():void
+            {
+                this.deactivate(1);
+            }
+
+            private function rejectButtonPressed():void
+            {
+                this.deactivate(0);
+            }
+        ]]>
+    </mx:Script>
+
+    <mx:Canvas id="formContainer" x="0" y="0" width="540" height="141" borderThickness="0"
+               paddingBottom="0" paddingLeft="0" paddingRight="0" paddingTop="0"
+               horizontalScrollPolicy="off" verticalScrollPolicy="off">
+
+    <mx:Form id="confirmMessageForm" width="540" height="141" verticalGap="0" borderThickness="0"
+             paddingBottom="0" paddingLeft="0" paddingRight="0" paddingTop="0"
+             horizontalScrollPolicy="off" verticalScrollPolicy="off">
+
+        <mx:Text id="confirmCaption" width="100%" height="25" disabledColor="#404040" enabled="false"
+                 fontSize="12" fontWeight="bold" selectable="false" textAlign="left"/>
+
+        <mx:VBox id="infoContainer" x="0" y="0" verticalGap="0" width="100%" height="72" styleName="formArea">
+             
+            <mx:Text id="confirmInfo" width="100%" height="50" styleName="infoArea"/>
+
+        </mx:VBox>
+
+        <mx:Spacer height="5"/>
+        <mx:Grid id="buttonsContainer" width="100%" horizontalGap="5" borderStyle="solid" borderThickness="0">
+            <mx:GridRow width="100%" height="43" borderStyle="solid" borderThickness="0"
+                        horizontalAlign="center" paddingTop="8">
+                <mx:GridItem horizontalAlign="center" borderStyle="solid" borderThickness="0">
+                    <mx:Button
+                        label="Yes"
+                        id="confirmButton"
+                        styleName="largeButtons"
+                        enabled="true"
+                        top="7"
+                        width="80"
+                        height="27"
+                        click="confirmButtonPressed()"/>
+                </mx:GridItem>
+                <mx:GridItem horizontalAlign="center" borderStyle="solid" borderThickness="0">
+                    <mx:Button
+                        label="No"
+                        id="rejectButton"
+                        styleName="largeButtons"
+                        enabled="true"
+                        top="7"
+                        width="80"
+                        height="27"
+                        click="rejectButtonPressed()"/>
+                </mx:GridItem>
+            </mx:GridRow>
+        </mx:Grid>
+    
+    </mx:Form>
+
+    </mx:Canvas>
+
+</mx:Panel>

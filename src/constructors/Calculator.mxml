@@ -1,0 +1,424 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml"
+    width="190"
+    height="300"
+    keyDown="myKeyDown(event);"
+    creationComplete="initCalculator()">
+
+    <mx:Style>
+        .calculatorButtons
+        {
+            width:31px;
+            height:27px;
+            upSkin:Embed("../images/skins/enabled_clc.png");
+            overSkin:Embed("../images/skins/rollOver_clc.png");
+            downSkin:Embed("../images/skins/pressed_clc.png");
+            disabledSkin:Embed("../images/skins/disabled_clc.png");
+        }
+        .errorArea
+        {
+            paddingTop:0;
+            paddingBottom:0;
+            paddingLeft:0;
+            paddingRight:0;
+        }
+    </mx:Style>
+
+    <mx:Script>
+        <![CDATA[
+            import mx.managers.PopUpManager;
+            import mx.core.Application;
+
+            private  var calculatedRetValue:Number = new Number(0);
+            private  var operandAValue:Number = new Number(0);
+            private  var operandBValue:Number = new Number(0);
+            private  var lastOperation:Number = new Number(0);
+            private  var wholePart:Number = new Number(0);
+            private  var fractionalPart:Number = new Number(0);
+
+            private  var letsGoOperation:Boolean = new Boolean(false);
+            private  var isRefresh:Boolean = new Boolean(true);
+            private  var isOperation:Boolean = new Boolean(false);
+            private  var firstExecute:Boolean = new Boolean(true);
+
+            private function initCalculator():void
+            {
+                var partSizeLst:Array = new Array();
+
+                var tmpStr:String = new String();
+
+                this.displayArea.text = "0";
+                this.operandAValue = 0;
+                this.calculatedRetValue = 0;
+                this.letsGoOperation = false;
+                this.isOperation = false;
+                this.errorArea.htmlText = "";
+
+                if (this.firstExecute)
+                {
+                    wholePart = new Number(0);
+                    fractionalPart = new Number(0);
+
+                    tmpStr = parentDocument.calcFormatValue;
+                    partSizeLst = tmpStr.split(parentDocument.calcParamDivValue);
+
+                    tmpStr = partSizeLst[1];
+                    partSizeLst = tmpStr.split(parentDocument.calcPointValue);
+
+                    if (partSizeLst.length > 1)
+                    {
+                        wholePart = Number(partSizeLst[0]);
+                        fractionalPart = Number(partSizeLst[1]);
+                    }
+
+                    if (parentDocument.calculatorValue !== 0)
+                    {
+                        this.operandAValue = parentDocument.calculatorValue;
+                        this.displayArea.text = String(parentDocument.calculatorValue);
+
+                        //this.letsGoOperation = true;
+                    }
+
+                    this.firstExecute = false;
+                }
+            }
+
+            private function assignCalculatorValue():void
+            {
+                var partSizeLst:Array = new Array();
+
+                var tmpStr:String = new String();
+
+                if (this.calculatedRetValue === 0)
+                {
+                    if (Number(this.displayArea.text) !== 0)
+                    {
+                        this.calculatedRetValue = Number(this.displayArea.text);
+                    }
+                }
+
+                tmpStr = String(this.calculatedRetValue);
+                partSizeLst = tmpStr.split(parentDocument.calcPointValue);
+                tmpStr = partSizeLst[0];
+
+                if (wholePart < tmpStr.length)
+                {
+                    this.errorArea.htmlText = parentDocument.calcErrValue.replace(/\n/gi, ' ').replace(/\r/gi, '');
+                }
+                else
+                {
+                    parentDocument.calculatorValue = this.calculatedRetValue;
+                    parentDocument.calculatorEventObj.setCalculatorValue();
+                    this.closeCalculatorWindow();
+                }
+            }
+
+            private function closeCalculatorWindow():void
+            {
+                parentDocument.calculatorValue = Number("isNaN");
+                PopUpManager.removePopUp(this);
+            }
+
+            private function addValueToDisplayStr(symbol:String):void
+            {
+                this.errorArea.htmlText = "";
+
+                with (this.displayArea)
+                {
+                    if (text.charAt(text.length - 1) !== ".")
+                    {
+                        if (!this.letsGoOperation) //Number(text) === 0
+                        {
+                            text = "";
+                        }
+                    }
+
+                    text = text + symbol;
+                    this.operandAValue = Number(text);
+
+                    if (text.charAt(0) === ".")
+                    {
+                        text = "0" + text;
+                    }
+                }
+
+                this.letsGoOperation = true;
+            }
+
+            private function setValue(operation:Number):void
+            {
+                if (this.letsGoOperation)
+                {
+                    if (this.displayArea.text.charAt(this.displayArea.text.length - 1) === ".")
+                    {
+                        this.displayArea.text = this.displayArea.text.substring(0, (this.displayArea.text.length - 2));
+                        this.operandAValue = Number(this.displayArea.text);
+                    }
+
+                    if ((this.calculatedRetValue !== 0) || (this.isOperation))
+                    {
+                        if (isNaN(this.calculatedRetValue))
+                        {
+                            this.calculatedRetValue = 0;
+                        }
+
+                        switch(this.lastOperation)
+                        {
+                            case 1:    // +
+                                this.calculatedRetValue = this.calculatedRetValue + this.operandAValue;
+                            break;
+
+                            case 2:    // -
+                                this.calculatedRetValue = this.calculatedRetValue - this.operandAValue;
+                            break;
+
+                            case 3:    // *
+                                this.calculatedRetValue = this.calculatedRetValue * this.operandAValue;
+                            break;
+
+                            case 4:    // /
+                                if (this.operandAValue === 0)
+                                {
+                                    this.calculatedRetValue = Number("isNaN");
+                                }
+                                else
+                                {
+                                    this.calculatedRetValue = this.calculatedRetValue/this.operandAValue;
+                                }
+                            break;
+                        }
+                    }
+                    else
+                    {
+                        this.calculatedRetValue = this.operandAValue;
+                    }
+
+                    this.displayArea.text = String(this.calculatedRetValue);
+                    this.lastOperation = operation;
+                    this.letsGoOperation = false;
+                    this.isOperation = true;
+                }
+            }
+
+            private function myKeyDown(evt:KeyboardEvent):void
+            {
+                if (evt.charCode == Keyboard.ESCAPE)
+                {
+                    //this.dispatchEvent(new CloseEvent(CloseEvent.CLOSE));
+                    this.closeCalculatorWindow();
+                }
+            }
+        ]]>
+    </mx:Script>
+
+    <mx:Form
+        id="myCalculator"
+        width="190"
+        height="300"
+        left="0"
+        top="0"
+        backgroundColor="#f8fcff"
+        cornerRadius="0"
+        borderColor="#f8fcff">
+
+        <mx:Grid
+            horizontalGap="9"
+            verticalGap="15"
+            height="28">
+
+            <mx:GridRow>
+                <mx:GridItem>
+                    <mx:TextInput id="displayArea" width="157" editable="true" 
+                                  shadowDistance="4" textAlign="right"
+                                  styleName="textInput" />
+                </mx:GridItem>
+            </mx:GridRow>
+        </mx:Grid>
+
+        <mx:Grid
+            horizontalGap="9"
+            verticalGap="10">
+
+            <mx:GridRow>
+                <mx:GridItem>
+                    <mx:Button
+                        id="one"
+                        styleName="calculatorButtons"
+                        label="1"
+                        click="addValueToDisplayStr('1')"/>
+                </mx:GridItem>
+
+                <mx:GridItem >
+                    <mx:Button
+                        id="two"
+                        styleName="calculatorButtons"
+                        label="2"
+                        click="addValueToDisplayStr('2')"/>
+                </mx:GridItem>
+
+                <mx:GridItem>
+                    <mx:Button
+                        id="three"
+                        styleName="calculatorButtons"
+                        label="3"
+                        click="addValueToDisplayStr('3')"/>
+                </mx:GridItem>
+
+                <mx:GridItem>
+                    <mx:Button
+                        id="sumUp"
+                        styleName="calculatorButtons"
+                        label="+"
+                        click="setValue(1)"/>
+                </mx:GridItem>
+            </mx:GridRow>
+
+            <mx:GridRow>
+                <mx:GridItem>
+                    <mx:Button
+                        id="four"
+                        styleName="calculatorButtons"
+                        label="4"
+                        click="addValueToDisplayStr('4')"/>
+                </mx:GridItem>
+
+                <mx:GridItem>
+                    <mx:Button
+                        id="five"
+                        styleName="calculatorButtons"
+                        label="5"
+                        click="addValueToDisplayStr('5')"/>
+                </mx:GridItem>
+
+                <mx:GridItem>
+                    <mx:Button
+                        id="six"
+                        styleName="calculatorButtons"
+                        label="6"
+                        click="addValueToDisplayStr('6')"/>
+                </mx:GridItem>
+
+                <mx:GridItem>
+                    <mx:Button
+                        id="substract"
+                        styleName="calculatorButtons"
+                        label="-"
+                        click="setValue(2)"/>
+                </mx:GridItem>
+            </mx:GridRow>
+
+            <mx:GridRow>
+                <mx:GridItem>
+                    <mx:Button
+                        id="seven"
+                        styleName="calculatorButtons"
+                        label="7"
+                        click="addValueToDisplayStr('7')"/>
+                </mx:GridItem>
+
+                <mx:GridItem>
+                    <mx:Button
+                        id="eight"
+                        styleName="calculatorButtons"
+                        label="8"
+                        click="addValueToDisplayStr('8')"/>
+                </mx:GridItem>
+
+                <mx:GridItem>
+                    <mx:Button
+                        id="nine"
+                        styleName="calculatorButtons"
+                        label="9"
+                        click="addValueToDisplayStr('9')"/>
+                </mx:GridItem>
+
+                <mx:GridItem>
+                    <mx:Button
+                        id="multiplay"
+                        styleName="calculatorButtons"
+                        label="*"
+                        click="setValue(3)"/>
+                </mx:GridItem>
+            </mx:GridRow>
+
+            <mx:GridRow>
+                <mx:GridItem>
+                    <mx:Button
+                        id="zero"
+                        styleName="calculatorButtons"
+                        label="0"
+                        click="addValueToDisplayStr('0')"/>
+                </mx:GridItem>
+
+                <mx:GridItem>
+                    <mx:Button
+                        id="point"
+                        styleName="calculatorButtons"
+                        label="."
+                        click="addValueToDisplayStr('.')"/>
+                </mx:GridItem>
+
+                <mx:GridItem>
+                    <mx:Button
+                        id="no"
+                        styleName="calculatorButtons"
+                        label="="
+                        click="setValue(0)"/>
+                </mx:GridItem>
+
+                <mx:GridItem>
+                    <mx:Button
+                        id="yes"
+                        styleName="calculatorButtons"
+                        label="/"
+                        click="setValue(4)"/>
+                </mx:GridItem>
+            </mx:GridRow>
+
+            <mx:GridRow>
+                <mx:GridItem
+                    width="31"
+                    height="27"/>
+
+                <mx:GridItem>
+                    <mx:Button
+                        id="clearContent"
+                        styleName="calculatorButtons"
+                        label="C"
+                        color="#C20000"
+                        enabled="true"
+                        click="initCalculator()"/>
+                </mx:GridItem>
+
+                <mx:GridItem>
+                    <mx:Button
+                        id="goto_cancel"
+                        styleName="calculatorButtons"
+                        label="X"
+                        color="#C20000"
+                        enabled="true"
+                        click="closeCalculatorWindow()"/>
+                </mx:GridItem>
+
+                <mx:GridItem>
+                    <mx:Button
+                        id="goto_assign"
+                        styleName="calculatorButtons"
+                        label="&gt;"
+                        fontWeight="bold"
+                        color="#037711"
+                        enabled="true"
+                        click="assignCalculatorValue()"/>
+                </mx:GridItem>
+            </mx:GridRow>
+        </mx:Grid>
+
+        <mx:Grid horizontalGap="9">
+            <mx:GridRow>
+                <mx:GridItem>
+                    <mx:Text id="errorArea" width="157" styleName="errorArea" />
+                </mx:GridItem>
+            </mx:GridRow>
+        </mx:Grid>
+    </mx:Form>
+</mx:Canvas>

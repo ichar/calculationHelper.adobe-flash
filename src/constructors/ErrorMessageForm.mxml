@@ -1,0 +1,172 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<mx:Panel xmlns:mx="http://www.adobe.com/2006/mxml"
+          visible="true" width="505" height="180"
+          styleName="panelStyle" 
+          horizontalScrollPolicy="off" verticalScrollPolicy="off"
+          move="moveHandler(event)" creationComplete="init()"
+          title="Error Message Form">
+
+    <mx:Script>
+        <![CDATA[
+            import mx.core.Application;
+            import mx.managers.PopUpManager;
+            import mx.events.DragEvent;
+            import mx.events.MoveEvent;
+            import mx.events.ResizeEvent;
+
+            private var app:Object = Application.application;
+            private var parentObject:Object = app.mainClassObj;
+            private var boolWasMoved:Boolean = false;
+            private var ERROR_MASK:String = "199";
+            private var BR_MASK:RegExp = /<br>/gi;
+
+            private var IsDebug:Boolean = false;
+
+            private function init():void
+            {
+                var status:Number = IsDebug ? -1 : this.parentObject.errorStatus;
+                var caption:String = this.parentObject.msgArray[34];
+                var message:String = new String("");
+                var info:String = this.parentObject.errorMessage + "\n" + this.parentObject.msgArray[35];
+                var title:String = new String("");
+                var color:String = "#404040";
+                var force:Boolean = true;
+
+                this.parentObject.errorStatus = 0;
+
+                if (status == 27)      // INFORMATION
+                {
+                    caption = this.parentObject.msgArray[31];
+                    info = this.parentObject.errorMessage;
+                    color = "#4040D5";
+                    force = false;
+                }
+                else if (status == 28) // WARNING
+                {
+                    caption = this.parentObject.msgArray[32];
+                    info = this.parentObject.errorMessage;
+                    color = "#2F2B68";
+                }
+                else if (status == 29) // ERROR
+                {
+                    caption = this.parentObject.msgArray[33];
+                    color = "#D54040";
+                }
+                else if (status >= 90) // SYSTEM IS UNAVAILABLE
+                {
+                    caption = this.parentObject.msgArray[33];
+                    message = this.parentObject.errorMessage;
+                    if (message.indexOf(ERROR_MASK) > -1)
+                        message = message.replace(ERROR_MASK, status.toString());
+                    info = message + "\n" + this.parentObject.msgArray[28];
+                    color = "#CC4848";
+                }
+                else
+                {
+                    this.title = this.parentObject.getMessage(36);
+                    force = false;
+                }
+
+                this.errorCaption.text = caption;
+                this.errorInfo.text = info.replace(BR_MASK, '');
+                this.errorCaption.setStyle("disabledColor", color);
+                this.errorInfo.setStyle("color", color);
+                this.title = title;
+
+                this.getPosition(force);
+            }
+
+            private function getPosition(force:Boolean):void
+            {
+                var frm:Array = this.parentObject.errorFormPosition;
+
+                if (frm.length == 2 && !force)
+                {
+                    this.x = frm[0];
+                    this.y = frm[1];
+                }
+                else
+                {
+                    this.x = (app.width - this.width) / 2;
+                    this.y = (app.height - this.height) / 2;
+                }
+
+                try
+                {
+                    if (this.x + this.width > this.parent.width) this.x = this.parent.width - this.width;
+                    if (this.y + this.height > this.parent.height) this.y = this.parent.height - this.height;
+                } 
+                catch(errorNum:Error) {}
+                
+                this.x = int(this.x);
+                this.y = int(this.y);
+
+                this.visible = true;
+            }
+
+            private function setPosition():void
+            {
+                if (this.boolWasMoved)
+                    this.parentObject.errorFormPosition = new Array(this.x, this.y);
+            }
+
+            protected function moveHandler(event:MoveEvent):void
+            {
+                var x:Number = this.width;
+                var y:Number = this.height;
+
+                if (this.visible) {
+                    if (this.IsDebug)
+                        this.status = "[move x:" + this.x.toString() + " y:" + this.y.toString() + "]";
+                    if (this.x < 0) this.x = 0;
+                    if (this.x + x > this.parent.width) this.x = int(this.parent.width - x);
+                    if (this.y < 0) this.y = 0;
+                    if (this.y + y > this.parent.height) this.y = int(this.parent.height - y);
+                    this.boolWasMoved = true;
+                }
+            }
+
+            private function goButtonPressed():void
+            {
+                this.setPosition();
+                PopUpManager.removePopUp(this);
+                this.parentObject.setFocusOn();
+            }
+        ]]>
+    </mx:Script>
+
+    <mx:Canvas id="formContainer" x="0" y="0" width="485" height="134" borderStyle="solid"
+               borderThickness="0" paddingBottom="0" paddingLeft="0"
+               horizontalScrollPolicy="off" verticalScrollPolicy="off"
+               paddingRight="0" paddingTop="0">
+
+    <mx:Form id="errorMessageForm" x="10" y="10" width="464" height="112" borderStyle="solid"
+             borderThickness="0" paddingBottom="0" paddingLeft="0" paddingRight="0" paddingTop="0" verticalGap="0"
+             horizontalScrollPolicy="off" verticalScrollPolicy="off">
+
+        <mx:Text id="errorCaption" width="100%" height="25" disabledColor="#404040" enabled="false"
+                 fontSize="12" fontWeight="bold" selectable="false" textAlign="center"/>
+
+        <mx:Text id="errorInfo" width="100%" height="50" color="#404040" textAlign="center"/>
+
+        <mx:Grid width="100%" horizontalGap="0" borderStyle="solid" borderThickness="0">
+            <mx:GridRow paddingTop="8" width="100%" borderStyle="solid" borderThickness="0">
+                <mx:GridItem width="100%" horizontalAlign="center" borderStyle="solid" borderThickness="0">
+                    <mx:Button
+                        label="OK"
+                        id="goButton"
+                        styleName="largeButtons"
+                        enabled="true"
+                        top="7"
+                        width="80"
+                        height="27"
+                        click="goButtonPressed()"/>
+                </mx:GridItem>
+            </mx:GridRow>
+        </mx:Grid>
+
+    </mx:Form>
+
+    </mx:Canvas>
+
+</mx:Panel>

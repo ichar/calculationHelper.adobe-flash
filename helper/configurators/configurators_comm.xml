@@ -1,0 +1,571 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE document
+	[
+		<!ELEMENT document (system, task, description, configurator+)>
+			<!ATTLIST	document
+						id		ID		#REQUIRED
+						type	NMTOKEN	#REQUIRED
+			>
+			<!ELEMENT system EMPTY>
+				<!ATTLIST	system
+							id		ID		#REQUIRED
+							version	NMTOKEN	#REQUIRED
+				>
+			<!ELEMENT task EMPTY>
+				<!ATTLIST	task
+							id		ID		#REQUIRED
+							version	NMTOKEN	#REQUIRED
+				>
+			<!ELEMENT description EMPTY>
+				<!ATTLIST	description
+							id		ID		#REQUIRED
+							version	NMTOKEN	#REQUIRED
+				>
+			<!ELEMENT configurator (field+)>
+				<!ATTLIST	configurator
+							id		ID		#REQUIRED
+				>
+				<!ELEMENT field ANY>
+						<!ATTLIST	field
+									name	NMTOKEN	#REQUIRED
+						>
+	]
+>
+
+<document id='configuratorsList' type='Respond'>
+	<system id='-CIS' version='1'/>
+	<task id='CALCHELPER' version='2'/>
+	<description id='Configurators' version='1'/>
+	
+	<configurator id="HelperURI">
+		<field name='URI'>
+			helper/
+		</field>
+	</configurator>
+	
+	<configurator id="ExternalURI">
+		<field name='URI'>
+			communications/helper/1c_exchange.php
+		</field>
+	</configurator>
+	
+	<configurator id="OrderEmail">
+		<field name='Cc'>
+			IEKharlamov@.ru, ichar@g2.ru
+		</field>
+	</configurator>
+	
+	<configurator id="smallEmptyImageURI">
+		<field name='URI'>
+			images/small.png
+		</field>
+	</configurator>
+	
+	<configurator id="SelfWicketDUS000">
+		<field name='DusCode'>DUS-000</field>
+		<field name='URI'>configurators/dus000/</field>
+        <field name='Cc'></field>
+	</configurator>
+	
+	<configurator id="RollerShutterDUS016">
+		<field name='DusCode'>DUS-016</field>
+		<field name='URI'>configurators/dus016/</field>
+	</configurator>
+	
+	<configurator id="RollerShutterDUS330">
+		<field name='DusCode'>DUS-330</field>
+		<field name='URI'>configurators/dus330/</field>
+	</configurator>
+	
+	<configurator id="SectionalDoorsEcoFast">
+		<field name='DusCode'>DUS-461</field>
+		<field name='URI'>configurators/ecofast/</field>
+	</configurator>
+	
+	<configurator id="SectionalDoorsRSD01">
+		<field name='DusCode'>DUS-462</field>
+		<field name='URI'>configurators/rsd01/</field>
+	</configurator>
+	
+	<configurator id="SectionalDoorsRSD02">
+		<field name='DusCode'>DUS-470</field>
+		<field name='URI'>configurators/rsd02/</field>
+	</configurator>
+	
+	<configurator id="SectionalDoorsISD01">
+		<field name='DusCode'>DUS-480</field>
+		<field name='URI'>configurators/isd01/</field>
+	</configurator>
+	
+	<configurator id="SectionalDoorsISD02">
+		<field name='DusCode'>DUS-490</field>
+		<field name='URI'>configurators/isd02/</field>
+	</configurator>
+	
+	<configurator id="ExtraDUS494">
+		<field name='DusCode'>DUS-494</field>
+		<field name='URI'>configurators/dus494/</field>
+	</configurator>
+	
+	<configurator id="SpeedDoorsDUS550">
+		<field name='DusCode'>DUS-550</field>
+		<field name='URI'>configurators/dus550/</field>
+	</configurator>
+	
+	<configurator id="SpeedDoorsDUS5511">
+		<field name='DusCode'>DUS-551-1</field>
+		<field name='URI'>configurators/dus5511/</field>
+	</configurator>
+	
+	<configurator id="SpeedDoorsDUS5511K">
+		<field name='DusCode'>DUS-551-1K</field>
+		<field name='URI'>configurators/dus5511k/</field>
+	</configurator>
+	
+	<configurator id="SpeedDoorsDUS5512">
+		<field name='DusCode'>DUS-551-2</field>
+		<field name='URI'>configurators/dus5512/</field>
+	</configurator>
+	
+	<configurator id="SpeedDoorsDUS5513">
+		<field name='DusCode'>DUS-551-3</field>
+		<field name='URI'>configurators/dus5513/</field>
+	</configurator>
+	
+	<configurator id="SpeedDoorsDUS5514">
+		<field name='DusCode'>DUS-551-4</field>
+		<field name='URI'>configurators/dus5514/</field>
+	</configurator>
+	
+	<configurator id="SpeedDoorsDUS5515">
+		<field name='DusCode'>DUS-551-5</field>
+		<field name='URI'>configurators/dus5515/</field>
+	</configurator>
+	
+	<configurator id="SpeedDoorsDUS5516">
+		<field name='DusCode'>DUS-551-6</field>
+		<field name='URI'>configurators/dus5516/</field>
+	</configurator>
+	
+	<configurator id="ThermicrollSpiralDUS552">
+		<field name='DusCode'>DUS-552</field>
+		<field name='URI'>configurators/dus552/</field>
+	</configurator>
+	
+	<configurator id="FenceSystemDUS927">
+		<field name='DusCode'>DUS-927</field>
+		<field name='URI'>configurators/dus927/</field>
+	</configurator>
+	
+	<configurator id="FenceGateDUS928">
+		<field name='DusCode'>DUS-928</field>
+		<field name='URI'>configurators/dus928/</field>
+	</configurator>
+	
+	<configurator id="FenceWicketDUS931">
+		<field name='DusCode'>DUS-931</field>
+		<field name='URI'>configurators/dus931/</field>
+	</configurator>
+	
+	<configurator id="SerialSectionalDoors">
+		<field name='DusCode'>DUS-470|DUS-470-1|DUS-480|DUS-480-1|DUS-490|DUS-490-1</field>
+		<field name='URI'>configurators/sectional_doors/</field>
+	</configurator>
+	
+	<configurator id="DockSystemDUS530">
+		<field name='DusCode'>DUS-530</field>
+		<field name='URI'>configurators/dus530/</field>
+	</configurator>
+	
+	<configurator id="DockSystemDUS5301">
+		<field name='DusCode'>DUS-530-1</field>
+		<field name='URI'>configurators/dus5301/</field>
+	</configurator>
+	
+	<configurator id="DockSystemDUS5302">
+		<field name='DusCode'>DUS-530-2</field>
+		<field name='URI'>configurators/dus5302/</field>
+	</configurator>
+	
+	<configurator id="DockSystemDUS596">
+		<field name='DusCode'>DUS-596</field>
+		<field name='URI'>configurators/dus596/</field>
+	</configurator>
+	
+	<configurator id="DockFrameDUS521">
+		<field name='DusCode'>DUS-521</field>
+		<field name='URI'>configurators/dus521/</field>
+	</configurator>
+	
+	<configurator id="DockFrameDUS522">
+		<field name='DusCode'>DUS-522</field>
+		<field name='URI'>configurators/dus522/</field>
+	</configurator>
+	
+	<configurator id="DockFrameDUS523">
+		<field name='DusCode'>DUS-523</field>
+		<field name='URI'>configurators/dus523/</field>
+	</configurator>
+	
+	<configurator id="LiftingTableDUS560">
+		<field name='DusCode'>DUS-560</field>
+		<field name='URI'>configurators/dus560/</field>
+	</configurator>
+	
+	<configurator id="LiftingTableDUS5602">
+		<field name='DusCode'>DUS-560</field>
+		<field name='URI'>configurators/dus560-2/</field>
+	</configurator>
+	
+	<configurator id="DockHouseDUS570">
+		<field name='DusCode'>DUS-570</field>
+		<field name='URI'>configurators/dus570/</field>
+	</configurator>
+	
+	<configurator id="DockHouseDUS571">
+		<field name='DusCode'>DUS-571</field>
+		<field name='URI'>configurators/dus571/</field>
+	</configurator>
+	
+	<configurator id="DockHouseDUS590">
+		<field name='DusCode'>DUS-570</field>
+		<field name='URI'>configurators/dus590/</field>
+	</configurator>
+	
+	<configurator id="StripPVCDoorsDUS510">
+		<field name='DusCode'>DUS-510</field>
+		<field name='URI'>configurators/dus510/</field>
+	</configurator>
+	
+	<configurator id="SwingPVCDoorsDUS580">
+		<field name='DusCode'>DUS-580</field>
+		<field name='URI'>configurators/dus580/</field>
+	</configurator>
+	
+	<configurator id="FlapBridgeDUS540">
+		<field name='DusCode'>DUS-540</field>
+		<field name='URI'>configurators/dus540/</field>
+	</configurator>
+	
+	<configurator id="RampMobileDUS595">
+		<field name='DusCode'>DUS-595</field>
+		<field name='URI'>configurators/dus595/</field>
+	</configurator>
+	
+	<configurator id="SlidingTopSheetDUS524">
+		<field name='DusCode'>DUS-524</field>
+		<field name='URI'>configurators/dus524/</field>
+	</configurator>
+	
+	<configurator id="StreetGateDUS410">
+		<field name='DusCode'>DUS-410</field>
+		<field name='URI'>configurators/dus410/</field>
+	</configurator>
+	
+	<configurator id="BillGateDUS120">
+		<field name='DusCode'>DUS-120</field>
+		<field name='URI'>configurators/dus120/</field>
+	</configurator>
+	
+	<configurator id="StreetGateDUS210">
+		<field name='DusCode'>DUS-210</field>
+		<field name='URI'>configurators/dus210/</field>
+	</configurator>
+	
+	<configurator id="StreetGateDUS2101">
+		<field name='DusCode'>DUS-210</field>
+		<field name='URI'>configurators/dus2101/</field>
+	</configurator>
+	
+	<configurator id="StreetGateDUS220">
+		<field name='DusCode'>DUS-220</field>
+		<field name='URI'>configurators/dus220/</field>
+	</configurator>
+	
+	<configurator id="FoldedGateDUS232">
+		<field name='DusCode'>DUS-232</field>
+		<field name='URI'>configurators/dus232/</field>
+	</configurator>
+	
+	<configurator id="FoldedGateDUS2321">
+		<field name='DusCode'>DUS-232-1</field>
+		<field name='URI'>configurators/dus2321/</field>
+	</configurator>
+	
+	<configurator id="FoldedGateDUS2322">
+		<field name='DusCode'>DUS-232-2</field>
+		<field name='URI'>configurators/dus2322/</field>
+	</configurator>
+	
+	<configurator id="FireGateDUS233">
+		<field name='DusCode'>DUS-233</field>
+		<field name='URI'>configurators/dus233/</field>
+	</configurator>
+	
+	<configurator id="FireGateDUS235">
+		<field name='DusCode'>DUS-235</field>
+		<field name='URI'>configurators/dus235/</field>
+	</configurator>
+	
+	<configurator id="FireGateDUS237">
+		<field name='DusCode'>DUS-237</field>
+		<field name='URI'>configurators/dus237/</field>
+	</configurator>
+	
+	<configurator id="FireShutterDUS238">
+		<field name='DusCode'>DUS-238</field>
+		<field name='URI'>configurators/dus238/</field>
+	</configurator>
+	
+	<configurator id="SingleWicketDUS320">
+		<field name='DusCode'>DUS-320</field>
+		<field name='URI'>configurators/dus320/</field>
+	</configurator>
+	
+	<configurator id="SingleWicketDUS3201">
+		<field name='DusCode'>DUS-320-1</field>
+		<field name='URI'>configurators/dus3201/</field>
+	</configurator>
+	
+	<configurator id="RollGateDUS370">
+		<field name='DusCode'>DUS-370</field>
+		<field name='URI'>configurators/dus370/</field>
+	</configurator>
+	
+	<configurator id="RollGateDUS372">
+		<field name='DusCode'>DUS-372</field>
+		<field name='URI'>configurators/dus372/</field>
+	</configurator>
+	
+	<configurator id="RollGateDUS373">
+		<field name='DusCode'>DUS-373</field>
+		<field name='URI'>configurators/dus373/</field>
+	</configurator>
+	
+	<configurator id="StreetGateDUS420">
+		<field name='DusCode'>DUS-420</field>
+		<field name='URI'>configurators/dus420/</field>
+		<field name='XMLVersion'>2</field>
+        </configurator>
+	
+	<configurator id="SingleWicketDUS430">
+		<field name='DusCode'>DUS-430</field>
+		<field name='URI'>configurators/dus430/</field>
+	</configurator>
+	
+	<configurator id="GarageDoorsDUS431">
+		<field name='DusCode'>DUS-431</field>
+		<field name='URI'>configurators/dus431/</field>
+	</configurator>
+	
+	<configurator id="GarageDoorsDUS431R">
+		<field name='DusCode'>DUS-431</field>
+		<field name='URI'>configurators/dus431r/</field>
+	</configurator>
+	
+	<configurator id="FenceSectionDUS450">
+		<field name='DusCode'>DUS-467</field>
+		<field name='URI'>configurators/dus450/</field>
+	</configurator>
+	
+	<configurator id="SectionalDoorsDUS462">
+		<field name='DusCode'>DUS-462</field>
+		<field name='URI'>configurators/dus462/</field>
+	</configurator>
+	
+	<configurator id="SectionalDoorsDUS462CZ">
+		<field name='DusCode'>DUS-462 (CZ)</field>
+		<field name='URI'>configurators/dus462cz/</field>
+	</configurator>
+	
+	<configurator id="ISectionalDoorsDUS462CZ">
+		<field name='DusCode'>DUS-462</field>
+		<field name='URI'>configurators/dus462cz-i/</field>
+        <field name='BackgroundColor'>#F8FCF8</field>
+		<field name='ModelVersion'>1.15</field>
+	</configurator>
+	
+	<configurator id="SelfDoorsDUS466">
+		<field name='DusCode'>DUS-466</field>
+		<field name='URI'>configurators/dus466/</field>
+	</configurator>
+	
+	<configurator id="SelfWicketDUS4663">
+		<field name='DusCode'>DUS-466-3</field>
+		<field name='URI'>configurators/dus4663/</field>
+	</configurator>
+	
+	<configurator id="SectionalDoorsDUS465">
+		<field name='DusCode'>DUS-465</field>
+		<field name='URI'>configurators/dus465/</field>
+	</configurator>
+	
+	<configurator id="DropPanelDUS467">
+		<field name='DusCode'>DUS-467</field>
+		<field name='URI'>configurators/dus467/</field>
+	</configurator>
+	
+	<configurator id="SectionalDoorsDUS470">
+		<field name='DusCode'>DUS-470</field>
+		<field name='URI'>configurators/dus470/</field>
+	</configurator>
+	
+	<configurator id="SectionalDoorsDUS470CZ">
+		<field name='DusCode'>DUS-470 (CZ)</field>
+		<field name='URI'>configurators/dus470cz/</field>
+	</configurator>
+	
+	<configurator id="SectionalDoorsDUS480">
+		<field name='DusCode'>DUS-480</field>
+		<field name='URI'>configurators/dus480/</field>
+	</configurator>
+	
+	<configurator id="SectionalDoorsDUS480CZ">
+		<field name='DusCode'>DUS-480</field>
+		<field name='URI'>configurators/dus480cz/</field>
+	</configurator>
+	
+	<configurator id="SectionalDoorsDUS490">
+		<field name='DusCode'>DUS-490</field>
+		<field name='URI'>configurators/dus490/</field>
+	</configurator>
+	
+	<configurator id="SectionalDoorsISDCZ">
+		<field name='DusCode'>DUS-480 (CZ)</field>
+		<field name='URI'>configurators/isdcz/</field>
+	</configurator>
+	
+	<configurator id="SectionalDoorsYett01">
+		<field name='DusCode'>DUS-600</field>
+		<field name='URI'>configurators/dus600/</field>
+	</configurator>
+	
+	<configurator id="SectionalDoorsYett01F">
+		<field name='DusCode'>DUS-600F</field>
+		<field name='URI'>configurators/dus600f/</field>
+	</configurator>
+	
+	<configurator id="SectionalDoorsDUS600CZ">
+		<field name='DusCode'>DUS-600</field>
+		<field name='URI'>configurators/dus600cz/</field>
+	</configurator>
+	
+	<configurator id="ISectionalDoorsDUS600CZ">
+		<field name='DusCode'>DUS-600</field>
+		<field name='URI'>configurators/dus600cz-i/</field>
+        <field name='BackgroundColor'>#F8FCF8</field>
+		<field name='ModelVersion'>1.15</field>
+	</configurator>
+	
+	<configurator id="SectionalDoorsYett01CZ">
+		<field name='DusCode'>DUS-600</field>
+		<field name='URI'>configurators/dus600cz-s/</field>
+	</configurator>
+	
+	<configurator id="ISectionalDoorsYett01CZ">
+		<field name='DusCode'>DUS-600</field>
+		<field name='URI'>configurators/dus600cz-s-i/</field>
+        <field name='BackgroundColor'>#F8FCF8</field>
+		<field name='ModelVersion'>1.15</field>
+	</configurator>
+	
+	<configurator id="SectionalDoorsYett02">
+		<field name='DusCode'>DUS-700</field>
+		<field name='URI'>configurators/dus700/</field>
+	</configurator>
+	
+	<configurator id="SectionalDoorsYett02F">
+		<field name='DusCode'>DUS-700F</field>
+		<field name='URI'>configurators/dus700f/</field>
+	</configurator>
+	
+	<configurator id="SectionalDoorsYett0230">
+		<field name='DusCode'>DUS-700-30</field>
+		<field name='URI'>configurators/dus700-30/</field>
+	</configurator>
+	
+	<configurator id="SectionalDoorsDUS700CZ">
+		<field name='DusCode'>DUS-700</field>
+		<field name='URI'>configurators/dus700cz/</field>
+	</configurator>
+	
+	<configurator id="ISectionalDoorsDUS700CZ">
+		<field name='DusCode'>DUS-700</field>
+		<field name='URI'>configurators/dus700cz-i/</field>
+        <field name='BackgroundColor'>#F8FCF8</field>
+		<field name='ModelVersion'>1.15</field>
+	</configurator>
+	
+	<configurator id="SectionalDoorsYett02CZ">
+		<field name='DusCode'>DUS-700</field>
+		<field name='URI'>configurators/dus700cz-s/</field>
+	</configurator>
+	
+	<configurator id="ISectionalDoorsYett02CZ">
+		<field name='DusCode'>DUS-700</field>
+		<field name='URI'>configurators/dus700cz-s-i/</field>
+        <field name='BackgroundColor'>#F8FCF8</field>
+		<field name='ModelVersion'>1.15</field>
+	</configurator>
+	
+	<configurator id="ModularUnitDUS621S">
+		<field name='DusCode'>DUS-621</field>
+		<field name='URI'>configurators/dus621s/</field>
+	</configurator>
+	
+	<configurator id="ModularSystemDUS621G">
+		<field name='DusCode'>DUS-621</field>
+		<field name='URI'>configurators/dus621g/</field>
+	</configurator>
+	
+	<configurator id="ModularSystemDUS621O">
+		<field name='DusCode'>DUS-621</field>
+		<field name='URI'>configurators/dus621o/</field>
+	</configurator>
+	
+	<configurator id="ModularSystemDUS621P">
+		<field name='DusCode'>DUS-621</field>
+		<field name='URI'>configurators/dus621p/</field>
+	</configurator>
+	
+	<configurator id="ModularSystemDUS621M">
+		<field name='DusCode'>DUS-621</field>
+		<field name='URI'>configurators/dus621m/</field>
+	</configurator>
+	
+	<configurator id="ModularSystemDUS621B">
+		<field name='DusCode'>DUS-621</field>
+		<field name='URI'>configurators/dus621b/</field>
+	</configurator>
+	
+	<configurator id="SteelDoorDUS6401">
+		<field name='DusCode'>DUS-640-1</field>
+		<field name='URI'>configurators/dus6401/</field>
+	</configurator>
+	
+	<configurator id="AutomaticsDUS999">
+		<field name='DusCode'>DUS-999</field>
+		<field name='URI'>configurators/dus999/</field>
+	</configurator>
+	
+	<configurator id="Automatics">
+		<field name='DusCode'>DUS-999</field>
+		<field name='URI'>configurators/dus9991/</field>
+	</configurator>
+	
+	<configurator id="AutomaticsFAAC">
+		<field name='DusCode'>DUS-999</field>
+		<field name='URI'>configurators/dus9992/</field>
+	</configurator>
+	
+	<configurator id="AutomaticsGfA">
+		<field name='DusCode'>DUS-999</field>
+		<field name='URI'>configurators/dus9993/</field>
+	</configurator>
+	
+	<configurator id="AutomaticsBFT">
+		<field name='DusCode'>DUS-999</field>
+		<field name='URI'>configurators/dus9994/</field>
+	</configurator>
+</document>

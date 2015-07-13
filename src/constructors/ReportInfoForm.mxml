@@ -1,0 +1,313 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<mx:Panel xmlns:mx="http://www.adobe.com/2006/mxml"
+          visible="false" width="100%" height="100%" 
+          activate="activateHandler(event)"
+          styleName="panelStyle" 
+          horizontalScrollPolicy="off" verticalScrollPolicy="off"
+          creationComplete="init()" move="moveHandler(event)" resize="resizeHandler(event)" 
+          title="Order Attribute Check Form">
+
+    <mx:Script>
+        <![CDATA[
+            import mx.containers.FormItem;
+            import mx.controls.Label;
+            import mx.core.Application;
+            import mx.events.DragEvent;
+            import mx.events.MoveEvent;
+            import mx.events.ResizeEvent;
+            import mx.managers.PopUpManager;
+
+            private var version:String = new String("");
+            private var IsDebug:Boolean = false;
+
+            private var app:Object = Application.application;
+            private var parentObject:Object;
+			private var browser:String = '';
+            private var size:Object = {'small':440, 'middle':520, 'normal':580, 'big':680, 'large':750, 'huge':900, 'extra':1020};
+            private var wide:String = '';
+
+            protected var boolIsActivated:Boolean = false;
+            protected var boolWasMoved:Boolean = false;
+            protected var boolBack:Boolean = false;
+
+            /* -------------------------- */
+               include "../lib/utils.as";
+            /* -------------------------- */
+
+            private function init():void
+            {
+                this.parentObject = Application.application.mainClassObj;
+                this.version = this.parentObject.product_version;
+				this.browser = this.parentObject.helperBrowserType.toLowerCase();
+				
+                var items:Array = this.parentObject.getXMLParametersValue();
+
+                var s:String = this.parentObject.getMessage(19);
+                if (s) this.title = s + 
+                    (this.IsDebug ? ' (' + this.parentObject.getMessage(23) + ' ' + this.version + ')' : '');
+
+                this.goInfo.setStyle("backgroundColor", this.parentObject.globalAttrs.background_color);
+
+                if (items.length > 0)
+                    this.goForm(items);
+                else
+                    this.backForm();
+
+                if (!this.IsDebug)
+                    this.status = this.parentObject.getMessage(23) + ' ' + this.version +
+                        (this.parentObject.isDebugMode ? ' [' + this.browser + ']' : '');
+
+                this.getPosition();
+            }
+
+            private function backForm():void
+            {
+                this.buttonsContainer.removeChild(this.goRow);
+                this.formContainer.removeChild(this.goInfo);
+                this.removeChild(this.formHeader);
+
+                this.backInfo.text = this.parentObject.getMessage(24);
+
+                if (this.parentObject.namesOfButtons.hasOwnProperty("cancelButton"))
+                    this.cancelButton.label = this.parentObject.namesOfButtons["cancelButton"];
+
+                this.formContainer.height = this.backInfo.height + 10;
+                this.height = this.formContainer.height + 100;
+
+                this.boolBack = true;
+            }
+
+            private function isMemo(field_type:String):Boolean
+            {
+                return ['INPUT AREA', 'MEMO'].indexOf(field_type) > -1 ? true : false;
+            }
+            
+            private function goForm(items:Array):void
+            {
+                var item:Object;
+
+                this.buttonsContainer.removeChild(this.backRow);
+                this.formContainer.removeChild(this.backInfo);
+
+                this.formHeader.text = this.parentObject.getMessage(22);
+
+                if (this.parentObject.namesOfButtons.hasOwnProperty("checkButton"))
+                    this.goButton.label = this.parentObject.namesOfButtons["checkButton"];
+                if (this.parentObject.namesOfButtons.hasOwnProperty("cancelButton"))
+                    this.cancelButton.label = this.parentObject.namesOfButtons["cancelButton"];
+
+                var boolHasInputArea:Boolean = false;
+                var w1:Number = 0;
+                var w2:Number = 0;
+                var input_area_lines:Number = 0;
+                var n:Number = 0;
+                var is_memo:Boolean = false;
+
+                for each(item in items) {
+                    is_memo = this.isMemo(item.field_type);
+
+                    w1 = item.title.length >= w1 ? item.title.length : w1;
+                    w2 = item.value.length >= w2 && !is_memo ? item.value.length : w2;
+
+                    if (is_memo) {
+                        n = item.value.split(this.parentObject.EOL).length;
+                        if (n > 3 && items.length == 12) 
+                            this.wide = 'middle';
+                        input_area_lines += (n - 1);
+                        boolHasInputArea = true;
+                    }
+                }
+
+                if (w1 + w2 > 110 || ((w1 > 90 || w2 > 90) && boolHasInputArea))
+                    this.wide = 'extra'; 
+                else if (w1 + w2 > 90 || ((w1 > 80 || w2 > 80) && boolHasInputArea))
+                    this.wide = 'huge'; 
+                else if (w1 + w2 > 80 || w1 > 60 || (w1 >= 40 && boolHasInputArea))
+                    this.wide = 'large'; 
+                else if (w1 + w2 > 60 || w1 > 50 || (w1 >= 30 && boolHasInputArea))
+                    this.wide = 'big'; 
+                else if (w1 + w2 > 48 || w1 > 40 || (w1 >= 20 && boolHasInputArea))
+                    this.wide = 'normal'; 
+                else if (items.length > 12)
+                    this.wide = 'middle'; 
+                else if (w1 + w2 < 45 && !boolHasInputArea)
+                    this.wide = 'small';
+
+                if (this.wide !== '' && size[this.wide] > 0) {
+                    var offset:Number = size[this.wide];
+                    if (boolHasInputArea) 
+                        offset += 50;
+                    this.goInfo.width = offset - 40;
+                    this.width = offset;
+                } else {
+                    this.width += 20;
+                }
+
+                for each(item in items) {
+                    var x:FormItem = new FormItem();
+                    x.label = capitalized(item.title);
+                    x.setStyle('fontWeight', 'normal');
+
+                    is_memo = this.isMemo(item.field_type);
+                    var i:int = 0;
+
+                    for each(var value:String in item.value.split(this.parentObject.EOL)) {
+                        var v:Label = new Label();
+                        v.text = !i ? capitalized(value) : value;
+
+                        if (is_memo) {
+                            v.setStyle('fontStyle', 'italic');
+                            v.setStyle('fontSize', 11);
+                            if (i > 0) v.setStyle('paddingTop', -10);
+                        }
+                        else
+                            v.setStyle('fontWeight', 'bold');
+
+                        x.addChild(v);
+                        ++i;
+                    }
+
+                    this.goInfo.addChild(x);
+                }
+
+                if (items.length < 15) {
+                    var l:Number = this.browser == 'chrome' ? 30 : 26;
+                    this.goInfo.height = items.length * l + input_area_lines * 12 + 36;
+                    this.formContainer.height = this.goInfo.height;
+                    this.height = this.formContainer.height + 126; 
+                }
+
+                if (this.IsDebug || this.parentObject.isDebugMode)
+                    this.status = '[' + this.wide + (this.wide ? ' ' : '') + w1.toString() + ':' + w2.toString() + ']';
+            }
+
+            private function getPosition():void
+            {
+                var frm:Array = this.parentObject.reportFormPosition;
+
+                if (this.boolBack)
+                {
+                    this.x = (app.width - this.width) / 2;
+                    this.y = (app.height - this.height - 80) / 2;
+                }
+                else if (frm.length == 3 && this.wide == frm[2])
+                {
+                    this.x = frm[0];
+                    this.y = frm[1];
+                }
+                else
+                {
+                    this.x = (app.width - this.width) / 2; //this.x = app.applicationDivider.x + 10;
+                    this.y = (app.height - this.height) / 2; //this.y = app.inputArea.y + 10;
+                }
+
+                try {
+                    if (this.x + this.width > this.parent.width) this.x = this.parent.width - this.width;
+                    if (this.y + this.height > this.parent.height) this.y = this.parent.height - this.height;
+                } 
+                catch(errorNum:Error) {}
+                
+                this.x = int(this.x);
+                this.y = int(this.y);
+
+                this.visible = true;
+            }
+
+            private function setPosition():void
+            {
+                if (this.boolWasMoved && !this.boolBack)
+                    this.parentObject.reportFormPosition = new Array(this.x, this.y, this.wide);
+            }
+
+            private function goButtonPressed():void
+            {
+                this.cancelButtonPressed();
+                this.parentObject.executeMainAction();
+            }
+
+            private function cancelButtonPressed():void
+            {
+                this.setPosition();
+                PopUpManager.removePopUp(this);
+            }
+
+            protected function activateHandler(event:Event):void
+            {
+                if (!this.boolIsActivated) this.getPosition();
+                this.boolIsActivated = true;
+            }
+
+            protected function moveHandler(event:MoveEvent):void
+            {
+                var x:Number = this.width;
+                var y:Number = this.height;
+
+                if (this.visible) {
+                    if (this.IsDebug)
+                        this.status = "[move x:" + this.x.toString() + " y:" + this.y.toString() + "]";
+                    if (this.x < 0) this.x = 0;
+                    if (this.x + x > this.parent.width) this.x = int(this.parent.width - x);
+                    if (this.y < 0) this.y = 0;
+                    if (this.y + y > this.parent.height) this.y = int(this.parent.height - y);
+                    this.boolWasMoved = true;
+                }
+            }
+
+            protected function resizeHandler(event:ResizeEvent):void
+            {
+                if (this.visible && this.IsDebug) this.status = 'risize';
+            }
+        ]]>
+    </mx:Script>
+
+    <mx:Label id="formHeader" styleName="panelHeaderStyle" text="Check the order content, please."/>
+
+    <mx:Canvas id="formContainer" paddingBottom="0" paddingLeft="0" paddingRight="0" paddingTop="0" x="0" y="0" width="100%" height="416"
+			   horizontalScrollPolicy="off" verticalScrollPolicy="off">
+
+        <mx:Text id="backInfo" y="10" width="480" height="40" disabledColor="#D54040"
+            enabled="false" selectable="false" fontSize="12" fontWeight="bold" textAlign="center"/>
+
+        <mx:Form id="goInfo" x="0" y="0" width="100%" height="416" backgroundColor="#FFFFFF"
+            color="#000000" borderColor="#e7e7e7" borderStyle="solid" borderThickness="1" 
+            paddingBottom="20" paddingLeft="20" paddingRight="20" paddingTop="20" 
+            textAlign="center"/>
+
+    </mx:Canvas>
+
+    <mx:Grid id="buttonsContainer" borderStyle="solid" borderThickness="0" width="100%" height="100%" horizontalGap="5" x="10" paddingTop="5">
+        <mx:GridRow id="goRow" borderStyle="solid" borderThickness="0" width="100%" horizontalAlign="center">
+            <mx:GridItem borderStyle="solid" borderThickness="0">
+                <mx:Button
+                        label="Рассчитать"
+                        id="goButton"
+                        styleName="largeButtons"
+                        enabled="true"
+                        click="goButtonPressed()"
+                />
+            </mx:GridItem>
+            <mx:GridItem borderStyle="solid" borderThickness="0">
+                <mx:Button
+                        label="Отменить"
+                        id="cancelButton"
+                        styleName="largeButtons"
+                        enabled="true"
+                        click="cancelButtonPressed()"
+                />
+            </mx:GridItem>
+        </mx:GridRow>
+
+        <mx:GridRow id="backRow" borderStyle="solid" borderThickness="0" width="100%" horizontalAlign="center">
+            <mx:GridItem borderStyle="solid" borderThickness="0">
+                <mx:Button
+                        label="Отменить"
+                        id="backButton"
+                        styleName="largeButtons"
+                        enabled="true"
+                        click="cancelButtonPressed()"
+                />
+            </mx:GridItem>
+        </mx:GridRow>
+    </mx:Grid>
+
+</mx:Panel>

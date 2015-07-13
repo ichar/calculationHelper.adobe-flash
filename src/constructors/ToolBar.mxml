@@ -1,0 +1,163 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml"
+           width="50"
+           height="124"
+           backgroundColor="#FFFFFF"
+           visible="false"
+           creationComplete="init()">
+
+    <mx:Style>
+        .image
+        {
+            horizontalAlign:left;
+            paddingLeft:10;
+        }
+        .button
+        {
+            fillColors:#FFFFFF, #8BACAD; /* #DBAC4D #DB8CAD #AB8C4D #8B8C4D #8BAC4D #DB8C4D : #E4DA8F #608080 #8090A0 #80A090 */
+            color:#606060; /*608080*/
+            fontFamily:Tahoma;
+            fontSize:16px;
+            fontWeight:bold;
+            paddingTop:5;
+            paddingBottom:5;
+            paddingLeft:0;
+            paddingRight:0;
+            cornerRadius:0;
+        }
+    </mx:Style>
+
+    <mx:Script>
+        <![CDATA[
+            import mx.controls.Alert;
+            import mx.core.Application;
+
+            private  var app:Object = Application.application;
+            private  var rootObject:Object;
+            private  var parentObject:Object;
+            private  var searchbar:Object;
+
+            internal var groups:Object;
+
+            protected function init():void
+            {
+                this.rootObject = app.mainClassObj;
+            }
+
+            public function initState(parent:Object, groups:Object):void
+            {
+                this.rootObject = parent.parent;
+                this.parentObject = parent;
+                this.groups = groups;
+
+                this.collapse.toolTip = this.rootObject.getMessage(37);
+                this.expand.toolTip = this.rootObject.getMessage(38);
+                this.search.toolTip = this.rootObject.getMessage(39);
+                this.rootObject.appObjectList['searchlabel'].text = this.rootObject.getMessage(40);
+
+                this.searchbar = this.rootObject.appObjectList['searchbar'];
+                this.searchbar.visible = false;
+
+                this.visible = true;
+            }
+
+            public function validateState():void
+            {
+                var top:Number = 0;
+
+                for each (var id:String in this.groups.$ids)
+                {
+                    top = this.groups[id].validateState(top);
+                }
+            }
+
+            public function disableGroupOptions():void
+            {
+                this.collapse.enabled = this.expand.enabled = false;
+            }
+
+            public function runSearch(forward:Boolean):void
+            {
+                var text:String = this.rootObject.appObjectList['searchtext'].text;
+
+                if (text)
+                {
+                    this.validateState();
+
+                    var ids:Array = this.groups.$ids.slice();
+                    var repeat:Boolean = this.parentObject.selected_item ? true : false;
+                    var found:Boolean = false;
+
+                    if (!forward) ids.reverse();
+
+                    for each (var id:String in ids)
+                    {
+                        if (this.groups[id].searchItem(text, forward))
+                        {
+                            found = true;
+                            break;
+                        }
+                    }
+                    
+                    if (repeat && !found) runSearch(forward);
+                }
+            }
+
+            public function closeSearch():void
+            {
+                for each (var id:String in this.groups.$ids)
+                {
+                    this.groups[id].removeSelected();
+                }
+                this.searchbar.visible = false;
+            }
+
+            protected function setRowState(state:Boolean):void
+            {
+                for each (var id:String in this.groups.$ids)
+                {
+                    this.groups[id].changeState(state);
+                }
+                this.validateState();
+            }
+
+            private function expandHandler(event:MouseEvent):void
+            {
+                this.setRowState(true);
+            }
+
+            private function collapseHandler(event:MouseEvent):void
+            {
+                this.setRowState(false);
+            }
+
+            private function searchHandler(event:MouseEvent):void
+            {
+                focusManager.setFocus(this.rootObject.appObjectList['searchtext']);
+                this.searchbar.visible = true;
+            }
+        ]]>
+    </mx:Script>
+    
+    <mx:Blur id="blurImage" duration="1000" blurXFrom="0.0" blurXTo="10.0" blurYFrom="0.0" blurYTo="10.0"/>
+    <mx:Blur id="unblurImage" duration="1000" blurXFrom="10.0" blurXTo="0.0" blurYFrom="10.0" blurYTo="0.0"/>
+    
+    <mx:VBox id="container" x="0" y="0" paddingTop="0" paddingRight="0" paddingBottom="0" paddingLeft="0" verticalGap="0" 
+             borderStyle="solid" borderThickness="2" borderColor="#DFDFDF" 
+             width="50" height="124"
+             >
+        <mx:Button id="collapse" width="100%" styleName="button" 
+                   icon="@Embed('images/collapse.png')" downIcon="@Embed('images/collapse.png')"
+                   toolTip="Collapse all group items"
+                   click="collapseHandler(event)"/>
+        <mx:Button id="expand" width="100%" styleName="button"
+                   icon="@Embed('images/expand.png')" downIcon="@Embed('images/expand.png')"
+                   toolTip="Expand all group items"
+                   click="expandHandler(event)"/>
+        <mx:Button id="search" width="100%" styleName="button"
+                   icon="@Embed('images/search.png')" downIcon="@Embed('images/search.png')"
+                   toolTip="Search the items"
+                   click="searchHandler(event)"/>
+    </mx:VBox>
+</mx:Canvas>
+

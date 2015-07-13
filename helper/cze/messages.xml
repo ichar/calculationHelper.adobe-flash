@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!-- Сообщения - конфигуратор продукции (Помощник)  -->
+
+<!DOCTYPE document
+    [
+        <!ELEMENT document (system, task, description, lanquage, message+)>
+            <!ATTLIST    document
+                        id        ID        #REQUIRED
+                        type    NMTOKEN    #REQUIRED
+            >
+            <!ELEMENT system EMPTY>
+                <!ATTLIST    system
+                            id        ID        #REQUIRED
+                            version    NMTOKEN    #REQUIRED
+                >
+            <!ELEMENT task EMPTY>
+                <!ATTLIST    task
+                            id        ID        #REQUIRED
+                            version    NMTOKEN    #REQUIRED
+                >
+            <!ELEMENT description EMPTY>
+                <!ATTLIST    description
+                            id        ID        #REQUIRED
+                            version    NMTOKEN    #REQUIRED
+                >
+            <!ELEMENT lanquage EMPTY>
+                <!ATTLIST    lanquage
+                                id        ID        #REQUIRED
+                >
+            <!ELEMENT message ANY>
+                    <!ATTLIST    message
+                                id        CDATA    #REQUIRED
+                    >
+    ]
+>
+
+<document id='messagesDescription' type='Respond'>
+    <system id='-CIS' version='1'/>
+    <task id='CALCHELPER' version='2'/>
+    <description id='Messages' version='1'/>
+    <lanquage id='CZE'/>
+    
+    <message id='0'>
+        Zpracování XML není uveden.
+    </message>
+    <message id='1'>
+        Suma:$space$
+    </message>
+    <message id='2'>
+        $space$n/a
+    </message>
+    <message id='3'>
+        Chyba v návodu:$space$
+    </message>
+    <message id='4'>
+        $space$nesprávná hodnota$space$
+    </message>
+    <message id='5'>
+        <!--(nezahrnuje slevu)-->
+        $space$
+    </message>
+    <message id='6'>
+        empty
+    </message>
+    <message id='7'>Informativní dokumentace</message>
+    <message id='8'>Fatální chyba. Oznamte to prosím pro vývojáře.</message>
+    <message id='9'>DD.MM.YYYY</message>
+    <message id='10'>na horní části formuláře</message>
+    <message id='11'>na konci formuláře</message>
+    <message id='12'>Informace o hodnotě určité možnosti chybí v podnikovém informačním systému.</message>
+    <message id='13'>Není aktualizován systém nápovědy.</message>
+    <message id='14'>Pod číslem</message>
+    <message id='15'>ze dne</message>
+    <message id='16'>Vaše objednávka je zaregistrována.</message>
+    <message id='17'>Služba je dočasně nedostupná. Zkuste to znovu později.</message>
+    <message id='18'>Upozornění:$space$</message>
+    <message id='20'>Ano</message>
+    <message id='21'>Ne</message>
+    <message id='22'>Zkontrolujte data pro výpočet nákladů na dokončení:</message>
+    <message id='23'>verze</message>
+    <message id='24'>
+VAROVÁNÍ!
+Data pro výpočet hodnoty kompletní sady není vybrána.
+    </message>
+    <message id='25'>Počet</message>
+    <message id='26'>Informace k objednávce</message>
+    <message id='27'>VAROVÁNÍ!</message>
+    <message id='28'>Omlouváme se za případné nepříjemnosti.</message>
+    <message id='29'>E-mail zaslaný na XXX mailové oznámení.</message>
+    <message id='30'>Objednávka je předána do obchodního oddělení společnosti , které Vám zašle žádost o její potvrzení.</message>
+    <message id='31'>INFORMACE!</message>
+    <message id='32'>VAROVÁNÍ!</message>
+    <message id='33'>VAROVÁNÍ!</message>
+    <message id='34'>ERROR!</message>
+    <message id='35'>Změny zrušena</message>
+    <message id='36'>Chyba v návodu </message>
+    <message id='37'>Sbalit všechny sekce</message>
+    <message id='38'>Rozbalit všechny sekce</message>
+    <message id='39'>Najděte si designový prvek</message>
+    <message id='40'>Najděte:</message>
+    <message id='41'>Prosím, potvrďte:</message>
+</document>

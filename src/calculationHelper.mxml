@@ -1,0 +1,812 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+Created:      14.09.2014
+Created by:   I.E.Kharlamov
+-->
+
+<mx:Application
+    xmlns:mx         = "http://www.adobe.com/2006/mxml"
+    xmlns:local      = "*"
+    layout           = "absolute"
+    verticalAlign    = "middle"
+    horizontalAlign  = "left"
+    borderStyle      = "none"
+    minHeight        = "500"
+    minWidth         = "1065"
+    creationComplete = "init()"
+    resize           = "resizeAppWindow(event)"
+    cornerRadius     = "0" xmlns:constructors="constructors.*">
+
+    <mx:Style>
+        Application
+        {
+            backgroundColor:#FCFAEB;
+            modalTransparencyColor:#FCFAEB;
+            backgroundGradientAlphas:1.0, 1.0;
+            backgroundGradientColors:#FCFAEB, #FCFAEB;
+        }
+
+        ApplicationControlBar{
+            backgroundColor:#C8D8DA;
+            borderColor:#899FAD;
+            borderStyle:solid;
+            color:#323232;
+            paddingTop:5;
+        }
+
+        Alert{
+            backgroundColor:#FFFFFF;
+            borderColor:#DCDCDC;
+            themeColor:haloOrange;
+            fontFamily:"Courier New";
+            fontSize:12px;
+            color:#000000;
+        }
+
+        Button
+        {
+            fontFamily:Arial;
+            fontSize:11px;
+            color:#707070;
+            disabledColor:#B8B8B8;
+            themeColor:haloOrange;
+            borderColor:#CCCCCC;
+            fillAlphas:1.0, 1.0;
+            fillColors:#FCFCFC, #EAEAEA;
+        }
+
+        CheckBox
+        {
+            disabledColor:#AFAFAF;
+            textRollOverColor:#000000;
+
+            upIcon:Embed("../images/skins/enabled_notSelcb.png");
+            selectedUpIcon:Embed("../images/skins/enabled_isSelcb.png");
+            overIcon:Embed("../images/skins/rollOver_notSelCB.png");
+            selectedOverIcon:Embed("../images/skins/rollOver_isSelCB.png");
+            downIcon:Embed("../images/skins/pressed_isSelCB.png");
+            selectedDownIcon:Embed("../images/skins/pressed_notSelCB.png");
+            disabledIcon:Embed("../images/skins/disabled_notSelCB.png");
+            selectedDisabledIcon:Embed("../images/skins/disabled_isSelCB.png");
+        }
+
+        ComboBox
+        {
+            paddingBottom:3;
+            paddingTop:3;
+            paddingLeft:5;
+            paddingRight:5;
+        }
+
+        HorizontalList
+        {
+            backgroundColor:#FCFAEB;
+            borderColor:#666666;
+            borderStyle:solid;
+            fillAlphas:1.0, 1.0;
+            fillColors:#FFFFFF, #FFFFFF;
+            selectionColor:#ACBBD8;
+            rollOverColor:#F6F8B8;
+            disabledColor:#CCCCCC;
+            highlightAlphas:1.0, 1.0;
+        }
+
+        List
+        {
+            borderColor:#CCCCCC;
+            color:#808080;
+            selectionColor:#A0B2C8;
+            rollOverColor:#E8F080; /*#B3CEFD*/
+            disabledColor:#AFAFAF;
+        }
+
+        MenuBar
+        {
+            borderColor:#FFFFFF;
+            themeColor:#FFFFFF;
+            fillAlphas:1.0, 1.0;
+            fillColors:#FFFFFF, #FFFFFF;
+            disabledColor:#FFFFFF;
+            selectionColor:#FFFFFF;
+            color:#FFFFFF;
+            highlightAlphas:1.0, 1.0;
+        }
+
+        PopUpButton	
+        {
+            paddingBottom:5;
+            paddingTop:5;
+            paddingLeft:5;
+            paddingRight:5;
+        }
+
+        RadioButton
+        {
+            disabledColor:#AFAFAF;
+            textRollOverColor:#000000;
+            upIcon:Embed("../images/skins/enabled_notSelRB.png");
+            selectedUpIcon:Embed("../images/skins/enabled_isSelRB.png");
+            overIcon:Embed("../images/skins/rollOver_notSelRB.png");
+            selectedOverIcon:Embed("../images/skins/rollOver_isSelRB.png");
+            downIcon:Embed("../images/skins/pressed_isSelRB.png");
+            selectedDownIcon:Embed("../images/skins/pressed_notSelRB.png");
+            disabledIcon:Embed("../images/skins/disabled_notSelRB.png");
+            selectedDisabledIcon:Embed("../images/skins/disabled_isSelRB.png");
+        }
+
+        TextInput
+        {
+            baseline:5;
+        }
+
+        .aloneRowInGroup
+        {
+            borderStyle:solid;
+            borderColor:#F8FCF8;
+            paddingTop:4;
+            paddingBottom:4;
+        }
+
+        .b
+        {
+            borderColor:#333333;
+            borderStyle:solid;
+        }
+
+        .bordered
+        {
+            borderThickness:1px;
+            borderColor:#CCCCCC;
+            borderStyle:none;
+            paddingBottom:5;
+            paddingTop:5;
+            paddingLeft:5;
+            paddingRight:5;
+        }
+
+        .callCalculatorButtons
+        {
+            upSkin:Embed("../images/skins/enabled_callclc.png");
+            overSkin:Embed("../images/skins/rollOver_callclc.png");
+            downSkin:Embed("../images/skins/pressed_callclc.png");
+            disabledSkin:Embed("../images/skins/disabled_callclc.png");
+        }
+
+        .calculatorButtons
+        {
+            upSkin:Embed("../images/skins/enabled_clc.png");
+            overSkin:Embed("../images/skins/rollOver_clc.png");
+            downSkin:Embed("../images/skins/pressed_clc.png");
+            disabledSkin:Embed("../images/skins/disabled_clc.png");
+        }
+
+        .firstRowInGroup
+        {
+            borderStyle:solid;
+            borderColor:#F8FCF8;
+            paddingTop:4;
+            paddingBottom:2;
+        }
+
+        .comboBoxDropdown
+        {
+            selectionColor:#7FCEFF;
+            rollOverColor:#B2E1FF;
+            fontFamily:Tahoma;
+        }
+
+        .largeButtons
+        {
+            upSkin:Embed("../images/skins/enabled_lb.png");
+            overSkin:Embed("../images/skins/rollOver_lb.png");
+            downSkin:Embed("../images/skins/pressed_lb.png");
+            disabledSkin:Embed("../images/skins/disabled_lb.png");
+        }
+
+        .lastRowInGroup
+        {
+            borderStyle:solid;
+            borderColor:#F8FCF8;
+            paddingTop:2;
+            paddingBottom:4;
+        }
+
+        .panelStyle
+        {
+            backgroundColor:#FFFFFF;
+            color:#888888;
+            fontFamily:Tahoma;
+            fontWeight:bold;
+            fontSize:12px;
+            textAlign:left;
+            alpha:1;
+            paddingTop:10;
+            paddingBottom:10;
+            paddingLeft:10;
+            paddingRight:10;
+            borderAlpha:0.75;
+            horizontalCenter:1;
+            verticalCenter:1;
+        }
+
+        .panelHeaderStyle
+        {
+            fontFamily:Arial;
+            fontWeight:normal;
+            fontSize:11px;
+            color:black;
+        }
+
+        .prompting
+        {
+            backgroundColor:#F8FCF8;
+            borderStyle:none;
+        }
+
+        .repositoryDataGridStyle
+        {
+            fontFamily:Arial;
+            fontSize:11px;
+            fontWeight:normal;
+            fontStyle:plain;
+            textAlign:left;
+            color:#5774A6;
+            horizontal-grid-lines:true;
+            horizontal-grid-line-color: #FFFFFF;
+            borderColor:#FFFFFF;
+            themeColor:#FFFFFF;
+            alternatingItemColors:#FFFFFF, #FFFFFF;
+            headerColors:#FFFFFF, #FFFFFF;
+            borderColor:#FFFFFF;
+            borderStyle:solid;
+            verticalGridLineColor:#FFFFFF;
+            horizontalGridLineColor:#FFFFFF;
+            rollOverColor:#fDD6A9;
+            selectionColor:#f69522;
+        }
+
+        .repositoryDataGridHeader
+        {
+            fontFamily:Arial;
+            fontSize:13px;
+            fontWeight:bold;
+            fontStyle:plain;
+            textAlign:left;
+            color:#363636;
+            horizontal-grid-lines:true;
+            horizontal-grid-line-color: #cccccc;
+            borderColor:#968f89;
+            themeColor:#FFFFFF;
+            alternatingItemColors:#FFFFFF, #FFFFFF;
+            headerColors:#FFFFFF, #FFFFFF;
+            borderColor:#FFFFFF;
+            borderStyle:solid;
+            verticalGridLineColor:#FFFFFF;
+            horizontalGridLineColor:#FFFFFF;
+            rollOverColor:#DDDDDD;
+            selectionColor:#AAAAAA;
+            color:#5774A6;
+            fontFamily:Arial;
+            fontSize:11px;
+        }
+
+        .rowGroupExpanded
+        {
+            borderStyle:none;
+            paddingTop:10;
+            paddingBottom:10;
+            paddingLeft:5;
+            paddingRight:5;
+        }
+
+        .rowGroupCollapsed
+        {
+            backgroundColor:#E4E6DD;
+            borderThickness:1px;
+            borderColor:#FFFFFF;
+            borderStyle:solid;
+            paddingTop:9;
+            paddingBottom:9;
+            paddingLeft:4;
+            paddingRight:4;
+        }
+
+        .rowBox
+        {
+            backgroundColor:#EEEDDF;
+            horizontalAlign:left;
+            fontWeight:bold;
+            fontSize:13px;
+            borderColor:#A1A4A6;
+            borderStyle:solid;
+            borderThickness:1px;
+            cornerRadius:8;
+            paddingTop:4;
+            paddingBottom:4;
+            paddingLeft:10;
+            paddingRight:10;
+            verticalGap:0;
+        }
+
+        .rowField
+        {
+            horizontalAlign:left;
+        }
+
+        .rowForm
+        {
+            borderStyle:solid;
+            borderColor:#F8FCF8;
+            paddingTop:2;
+            paddingBottom:2;
+        }
+
+        .rowImage
+        {
+            paddingTop:10;
+            paddingBottom:10;
+            paddingLeft:10;
+            paddingRight:10;
+        }
+
+        .rowItem
+        {
+            horizontalAlign:left;
+            fontWeight:bold;
+            fontSize:13px;
+            borderStyle:none;
+            paddingTop:0;
+            paddingBottom:0;
+            paddingLeft:0;
+            paddingRight:0;
+        }
+
+        .rowTitle
+        {
+            horizontalAlign:right;
+        }
+
+        .textInput {
+            borderStyle:solid;
+            borderColor:#cccccc;
+            borderThickness:1;
+            cornerRadius:5;
+            backgroundAlpha:1;
+            backgroundColor:#ffffff;
+            color:#666666;
+            fontWeight:normal;
+            fontSize:12px;
+            paddingTop:3;
+            paddingBottom:2;
+            paddingLeft:5;
+            paddingRight:5;
+        }
+
+        .titleNameStyle
+        {
+            fontFamily:Arial;
+            fontWeight:bold;
+            fontStyle:plain;
+            fontSize:12px;
+            textAlign:left;
+            color:#363636;
+            disabledColor:#363636;
+            backgroundAlpha:0.0;
+            borderStyle:none;
+        }
+    </mx:Style>
+
+    <mx:Script>
+        <![CDATA[
+            // Special My Classes
+            import flash.events.Event;
+            import flash.events.MouseEvent;
+            import flash.utils.ByteArray;
+
+            import main.*;
+
+            import mx.core.Container;
+            import mx.events.ResizeEvent;
+
+            flash.system.fscommand("showmenu", "false");
+
+            public   var mainClassObj:Object = new Object();
+            public   var mxmlObjectsList:Array = new Array();
+            public   var calculatorValue:Number = new Number(0);
+            public   var calculatorEventObj:Object = new Object();
+            public   var calcFormatValue:String = new String();
+            public   var calcPointValue:String = new String();
+            public   var calcParamDivValue:String = new String();
+            public   var calcErrValue:String = new String();
+
+            private  var zoomIds:Array = new Array();
+            private  var zoomStateOfObjects:Object = new Object();
+            private  var zoomCurrentId:String = new String();
+
+            // Complete initialization after start
+            private function init():void
+            {
+                this.mxmlObjectsList['mxmlApplication'] = this;
+                this.mxmlObjectsList['applicationDivider'] = this.applicationDivider;
+                this.mxmlObjectsList['helperLogo'] = this.topMenuLogo;
+                this.mxmlObjectsList['helperTitle'] = this.helperTitle;
+                this.mxmlObjectsList['topMenuArea'] = this.topMenu;
+                this.mxmlObjectsList['inputArea'] = this.inputArea;
+                this.mxmlObjectsList['imageArea'] = this.imageArea;
+                this.mxmlObjectsList['imageBox'] = this.imageBox;
+                this.mxmlObjectsList['defaultImage'] = this.defaultImage;
+                this.mxmlObjectsList['illustrationImage'] = this.formIllustrationImage;
+                this.mxmlObjectsList['promptingContainer'] = this.promptingContainer;
+                this.mxmlObjectsList['promptingArea'] = this.promptingArea;
+                this.mxmlObjectsList['repositoryArea'] = this.repositoryArea;
+                this.mxmlObjectsList['repositoryList'] = this.repositoryDispList;
+                this.mxmlObjectsList['messageArea'] = this.messageArea;
+                this.mxmlObjectsList['costArea'] = this.costArea;
+                this.mxmlObjectsList['checkButton'] = this.checkButton;
+                this.mxmlObjectsList['saveButton'] = this.saveButton;
+                this.mxmlObjectsList['closeButton'] = this.closeButton;
+
+                this.mxmlObjectsList['doZoom'] = this.doZoom;
+                this.mxmlObjectsList['smoothImage'] = this.smoothImage;
+                this.mxmlObjectsList['toolbar'] = this.toolbar;
+                this.mxmlObjectsList['searchbar'] = this.searchbar;
+                this.mxmlObjectsList['searchlabel'] = this.searchlabel;
+                this.mxmlObjectsList['searchtext'] = this.searchtext;
+
+                this.mxmlObjectsList['flashVars'] = Application.application.parameters;
+                this.mxmlObjectsList['root'] = null;
+
+                this.mainClassObj = new procStart(this, mxmlObjectsList);
+            }
+
+            public function doZoom(event:MouseEvent):void {
+                var id:String = event.target.hasOwnProperty('id') ? event.target.id : '';
+                var state:Number = 0;
+                var event_type:Boolean = new Boolean(false);
+
+                if (!event.target.enabled) return;
+
+                if (id)    {
+                    if (zoomIds.indexOf(id) == -1) {
+                        this.zoomIds.push(id);
+                        this.zoomStateOfObjects[id] = state = -1;
+                    } else {
+                        state = this.zoomStateOfObjects[id];
+                    }
+                }
+
+                if (zoomAll.isPlaying) {
+                    if (state >= 0 && (zoomCurrentId == id || !id))
+                    {
+                        zoomAll.reverse();
+                        state = state == 1 ? 2 : (state == 2 ? 1 : 0);
+                        zoomCurrentId = id;
+                    }
+                } else {
+                    // If this is a ROLL_OUT event, play the effect backwards. 
+                    // If this is a ROLL_OVER event, play the effect forwards.
+                    event_type = event.type == MouseEvent.ROLL_OUT ? true : false;                    
+                    if ((!event_type && state != 1) || (event_type && state == 1))
+                        zoomAll.play([event.target], event_type);
+                    state = event_type ? 2 : 1;
+                    zoomCurrentId = id;
+                }
+
+                if (id && zoomCurrentId == id)
+                    this.zoomStateOfObjects[id] = state;
+            }
+
+            public function smoothImage(ev:Event):void
+            {
+                //set image smoothing so image looks better when transformed.
+                var bmp:Bitmap = ev.target.content as Bitmap;
+                if (bmp) bmp.smoothing = true;
+            }
+            
+            private function resizeAppWindow(event:ResizeEvent):void
+            {
+                if (this.mxmlObjectsList['root']) this.mxmlObjectsList['root'].screenAdjustment();
+            }
+
+            protected function forwardSearchHandler(event:MouseEvent):void
+            {
+                this.toolbar.runSearch(true);
+            }
+
+            protected function backSearchHandler(event:MouseEvent):void
+            {
+                this.toolbar.runSearch(false);
+            }
+
+            protected function closeSearchHandler(event:MouseEvent):void
+            {
+                this.toolbar.closeSearch();
+            }
+        ]]>
+    </mx:Script>
+    
+    <mx:Zoom id="zoomAll" zoomWidthTo="2" zoomHeightTo="2" zoomWidthFrom="1" zoomHeightFrom="1" suspendBackgroundProcessing="true" repeatDelay="1000" />
+
+    <mx:Canvas id="applicationDivider" y="0" width="1065" alpha="1.0" backgroundColor="#DFDFDF"
+               borderColor="#DFDFDF" borderStyle="solid" horizontalCenter="0"
+               >
+
+        <!--    Top menu area with logo (хер знает)   -->
+        <mx:MenuBar
+            id="topMenu"
+            top="1"
+            horizontalCenter="-1"
+            width="1065"
+            height="40"
+            cornerRadius="0"
+            tabEnabled="false"
+            tabChildren="false">
+        </mx:MenuBar>
+
+        <!--    Logo (логотип)   -->
+		<!--
+		source="@Embed('images/logo-new.png')"
+		autoLoad="true"
+		-->
+        <mx:Image 
+            id="topMenuLogo"
+            scaleContent="false"
+            width="94"
+            height="33"
+            top="4"
+            horizontalCenter="-452"
+            tabEnabled="false"/>
+
+        <!--    Title    -->
+        <mx:HBox
+            width="412"
+            height="38"
+            top="4"
+            verticalAlign="middle"
+            horizontalCenter="-155"
+            horizontalScrollPolicy="off"
+            verticalScrollPolicy="off"
+        >
+            <mx:TextArea
+                id="helperTitle"
+                styleName="titleNameStyle"
+                text="Helper title"
+                displayAsPassword="false"
+                editable="false"
+                enabled="false"
+                tabEnabled="false"
+                tabChildren="false"
+                width="410"
+                height="24"
+                wordWrap="true"/>
+        </mx:HBox>
+
+        <!--    Bottom area with buttons    -->
+        <mx:Button
+            label="Завершить"
+            id="closeButton"
+            styleName="largeButtons"
+            enabled="true"
+            horizontalCenter="450"
+            top="7"
+            width="92"
+            height="27"/>
+
+        <mx:Button
+            label="Сохранить"
+            id="saveButton"
+            styleName="largeButtons"
+            enabled="true"
+            top="7"
+            horizontalCenter="350"
+            width="92"
+            height="27"/>
+
+        <mx:Button
+            label="Рассчитать"
+            id="checkButton"
+            styleName="largeButtons"
+            enabled="true"
+            top="7"
+            width="92"
+            height="27"
+            horizontalCenter="115"/>
+
+        <!--    Cost area    -->
+        <mx:Form
+            id="costArea"
+            width="128"
+            height="32"
+            horizontalCenter="233"
+            top="12"
+            paddingBottom="0"
+            paddingTop="0"
+            paddingLeft="0"
+            paddingRight="0"
+            backgroundAlpha="1.0"
+            tabEnabled="false"
+            tabChildren="false"
+            alpha="1.0"
+            borderStyle="none"
+            cornerRadius="0">
+        </mx:Form>
+
+        <!--    Header divider (разделительная линия)   -->
+        <mx:Canvas
+            id="headerDivider"
+            y="41"
+            width="1065"
+            height="2"
+            alpha="1.0"
+            backgroundColor="#F69522"
+            borderColor="#F69522"
+            horizontalCenter="-1"
+            borderStyle="solid"/>
+
+        <!--    Form for input (основная область параметров)   -->
+        <mx:Grid
+            id="inputArea"
+            width="564"
+            height="386"
+            horizontalCenter="-252"
+            paddingBottom="0"
+            paddingTop="0"
+            paddingLeft="10"
+            paddingRight="10"
+            borderStyle="none"
+            horizontalGap="10"
+            verticalGap="0"
+            >
+        </mx:Grid>
+        
+        <!--    Message area (область сообщений)   -->
+        <mx:Form
+            id="messageArea"
+            width="564"
+            height="109"
+            paddingBottom="0"
+            paddingTop="0"
+            paddingLeft="0"
+            paddingRight="0"
+            horizontalCenter="-252"
+            backgroundColor="#FFFFFF"
+            tabEnabled="false"
+            tabChildren="false">
+        </mx:Form>
+        
+        <!--    Form for selected options list (подсказка)  -->
+        <mx:VBox
+            styleName="_b"
+            backgroundColor="#F8FCF8"
+            id="promptingContainer"
+            width="500"
+            height="106"
+            top="43"
+            horizontalCenter="281"
+            horizontalScrollPolicy="off"
+            verticalScrollPolicy="off">
+
+            <mx:Form
+                id="promptingArea"
+                width="500"
+                height="54"
+                paddingBottom="0"
+                paddingTop="0"
+                paddingLeft="0"
+                paddingRight="0"
+                tabEnabled="false"
+                tabChildren="false"
+                />
+        </mx:VBox>
+
+        <!--    Main image area (основное изображение)   -->
+        <mx:VBox
+            styleName="_b"
+            id="imageArea"
+            width="500"
+            height="290"
+            top="150"
+            horizontalAlign="center"
+            paddingBottom="15"
+            paddingTop="15"
+            paddingLeft="5"
+            paddingRight="5"
+            horizontalCenter="281"
+            backgroundColor="#FFFFFF"
+            horizontalScrollPolicy="off"
+            verticalScrollPolicy="auto">
+
+            <mx:HBox id="imageBox" styleName="bordered" horizontalAlign="center" verticalScrollPolicy="off">
+                <mx:Image
+                    id="defaultImage"
+                    maxWidth="458"
+                    horizontalAlign="center"
+                    scaleContent="false"
+                    width="458"
+                    />
+            </mx:HBox>
+
+            <mx:Image
+                id="formIllustrationImage"
+                maxWidth="450"
+                maxHeight="120"
+                scaleContent="true"
+                autoLoad="true"
+                tabEnabled="false"
+                width="450"
+                height="0"
+                horizontalAlign="right"
+                verticalAlign="bottom"
+                />
+            </mx:VBox>
+
+        <!--    Repository area    -->
+        <mx:Form
+            id="repositoryArea"
+            width="500"
+            height="109"
+            horizontalCenter="281"
+            paddingBottom="0"
+            paddingTop="5"
+            paddingLeft="0"
+            paddingRight="0"
+            backgroundColor="#FFFFFF"
+            tabEnabled="false"
+            tabChildren="false">
+
+            <mx:FormItem>
+                <mx:DataGrid
+                    id="repositoryDispList"
+                    styleName="repositoryDataGridStyle"
+                    headerStyleName="repositoryDataGridHeader"
+                    width="486"
+                    height="92"
+                    editable="false"
+                    resizableColumns="false"
+                    sortableColumns="false">
+                    <mx:columns>
+                        <mx:DataGridColumn
+                            id='dg1'
+                            headerText=""
+                            dataField="image"
+                            width="18">
+                            <mx:headerRenderer>
+                                <mx:Component>
+                                    <mx:Image
+                                        width="18"
+                                        height="16"
+                                        source="@Embed(source='../images/skins/infoImg.png')"/>
+                                </mx:Component>
+                            </mx:headerRenderer>
+                            <mx:itemRenderer>
+                                <mx:Component>
+                                    <mx:Image source="{data.image}"/>
+                                </mx:Component>
+                            </mx:itemRenderer>
+                        </mx:DataGridColumn>
+                        <mx:DataGridColumn
+                            id='dg2'
+                            headerText="Справочная документация"
+                            dataField="description"/>
+                    </mx:columns>
+                </mx:DataGrid>
+            </mx:FormItem>
+        </mx:Form>
+    </mx:Canvas>
+
+    <!-- <constructors:ToolBar id="toolbar" horizontalCenter="-537" y="44"/> -->
+    <constructors:ExtendedToolBar id="toolbar" horizontalCenter="430" y="103"/>
+
+    <mx:ApplicationControlBar id="searchbar" cornerRadius="0" visible="false"
+                              width="350" height="40" y="126" horizontalCenter="-322"
+                              >
+        <mx:Label id="searchlabel" text="Найти:" fontWeight="bold" color="0x000000"/>
+        <mx:TextInput id="searchtext" width="100%"/>
+        <mx:Spacer width="10"/>
+        <mx:Button icon="@Embed('images/back.png')" width="28" height="24" click="backSearchHandler(event)"/>
+        <mx:Button icon="@Embed('images/forward.png')" width="28" height="24" click="forwardSearchHandler(event)"/>
+        <mx:Button icon="@Embed('images/close.png')" width="22" height="22" click="closeSearchHandler(event)"/>
+    </mx:ApplicationControlBar>
+</mx:Application>
+
